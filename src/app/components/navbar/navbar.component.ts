@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrl: './navbar.component.scss'
 })
 export class NavbarComponent {
-
+  europopLogo: string = "./../../../assets/images/europop-main-logo.svg";
 }

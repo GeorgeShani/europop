@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { FetchService } from './services/fetch.service';
 
 @Component({
   selector: 'app-root',
@@ -8,11 +7,4 @@ import { FetchService } from './services/fetch.service';
 })
 export class AppComponent {
   title = 'angular-project';
-  data!: any;
-
-  constructor(private _fetch: FetchService) {
-    this._fetch.getById(295194).subscribe((data) => {
-      this.data = data;
-    });
-  }
 }

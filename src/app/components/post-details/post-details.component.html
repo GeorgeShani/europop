@@ -1,6 +1,6 @@
 <ng-container *ngIf="data.data">
     <div class="main">
-        <img [src]="data.data.image.fileUrl" alt="">
+        <img [src]="data.data.image.fileUrl" [alt]="data.data.image.fileName">
         <h1>{{ data.data.title }}</h1>
         <h3>{{ data.data.subtitle }}</h3>
         <p [innerHTML]="data.data.text"></p>
