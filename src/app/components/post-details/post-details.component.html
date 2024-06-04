@@ -1,0 +1,18 @@
+<ng-container *ngIf="data.data">
+    <div class="main">
+        <img [src]="data.data.image.fileUrl" alt="">
+        <h1>{{ data.data.title }}</h1>
+        <h3>{{ data.data.subtitle }}</h3>
+        <p [innerHTML]="data.data.text"></p>
+    </div>
+    <ng-container *ngIf="data.data.modules">
+        <div class="div" *ngFor="let module of data.data.modules">
+            <ng-container *ngIf="module.type === 'TEXT'">
+                <div [innerHTML]="module.text"></div>
+            </ng-container>
+            <ng-container *ngIf="module.type === 'PHOTO_GALLERY'">
+                <img *ngFor="let item of module.items" [src]="item.image.fileUrl" [alt]="item.image.description">
+            </ng-container>
+        </div>
+    </ng-container>
+</ng-container>

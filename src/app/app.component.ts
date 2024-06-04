@@ -11,7 +11,7 @@ export class AppComponent {
   data!: any;
 
   constructor(private _fetch: FetchService) {
-    this._fetch.getData().subscribe((data) => {
+    this._fetch.getById(295194).subscribe((data) => {
       this.data = data;
     });
   }
