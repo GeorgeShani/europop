@@ -11,12 +11,13 @@ export class FetchService {
   private _europopAPIs: APIs = {
     regularPosts: "http://localhost:3000/proxy?targetUrl=https://europop.ge/api/posts",
     featuredPosts: "http://localhost:3000/proxy?targetUrl=https://europop.ge/api/featured-posts",
-    latePosts: "http://localhost:3000/proxy?targetUrl=https://europop.ge/api/posts/latest",
-    latestPosts: "http://localhost:3000/proxy?targetUrl=https://europop.ge/api/posts/more-latest",
+    latestPosts: "http://localhost:3000/proxy?targetUrl=https://europop.ge/api/posts/latest",
     popularPosts: "http://localhost:3000/proxy?targetUrl=https://europop.ge/api/posts/popular",
     analyticPosts: "http://localhost:3000/proxy?targetUrl=https://europop.ge/api/posts/analytic",
-    europebetPosts: "https://europop.ge/api/posts/powered-by-europebet?size=10",
-    authors: "http://localhost:3000/proxy?targetUrl=https://europop.ge/api/authors?page=1&size=15",
+    authors: "http://localhost:3000/proxy?targetUrl=https://europop.ge/api/authors",
+    postsPoweredByEuropebet: "https://europop.ge/api/posts/powered-by-europebet",
+    searchAPI: "http://localhost:3000/proxy?targetUrl=https://europop.ge/api/search",
+    featuredPostPoweredByEuropebet: "http://localhost:3000/proxy?targetUrl=https://europop.ge/api/posts/powered-by-europebet/featured",
   };
 
   getData(endpoint: string) {
@@ -25,6 +26,21 @@ export class FetchService {
 
   getById(id: number)  {
     let url = this._europopAPIs["regularPosts"] + `/${id}`;
+    return this._http.get(url);
+  }
+
+  getAuthors(page: number, size: number) {
+    let url = this._europopAPIs["authors"] + `?page=${page}&size=${size}`;
+    return this._http.get(url);
+  } 
+
+  getPostsByEuropebet(size: number) {
+    let url = this._europopAPIs["postsPoweredByEuropebet"] + `?size=${size}`;
+    return this._http.get(url);
+  }
+
+  getSearchResult(searchQuery: string) {
+    let url = this._europopAPIs["searchAPI"] + `?query=${searchQuery}&detailed=true`;
     return this._http.get(url);
   }
 }

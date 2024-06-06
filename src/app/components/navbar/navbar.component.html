@@ -7,8 +7,57 @@
                 <div class="line"></div>
             </div>
             <div class="logo-container">
-                <img [src]="europopLogo" alt="">
+                <a class="link-to-home" href="/">
+                    <img [src]="europopLogo" alt="">
+                </a>
             </div>
+        </div>
+        <div class="separation-line"></div>
+        <div class="middle-side">
+            <ul class="suggestions-list">
+                <li class="list-item">
+                    <a href="" class="suggestion">
+                        <img width="41" height="24" [src]="epopPlusLogo" alt="">
+                    </a>
+                </li>
+                <li class="list-item">
+                    <a href="" class="suggestion">
+                        <img width="24" height="24" [src]="georgianSport" alt="">
+                        <p class="georgian link-text">ქართული სპორტი</p>
+                    </a>
+                </li>
+                <li class="list-item">
+                    <a href="" class="suggestion">
+                        <img width="24" height="24" [src]="kvaratskheliaNumber" alt="">
+                        <p class="georgian link-text">ხვიჩა კვარაცხელია</p>
+                    </a>
+                </li>
+                <li class="list-item">
+                    <a href="" class="suggestion">
+                        <img width="24" height="24" [src]="nakrebiLogo" alt="">
+                        <p class="georgian link-text">ქართული ნაკრები</p>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="right-side">
+            <div class="search-input-container">
+                <button (click)="getSearchResults()" id="search-button" type="button">
+                    <i class="bi bi-search"></i>
+                </button>
+                <input 
+                    [(ngModel)]="searchQuery" type="text" 
+                    (keypress)="onEnterPressed($event)"
+                    id="search-input" name="searchQuery" 
+                    placeholder="მოძებნე პოსტი, ავტორი, კატეგორია..."
+                >
+            </div>
+            <button id="notifications" type="button">
+                <i class="bi bi-bell"></i>
+            </button>
+            <button id="profile" type="button">
+                <i class="bi bi-person"></i>
+            </button>
         </div>
     </nav>
 </header>

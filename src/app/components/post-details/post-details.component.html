@@ -1,12 +1,12 @@
-<ng-container *ngIf="data.data">
+<ng-container *ngIf="postDetails.data">
     <div class="main">
-        <img [src]="data.data.image.fileUrl" [alt]="data.data.image.fileName">
-        <h1>{{ data.data.title }}</h1>
-        <h3>{{ data.data.subtitle }}</h3>
-        <p [innerHTML]="data.data.text"></p>
+        <img [src]="postDetails.data.image.fileUrl" [alt]="postDetails.data.image.fileName">
+        <h1>{{ postDetails.data.title }}</h1>
+        <h3>{{ postDetails.data.subtitle }}</h3>
+        <div [innerHTML]="postDetails.data.text"></div>
     </div>
-    <ng-container *ngIf="data.data.modules">
-        <div class="div" *ngFor="let module of data.data.modules">
+    <ng-container *ngIf="postDetails.data.modules">
+        <div class="div" *ngFor="let module of postDetails.data.modules">
             <ng-container *ngIf="module.type === 'TEXT'">
                 <div [innerHTML]="module.text"></div>
             </ng-container>

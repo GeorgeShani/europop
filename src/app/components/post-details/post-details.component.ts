@@ -8,13 +8,13 @@ import { FetchService } from '../../services/fetch.service';
   styleUrl: './post-details.component.scss'
 })
 export class PostDetailsComponent {
-  data!: any;
+  postDetails!: any;
   
   constructor(private _fetch: FetchService, private _route: ActivatedRoute) { 
     this._route.params.subscribe((params) => {
       let id = params['id'];
       this._fetch.getById(id).subscribe((data) => {
-        this.data = data;
+        this.postDetails = data;
       });
     });
   }
