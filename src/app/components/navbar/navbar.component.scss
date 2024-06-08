@@ -76,7 +76,7 @@ header {
                 @include flex(row, center, space-between);
                 list-style: none;
                 padding: 0;
-                gap: 28px;
+                gap: 24px;
 
                 .list-item {
                     .suggestion {
@@ -149,7 +149,7 @@ header {
                 cursor: pointer;
 
                 i {
-                    font-size: 20px;
+                    font-size: 22px;
                     color: #fff;
                 }
             }
