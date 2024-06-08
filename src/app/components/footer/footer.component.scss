@@ -12,12 +12,166 @@
 }
 
 footer {
+    @include flex(column, center, center);
     background-color: #191B1B;
+    position: relative;
+    z-index: 2;
+    padding: 48px 0;
     width: 100%;
     height: 560px;
 
     .footer-inner {
-        max-width: 1220px;
+        @include flex(column, center, center);
+        position: relative;
+        z-index: 2;
+        width: 80%;
         height: 100%;
+
+        .main-content {
+            @include flex(row, center, center);
+            width: 100%;
+            height: 90%;
+
+            .left-side {
+                @include flex(column, flex-start, flex-start);
+                width: 25%;
+                height: 100%;
+
+                h4 {
+                    @include font(600, 15px, #9e9e9e);
+                    margin: 28px 0 20px 0;
+                }
+
+                .subscribe-to-news {
+                    @include flex(column, flex-start, center);
+                    width: 100%;
+
+                    .subscribe-input-container {
+                        width: 100%;
+
+                        .input-container {
+                            @include flex(row, center, center);
+                            background-color: #fff;
+                            width: 100%;
+                            height: 48px;
+                            padding: 4px;
+                            border-radius: 12px;
+
+                            #email-input {
+                                @include font(500, 13px, #000);
+                                background-color: transparent;
+                                font-family: inherit;
+                                padding: 8px 12px;
+                                outline: none;
+                                border: none;
+                                width: 65%;
+                                height: 100%;
+                            }
+
+                            #subscribe-btn {
+                                @include font(600, 15px, #ACACAC);
+                                font-family: inherit;
+                                background-color: #2B2C2E;
+                                border-radius: 12px;
+                                padding: 4px;
+                                width: 35%;
+                                height: 100%;
+                                border: none;
+                            }
+                        }
+                    }
+
+                    p {
+                        @include font(500, 11px, #e0e0e0);
+                        text-align: center;
+                        margin: 18px 0;
+                    }
+                }
+
+                .social-media-links-container {
+                    @include flex(column, flex-start, center);
+                    width: 100%;
+
+                    .links-list-container {
+                        @include flex(row, center, flex-start);
+                        margin-top: 38px;
+                        width: 100%;
+                        gap: 18px;
+
+                        p {
+                            @include font(600, 15px, #9e9e9e);
+                            margin: 0;
+                        }
+
+                        .links-list {
+                            @include flex(row, center, center);
+                            list-style: none;
+                            padding: 0;
+                            gap: 12px;
+
+                            .link-item .link {
+                                @include flex(column, center, center);
+                            }
+                        }
+                    }
+
+                    #text-me-btn {
+                        @include flex(row, center, center);
+                        @include font(500, 15px, #fff);
+                        background-color: #000;
+                        font-family: inherit;
+                        border-radius: 12px;
+                        border: none;
+                        width: 232px;
+                        height: 46px;
+                        gap: 12px;
+                        margin: 32px 0;
+                        cursor: pointer;
+                    }
+                }
+            }
+        
+            .right-side {
+                width: 75%;
+                height: 100%;
+            }
+        }
+        
+        .footer-bottom {
+            @include flex(row, center, space-between);
+            width: 100%;
+            height: 10%;
+
+            p {
+                @include font(600, 16px, #9E9F9F);
+            }
+
+            .mobile-store-links {
+                @include flex(column, center, center);
+
+                .links-list {
+                    @include flex(row, center, center);
+                    list-style: none;
+                    padding: 0;
+                    gap: 12px;
+
+                    .link-item .link {
+                        @include flex(column, center, center);
+                        
+                        .store-image { 
+                            width: 138px;
+                            height: 41px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .decoration {
+        position: absolute;
+        z-index: 0;
+        bottom: 0;
+        right: 0;
     }
 }

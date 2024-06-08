@@ -1,6 +1,57 @@
 <footer>
     <div class="footer-inner">
-        <div class="left-side"></div>
-        <div class="right-side"></div>
+        <div class="main-content">
+            <div class="left-side">
+                <div class="logo-container">
+                    <img [src]="europopLogo" alt="">
+                </div>
+                <h4>შემოგვიერთდი და პირველი გაეცანი მსოფლიო სპორტის უახლეს ამბებს</h4>
+                <div class="subscribe-to-news">
+                    <div class="subscribe-input-container">
+                        <div class="input-container">
+                            <input [(ngModel)]="userEmail" type="email" name="userEmail" id="email-input" placeholder="ელ-ფოსტა">
+                            <button type="button" id="subscribe-btn">გამოიწერე</button>
+                        </div>
+                    </div>
+                    <p>* სიახლეების გამოწერით ადასტურებ, რომ გაეცანი კონფიდენციალურობის პოლიტიკას და ეთანხმები, რომ შენი მონაცემები
+                    დაამუშავოს კომპანიამ შეტყობინებების გამოსაგზავნად</p>
+                </div>
+                <div class="social-media-links-container">
+                    <div class="links-list-container">
+                        <p>გამოგვყევი</p>
+                        <ul class="links-list">
+                            <li class="link-item" *ngFor="let smlink of  socialMediaLinks">
+                                <a target="_blank" [href]="smlink.linkUrl" class="link">
+                                    <img [src]="smlink.imageUrl" alt="" class="social-media-icon">
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <button (click)="redirectToMessenger()" type="button" id="text-me-btn">
+                        <img [src]="messengerLogo" alt=""> მოგვწერე
+                    </button>
+                </div>
+            </div>
+            <div class="right-side"></div>
+        </div>
+        <div class="footer-bottom">
+            <div class="copyright-info">
+                <p class="english">Copyright &copy; {{ getCurrentYear() }} europop. 
+                    <span class="georgian">ყველა უფლება დაცულია.</span>
+                </p>
+            </div>
+            <div class="mobile-store-links">
+                <ul class="links-list">
+                    <li class="link-item" *ngFor="let mslink of mobileStoreLinks">
+                        <a target="_blank" [href]="mslink.linkUrl" class="link">
+                            <img [src]="mslink.imageUrl" alt="" class="store-image">
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="decoration">
+        <img [src]="decorationImage" alt="">
     </div>
 </footer>
