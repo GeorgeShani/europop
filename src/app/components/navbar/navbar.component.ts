@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { FetchService } from '../../services/fetch.service';
 
 @Component({
@@ -6,7 +6,9 @@ import { FetchService } from '../../services/fetch.service';
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.scss'
 })
-export class NavbarComponent {
+export class NavbarComponent {  
+  @Input() modified!: boolean;
+  
   europopLogo: string = "./../../../assets/images/europop-main-logo.svg";
   epopPlusLogo: string = "./../../../assets/images/eplus.png";
   georgianSport: string = "https://cdn.europop.ge/1090795a-c062-4604-b795-1b26227fc00b";

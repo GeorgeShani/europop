@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
-import { TraceRouteService } from './services/trace-route.service';
-import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-root',
@@ -9,17 +7,20 @@ import { filter } from 'rxjs/operators';
   styleUrl: './app.component.scss'
 })
 export class AppComponent implements OnInit {
-  showFooter = true;
-  modifyNavbar = false;
+  title: string = "angular-project";
 
-  constructor(private router: Router, private routeService: TraceRouteService) { }
+  modifyNavbar: boolean = false;
+  showFooter: boolean = true;
+
+  constructor(private router: Router) {}
 
   ngOnInit() {
-    this.router.events.pipe(
-      filter(event => event instanceof NavigationEnd)
-    ).subscribe(() => {
-      this.showFooter = !this.routeService.isAuthRoute();
-      this.modifyNavbar = this.routeService.isAuthRoute();
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        const currentRoute = event.urlAfterRedirects;
+        this.modifyNavbar = ['/auth/login', '/auth/registration'].includes(currentRoute);
+        this.showFooter = !this.modifyNavbar;
+      }
     });
   }
 }

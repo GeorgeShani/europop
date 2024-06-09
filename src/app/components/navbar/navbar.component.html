@@ -1,5 +1,5 @@
 <header>
-    <nav>
+    <nav *ngIf="!modified">
         <div class="left-side">
             <div class="burger-menu">
                 <div class="line"></div>
@@ -58,6 +58,13 @@
             <button id="profile" type="button">
                 <i class="bi bi-person"></i>
             </button>
+        </div>
+    </nav>
+    <nav class="modified-nav" *ngIf="modified">
+        <div class="logo-container">
+            <a class="link-to-home" href="/">
+                <img [src]="europopLogo" alt="">
+            </a>
         </div>
     </nav>
 </header>
