@@ -13,6 +13,7 @@ import { RelativeTimePipe } from './pipes/relative-time.pipe';
 import { ErrorComponent } from './components/error/error.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
+import { PasswordRecoveryComponent } from './components/password-recovery/password-recovery.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { RegisterComponent } from './components/register/register.component';
     RelativeTimePipe,
     ErrorComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    PasswordRecoveryComponent
   ],
   imports: [
     BrowserModule,

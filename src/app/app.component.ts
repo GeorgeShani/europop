@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 
 @Component({
@@ -6,19 +6,18 @@ import { Router, NavigationEnd } from '@angular/router';
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
   title: string = "angular-project";
 
   modifyNavbar: boolean = false;
   showFooter: boolean = true;
 
-  constructor(private router: Router) {}
-
-  ngOnInit() {
-    this.router.events.subscribe((event) => {
+  constructor(private _router: Router) {
+    this._router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         const currentRoute = event.urlAfterRedirects;
-        this.modifyNavbar = ['/auth/login', '/auth/registration'].includes(currentRoute);
+        const authPaths = ['/auth/login', '/auth/register', '/auth/password-recovery'];
+        this.modifyNavbar = authPaths.includes(currentRoute);
         this.showFooter = !this.modifyNavbar;
       }
     });

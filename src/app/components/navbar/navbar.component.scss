@@ -1,15 +1,4 @@
-@mixin flex($direction, $align, $justify) {
-    display: flex;
-    flex-direction: $direction;
-    align-items: $align;
-    justify-content: $justify;
-}
-
-@mixin font($weight, $size, $color) {
-    font-weight: $weight;
-    font-size: $size;
-    color: $color;
-}
+@import './../../../styles.scss';
 
 header {
     @include flex(column, center, center);
@@ -17,6 +6,7 @@ header {
     position: sticky;
     top: 0;
     z-index: 3;
+    overflow: hidden;
     width: 100%;
     height: 76px;
 
@@ -103,10 +93,16 @@ header {
                     .suggestion {
                         @include flex(row, center, center);
                         text-decoration: none;
-                        gap: 10px;
+                        gap: 8px;
+
+                        .eplus-logo {
+                            margin-right: 8px;
+                            width: 41px;
+                            height: 24px;
+                        }
 
                         .link-text {
-                            @include font(600, 14px, #fff);
+                            @include font(500, 15px, #fff);
                         }
                     }
                 }
@@ -142,7 +138,7 @@ header {
                 }
 
                 #search-input {
-                    @include font(500, 14px, #7e7e7e);
+                    @include font(400, 14px, #7e7e7e);
                     background-color: transparent;
                     font-family: inherit;
                     border: none;
@@ -152,7 +148,7 @@ header {
                     height: 100%;
 
                     &::placeholder {
-                        @include font(500, 14px, #7e7e7e);
+                        @include font(400, 14px, #7e7e7e);
                     }
                 }
 

@@ -11,6 +11,11 @@ export class RegexService {
     return regex.test(email);
   }
 
+  validatePhoneNumber(phoneNumber: string) {
+    const regex: RegExp = /([+(\d]{1})(([\d+() -.]){5,16})([+(\d]{1})/gm;
+    return regex.test(phoneNumber);
+  }
+
   validatePassword(password: string) {
     const regex: RegExp = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/gm;
     return regex.test(password);
