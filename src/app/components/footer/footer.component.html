@@ -32,7 +32,40 @@
                     </button>
                 </div>
             </div>
-            <div class="right-side"></div>
+            <div class="right-side">
+                <div class="categories-links-container">
+                    <p class="title">კატეგორია</p>
+                    <ul class="links-list">
+                        <li class="link-item" *ngFor="let item of categories">
+                            <a class="link" href="">{{ item }}</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="analytics-links-container">
+                    <img [src]="epopPlusLogo"  width="34" height="20" alt="">
+                    <ul class="links-list">
+                        <li class="link-item" *ngFor="let item of analytics">
+                            <a class="link" href="">{{ item }}</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="help-links-container">
+                    <p class="title">დახმარება</p>
+                    <ul class="links-list">
+                        <li class="link-item" *ngFor="let item of help">
+                            <a class="link" href="">{{ item }}</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="profile-links-container">
+                    <p class="title">პროფილი</p>
+                    <ul class="links-list">
+                        <li class="link-item" *ngFor="let item of profile">
+                            <a class="link" href="">{{ item }}</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
         </div>
         <div class="footer-bottom">
             <div class="copyright-info">

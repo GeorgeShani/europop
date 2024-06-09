@@ -8,9 +8,15 @@ import { externals } from '../../interfaces/external-links.model';
 })
 export class FooterComponent {
   europopLogo: string = "./../../../assets/images/europop-main-logo.svg";
+  epopPlusLogo: string = "./../../../assets/images/eplus.png";
   messengerLogo: string = "./../../../assets/images/messenger-logo.svg";
   decorationImage: string = "./../../../assets/images/footer-decoration.svg";
   userEmail!: string;
+
+  categories: string[] = ["ფეხბურთი", "ეროვნული ლიგა", "ეროვნული ნაკრები", "სხვა სახეობები", "ლეგიონერები", "ფუტსალი"];
+  analytics: string[] = ["ანალიტიკა", "ისტორია", "ინტერვიუ", "ქვიზი", "ბლოგი"];
+  help: string[] = ["ელ-ფოსტა", "კონფიდენციალურობა", "წესები და პირობები", "კონტაქტი", "ჩვენ შესახებ"];
+  profile: string[] = ["ჩემი პროფილი", "ჩემი ინტერესები", "პარამეტრები", "შენახული"];
 
   socialMediaLinks: externals[] = [
     { imageUrl: "./../../../assets/images/instagram-logo.svg", linkUrl: "https://www.instagram.com/europop.ge" },
