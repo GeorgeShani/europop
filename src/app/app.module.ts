@@ -10,6 +10,7 @@ import { HomeComponent } from './components/home/home.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { RelativeTimePipe } from './pipes/relative-time.pipe';
+import { ErrorComponent } from './components/error/error.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { RelativeTimePipe } from './pipes/relative-time.pipe';
     HomeComponent,
     NavbarComponent,
     FooterComponent,
-    RelativeTimePipe
+    RelativeTimePipe,
+    ErrorComponent
   ],
   imports: [
     BrowserModule,
