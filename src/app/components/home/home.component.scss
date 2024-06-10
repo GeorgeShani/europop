@@ -11,9 +11,12 @@
         top: 0;
         left: 0;
         width: 100%;
-        background-image: url("./../../../assets/images/main-cover.png");
-        background-size: cover;
-        background-position: center;
+        background-image: url('./../../../assets/images/main-cover.png');
+        background-position-x: center;
+        background-position-y: top;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-attachment: scroll;
         aspect-ratio: 3.035 / 1;
     }
 
