@@ -15,9 +15,12 @@ export class FetchService {
     popularPosts: "http://localhost:3000/proxy?targetUrl=https://europop.ge/api/posts/popular",
     analyticPosts: "http://localhost:3000/proxy?targetUrl=https://europop.ge/api/posts/analytic",
     authors: "http://localhost:3000/proxy?targetUrl=https://europop.ge/api/authors",
-    postsPoweredByEuropebet: "https://europop.ge/api/posts/powered-by-europebet",
     searchAPI: "http://localhost:3000/proxy?targetUrl=https://europop.ge/api/search",
+    postsPoweredByEuropebet: "https://europop.ge/api/posts/powered-by-europebet",
     featuredPostPoweredByEuropebet: "http://localhost:3000/proxy?targetUrl=https://europop.ge/api/posts/powered-by-europebet/featured",
+    georgianSportPosts: "http://localhost:3000/proxy?targetUrl=https://europop.ge/api/posts/by-category-id?categoryId=180837&size=30",
+    khvichaKvaratskheliaPosts: "http://localhost:3000/proxy?targetUrl=https://europop.ge/api/posts/by-category-id?categoryId=182094&size=30",
+    nationalFootballTeamPosts: "http://localhost:3000/proxy?targetUrl=https://europop.ge/api/posts/by-category-id?categoryId=180246&size=30",
   };
 
   getData(endpoint: string) {
