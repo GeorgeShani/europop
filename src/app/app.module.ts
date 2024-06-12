@@ -29,8 +29,6 @@ import { TermsAndConditionsComponent } from './components/terms-and-conditions/t
     LoginComponent,
     RegisterComponent,
     PasswordRecoveryComponent,
-    ConditionsComponent,
-    ConfidentialPolicyComponent,
     PrivacyPolicyComponent,
     TermsAndConditionsComponent
   ],

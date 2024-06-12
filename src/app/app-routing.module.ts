@@ -15,7 +15,7 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'posts/:id', component: PostDetailsComponent },
   { path: 'auth/login', title: "Login - europop", component: LoginComponent },
-  { path: 'auth/register', title: "Regsiter - europop", component: RegisterComponent },
+  { path: 'auth/register', title: "Register - europop", component: RegisterComponent },
   { path: 'auth/password-recovery', title: "Recover password - europop", component: PasswordRecoveryComponent },
   { path: 'privacy-policy', title: "Privacy Policy - europop", component: PrivacyPolicyComponent },
   { path: 'terms-and-conditions', title: "Terms and Conditions - europop", component: TermsAndConditionsComponent},
