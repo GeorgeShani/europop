@@ -42,12 +42,12 @@
                 width: 344px;
         
                 .email-input-container {
-                    @include flex(column, flex-start, center);
+                    @include flex(row, center, space-between);
                     border-bottom: 1px solid rgba(172, 172, 172, 0.5);
                     position: relative;
                     width: 100%;
                     height: 58px;
-                    margin-bottom: 18px;
+                    margin-bottom: 10px;
         
                     .email-label {
                         position: absolute;
@@ -79,11 +79,19 @@
                             font-size: 13px;
                         }
                     }
+
+                    .check-icon {
+                        display: block;
+
+                        i {
+                            font-size: 32px;
+                            color: #369D34;
+                        }
+                    }
                 }
         
                 .error-container {
                     @include flex(column, center, center);
-                    // margin-top: 6px;
                     width: 100%;
                     height: 17px;
         
@@ -91,8 +99,8 @@
                         @include flex(row, center, flex-start);
                         @include font(300, 13px, #FF3B3B);
                         line-height: 17px;
-                        // margin-top: 6px;
                         width: 100%;
+                        margin: 0;
                     }
                 }
             }
@@ -102,7 +110,7 @@
                 margin-bottom: 40px;
         
                 .password-input-container {
-                    @include flex(column, flex-start, center);
+                    @include flex(row, center, space-between);
                     border-bottom: 1px solid rgba(172, 172, 172, 0.5);
                     position: relative;
                     width: 344px;
@@ -139,6 +147,17 @@
                             font-size: 13px;
                         }
                     }
+
+                    #toggleSeePassBtn {
+                        background-color: transparent;
+                        border: none;
+                        cursor: pointer;
+
+                        i {
+                            font-size: 20px;
+                            color: #999;
+                        }
+                    }
                 }
         
                 .error-container {
@@ -148,9 +167,11 @@
                     height: 17px;
         
                     .error {
+                        @include flex(row, center, flex-start);
                         @include font(300, 13px, #FF3B3B);
                         line-height: 17px;
-                        margin-top: 6px;
+                        width: 100%;
+                        margin: 0;
                     }
                 }
             }
@@ -193,7 +214,7 @@
                 margin-bottom: 40px;
 
                 .confirm-password-input-container {
-                    @include flex(column, flex-start, center);
+                    @include flex(row, center, space-between);
                     border-bottom: 1px solid rgba(172, 172, 172, 0.5);
                     position: relative;
                     width: 100%;
@@ -230,6 +251,17 @@
                             font-size: 13px;
                         }
                     }
+
+                    #toggleSeePassBtn {
+                        background-color: transparent;
+                        border: none;
+                        cursor: pointer;
+
+                        i {
+                            font-size: 20px;
+                            color: #999;
+                        }
+                    }
                 }
 
                 .error-container {
@@ -239,10 +271,11 @@
                     height: 17px;
 
                     .error {
+                        @include flex(row, center, flex-start);
                         @include font(300, 13px, #FF3B3B);
+                        line-height: 17px;
                         width: 100%;
-                        // line-height: 17px;
-                        margin-top: 6px;
+                        margin: 0;
                     }
                 }
             }
@@ -328,6 +361,11 @@
             line-height: 17px;
             color: rgba(255, 255, 255, 0.7);
             margin: 0;
+
+            a {
+                text-decoration: underline;
+                color: white;
+            }
         }
     }
 }

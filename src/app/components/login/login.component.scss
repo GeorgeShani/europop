@@ -90,7 +90,7 @@
                 margin-bottom: 40px;
 
                 .password-input-container {
-                    @include flex(column, flex-start, center);
+                    @include flex(row, center, space-between);
                     border-bottom: 1px solid rgba(172, 172, 172, 0.5);
                     position: relative;
                     width: 344px;
@@ -125,6 +125,17 @@
                             top: -6px;
                             left: 0;
                             font-size: 13px;
+                        }
+                    }
+
+                    #toggleSeePassBtn {
+                        background-color: transparent;
+                        border: none;
+                        cursor: pointer;
+
+                        i {
+                            font-size: 20px;
+                            color: #999;
                         }
                     }
                 }

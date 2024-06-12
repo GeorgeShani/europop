@@ -53,7 +53,7 @@ export class RegisterService {
 
   checkEmail() {
     if (this.user.userEmail === "") {
-      this.user.errors.userEmailError = "გთხოვთ შეავსოთ მეილის ველი";
+      this.user.errors.userEmailError = "გთხოვთ, შეავსოთ მეილის ველი";
       return;
     } else if (!this._regex.validateEmail(this.user.userEmail)) {
       this.user.errors.userEmailError = "ელ-ფოსტის ფორმატი არასწორია";
@@ -62,9 +62,13 @@ export class RegisterService {
     }
   }
 
+  checkEmailPrecisely() {
+    return this._regex.validateEmail(this.user.userEmail);
+  }
+
   checkPassword() {
     if (this.user.userPassword === "") {
-      this.user.errors.userPasswordError = "გთხოვთ შეავსოთ პაროლის ველი";
+      this.user.errors.userPasswordError = "გთხოვთ, შეავსოთ პაროლის ველი";
       return;
     } else if (!this._regex.validatePassword(this.user.userPassword)) {
       this.user.errors.userPasswordError = "პაროლის ფორმატი არასწორია";
@@ -73,15 +77,17 @@ export class RegisterService {
     }
   }
 
+  checkPasswordPrecisely() {
+    return this._regex.validatePassword(this.user.userPassword);
+  }
+
   comparePasswords() {
     if (this.user.userConfirmedPassword === "") {
-      this.user.errors.userConfirmedPasswordError = "Please confirm your password";
+      this.user.errors.userConfirmedPasswordError = "გთხოვთ, განმეორებით შეავსოთ პაროლის ველი";
       return;
     } else if (this.user.userPassword !== this.user.userConfirmedPassword) {
-      this.user.errors.userPasswordError = "პაროლები არ ემთხვევა";
       this.user.errors.userConfirmedPasswordError = "პაროლები არ ემთხვევა";
     } else {
-      this.user.errors.userPasswordError = "";
       this.user.errors.userConfirmedPasswordError = "";
     }
   }

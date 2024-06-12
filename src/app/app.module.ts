@@ -14,6 +14,8 @@ import { ErrorComponent } from './components/error/error.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { PasswordRecoveryComponent } from './components/password-recovery/password-recovery.component';
+import { PrivacyPolicyComponent } from './components/privacy-policy/privacy-policy.component';
+import { TermsAndConditionsComponent } from './components/terms-and-conditions/terms-and-conditions.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,11 @@ import { PasswordRecoveryComponent } from './components/password-recovery/passwo
     ErrorComponent,
     LoginComponent,
     RegisterComponent,
-    PasswordRecoveryComponent
+    PasswordRecoveryComponent,
+    ConditionsComponent,
+    ConfidentialPolicyComponent,
+    PrivacyPolicyComponent,
+    TermsAndConditionsComponent
   ],
   imports: [
     BrowserModule,

@@ -7,6 +7,9 @@
                 <div class="email-input-container">
                     <input [(ngModel)]="register.getUserData().userEmail" (ngModelChange)="register.checkEmail()" type="email" name="userEmail" id="email-input" placeholder=" ">
                     <label for="email-input" class="email-label">ელ-ფოსტა*</label>
+                    <div [ngStyle]="revealCheckIcon(this.register.checkEmailPrecisely())" class="check-icon">
+                        <i class="bi bi-check"></i>
+                    </div>
                 </div>
                 <div class="error-container">
                     <p class="error">{{ register.getUserData().errors.userEmailError }}</p>
@@ -14,8 +17,14 @@
             </div>
             <div class="user-password-input">
                 <div class="password-input-container">
-                    <input [(ngModel)]="register.getUserData().userPassword" (ngModelChange)="register.checkPassword()" type="password" name="userPassword" id="password-input" placeholder=" ">
+                    <input 
+                        [(ngModel)]="register.getUserData().userPassword" (ngModelChange)="register.checkPassword()" 
+                        [type]="showPassword ? 'text' : 'password'" name="userPassword" id="password-input" placeholder=" "
+                    >
                     <label for="password-input" class="password-label">პაროლი*</label>
+                    <button (click)="togglePasswordVisibility()" type="button" id="toggleSeePassBtn">
+                        <i class="bi" [ngClass]="{ 'bi-eye': showPassword, 'bi-eye-slash': !showPassword }"></i>
+                    </button>
                 </div>
                 <div class="error-container">
                     <p class="error">{{ register.getUserData().errors.userPasswordError }}</p>
@@ -24,25 +33,25 @@
             <div class="password-validation-container">
                 <ul class="password-validations-list">
                     <li class="validation">
-                        <div class="validation-icon">
+                        <div [ngStyle]="getIconStyles(this.checkPassword())" class="validation-icon">
                             <i class="bi bi-check"></i>
                         </div>
                         <span class="validation-text">მინიმუმ 8 სიმბოლო</span>
                     </li>
                     <li class="validation">
-                        <div class="validation-icon">
+                        <div [ngStyle]="getIconStyles(this.checkPassword())" class="validation-icon">
                             <i class="bi bi-check"></i>
                         </div>
                         <span class="validation-text">დიდი ლათინური ასო (A-დან Z-მდე)</span>
                     </li>
                     <li class="validation">
-                        <div class="validation-icon">
+                        <div [ngStyle]="getIconStyles(this.checkPassword())" class="validation-icon">
                             <i class="bi bi-check"></i>
                         </div>
                         <span class="validation-text">პატარა ლათინური ასო (a-დან z-მდე)</span>
                     </li>
                     <li class="validation">
-                        <div class="validation-icon">
+                        <div [ngStyle]="getIconStyles(this.checkPassword())" class="validation-icon">
                             <i class="bi bi-check"></i>
                         </div>
                         <span class="validation-text">ერთი ციფრი (0-დან 9-მდე)</span>
@@ -51,8 +60,14 @@
             </div>
             <div class="user-confirm-password-input">
                 <div class="confirm-password-input-container">
-                    <input [(ngModel)]="register.getUserData().userConfirmedPassword" (ngModelChange)="register.comparePasswords()" type="password" name="userConfirmedPassword" id="confirm-password-input" placeholder=" ">
+                    <input 
+                        [(ngModel)]="register.getUserData().userConfirmedPassword" (ngModelChange)="register.comparePasswords()" 
+                        [type]="showConfirmedPassword ? 'text' : 'password'" name="userConfirmedPassword" id="confirm-password-input" placeholder=" "
+                    >
                     <label for="confirm-password-input" class="confirm-password-label">გაიმეორე პაროლი*</label>
+                    <button (click)="toggleConfirmedPasswordVisibility()" type="button" id="toggleSeePassBtn">
+                        <i class="bi" [ngClass]="{ 'bi-eye': showConfirmedPassword, 'bi-eye-slash': !showConfirmedPassword }"></i>
+                    </button>
                 </div>
                 <div class="error-container">
                     <p class="error">{{ register.getUserData().errors.userConfirmedPasswordError }}</p>
@@ -80,6 +95,6 @@
     </div>
     <div class="terms">
         <p>ანგარიშის რეგისტრაციით ეთანხმები ევროპოპის</p>
-        <p>პირობებს და კონფიდენციალურობის პოლიტიკას</p>
+        <p><a href="/terms-and-conditions">პირობებს</a> და <a href="/privacy-policy">კონფიდენციალურობის პოლიტიკას</a></p>
     </div>
 </div>

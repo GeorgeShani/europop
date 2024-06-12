@@ -16,7 +16,10 @@ export class AppComponent {
     this._router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         const currentRoute = event.urlAfterRedirects;
-        const authPaths = ['/auth/login', '/auth/register', '/auth/password-recovery'];
+        const authPaths = [
+          '/auth/login', '/auth/register', '/auth/password-recovery',
+          '/terms-and-conditions', '/privacy-policy'
+        ];
         this.modifyNavbar = authPaths.includes(currentRoute);
         this.showFooter = !this.modifyNavbar;
       }

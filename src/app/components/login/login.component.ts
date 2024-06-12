@@ -11,5 +11,10 @@ export class LoginComponent {
   facebookLogo: string = "./../../../assets/images/facebook-logo.svg";
   appleLogo: string = "./../../../assets/images/apple-logo.svg";
 
-  constructor(public login: LoginService) {}
+  constructor(public login: LoginService) { }
+  
+  showPassword: boolean = false;
+  togglePasswordVisibility() {
+    this.showPassword = !this.showPassword;
+  }
 }

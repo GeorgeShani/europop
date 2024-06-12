@@ -1,0 +1,52 @@
+@import './../../../styles.scss';
+
+.privacy-policy-container {
+    @include flex(column, center, center);
+    background-color: #131415;
+    width: 100%;
+    min-height: 100vh;
+
+    .container-inner {
+        @include flex(column, flex-start, center);
+        padding: 32px 12px;
+        width: 91%;
+        height: 100%;
+
+        .header {
+            @include font(700, 32px, #F15A22);
+            margin-bottom: 16px;
+        }
+
+        .date {
+            @include font(300, 13px, rgba(255, 255, 255, 0.7));
+        }
+
+        .privacy-policy-text {
+            @include flex(column, flex-start, center);
+            overflow-wrap: break-word;
+            word-break: break-all;
+            hyphens: auto;
+            margin-top: 32px;
+            inline-size: 100%;
+
+            h2 {
+                margin: 16px 0 8px 0;
+            }
+
+            a {
+                text-decoration: none;
+            }
+
+            ol,
+            ul {
+                padding-left: 20px;
+                width: 100%;
+            }
+
+            p {
+                width: 100%;
+                text-wrap: wrap;
+            }
+        }
+    }
+}

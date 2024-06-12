@@ -11,5 +11,32 @@ export class RegisterComponent {
   facebookLogo: string = "./../../../assets/images/facebook-logo.svg";
   appleLogo: string = "./../../../assets/images/apple-logo.svg";
   
-  constructor(public register: RegisterService) {}
+  constructor(public register: RegisterService) { }
+  
+  showPassword: boolean = false;
+  showConfirmedPassword: boolean = false;
+
+  togglePasswordVisibility() {
+    this.showPassword = !this.showPassword;
+  }
+
+  toggleConfirmedPasswordVisibility() {
+    this.showConfirmedPassword = !this.showConfirmedPassword;
+  }
+  
+  checkPassword(): boolean {
+    return this.register.checkPasswordPrecisely();
+  }
+
+  checkEmail(): boolean {
+    return this.register.checkEmailPrecisely();
+  }
+
+  getIconStyles(checkedPass: boolean) {
+    return { 'background-color': checkedPass ? '#369D34' : '#333334' };
+  }
+
+  revealCheckIcon(checkEmail: boolean) {
+    return { 'display': checkEmail ? 'block' : 'none' };
+  }
 }

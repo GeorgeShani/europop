@@ -13,8 +13,14 @@
             </div>
             <div class="user-password-input">
                 <div class="password-input-container">
-                    <input [(ngModel)]="login.getUserData().userPassword" (ngModelChange)="login.checkPassword()" type="password" name="userPassword" id="password-input" placeholder=" ">
+                    <input 
+                        [(ngModel)]="login.getUserData().userPassword" (ngModelChange)="login.checkPassword()" 
+                        [type]="showPassword ? 'text' : 'password'" name="userPassword" id="password-input" placeholder=" "
+                    >
                     <label for="password-input" class="password-label">პაროლი*</label>
+                    <button (click)="togglePasswordVisibility()" type="button" id="toggleSeePassBtn">
+                        <i class="bi" [ngClass]="{ 'bi-eye': showPassword, 'bi-eye-slash': !showPassword }"></i>
+                    </button>
                 </div>
                 <div class="error-container">
                     <p class="error">{{ login.getUserData().errors.userPasswordError }}</p>
