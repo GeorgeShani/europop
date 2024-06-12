@@ -41,3 +41,8 @@ body {
     margin: 0;
     padding: 0;
 }
+
+.uppercase {
+    font-feature-settings: "case";
+    text-transform: uppercase;
+}

@@ -8,7 +8,7 @@
     <ng-container *ngIf="postDetails.data.modules">
         <div class="div" *ngFor="let module of postDetails.data.modules">
             <ng-container *ngIf="module.type === 'TEXT'">
-                <div [innerHTML]="module.text"></div>
+                <div class="text" [innerHTML]="module.text"></div>
             </ng-container>
             <ng-container *ngIf="module.type === 'PHOTO_GALLERY'">
                 <img *ngFor="let item of module.items" [src]="item.image.fileUrl" [alt]="item.image.description">

@@ -1,1 +1,47 @@
-<div class="login-container"></div>
+<div class="login-container">
+    <h3 class="uppercase">ავტორიზაცია</h3>
+    <div class="form-container">
+        <form action="" id="login-form">
+            <div class="user-email-input">
+                <div class="email-input-container">
+                    <input type="email" name="userEmail" id="email-input" placeholder=" ">
+                    <label for="email-input" class="email-label">ელ-ფოსტა*</label>
+                </div>
+                <div class="error-container">
+                    <!-- <p class="error">გთხოვთ, შეავსო მეილის ველი</p> -->
+                </div>
+            </div>
+            <div class="user-password-input">
+                <div class="password-input-container">
+                    <input type="password" name="userPassword" id="password-input" placeholder=" ">
+                    <label for="password-input" class="password-label">პაროლი*</label>
+                </div>
+                <div class="error-container">
+                    <!-- <p class="error">გთხოვთ, შეავსო პაროლის ველი</p> -->
+                </div>
+            </div>
+            <button type="button" id="login-btn">ავტორიზაცია</button>
+            <div class="forgot-password-message">
+                <p>დაგავიწყდა პაროლი? <a href="/auth/password-recovery">პაროლის აღდგენა</a></p>
+            </div>
+            <div class="division-line">
+                <span>ან</span>
+            </div>
+            <div class="login-options-buttons">
+                <button type="button" id="option-button">
+                    <img [src]="googleLogo" width="20" height="20" alt="">
+                </button>
+                <button type="button" id="option-button">
+                    <img [src]="facebookLogo" width="22" height="22" alt="">
+                </button>
+                <button type="button" id="option-button">
+                    <img [src]="appleLogo" alt="">
+                </button>
+            </div>
+            <div class="not-have-account-message">
+                <p>არ გაქვს ანგარიში? <a href="/auth/register">რეგისტრაცია</a></p>
+            </div>
+        </form>
+    </div>
+    <div class="terms"></div>
+</div>

@@ -1,1 +1,85 @@
-<div class="register-container"></div>
+<div class="register-container">
+    <h3 class="uppercase">რეგისტრაცია</h3>
+    <p>სპორტული სიახლეები, ანალიტიკა და საინტერესო ფაქტები ერთ სივრცეში.</p>
+    <div class="form-container">
+        <form action="" id="registration-form">
+            <div class="user-email-input">
+                <div class="email-input-container">
+                    <input type="email" name="userEmail" id="email-input" placeholder=" ">
+                    <label for="email-input" class="email-label">ელ-ფოსტა*</label>
+                </div>
+                <div class="error-container">
+                    <!-- <p class="error">გთხოვთ, შეავსო მეილის ველი</p> -->
+                </div>
+            </div>
+            <div class="user-password-input">
+                <div class="password-input-container">
+                    <input type="password" name="userPassword" id="password-input" placeholder=" ">
+                    <label for="password-input" class="password-label">პაროლი*</label>
+                </div>
+                <div class="error-container">
+                    <!-- <p class="error">გთხოვთ, შეავსო პაროლის ველი</p> -->
+                </div>
+            </div>
+            <div class="password-validation-container">
+                <ul class="password-validations-list">
+                    <li class="validation">
+                        <div class="validation-icon">
+                            <i class="bi bi-check"></i>
+                        </div>
+                        <span class="validation-text">მინიმუმ 8 სიმბოლო</span>
+                    </li>
+                    <li class="validation">
+                        <div class="validation-icon">
+                            <i class="bi bi-check"></i>
+                        </div>
+                        <span class="validation-text">დიდი ლათინური ასო (A-დან Z-მდე)</span>
+                    </li>
+                    <li class="validation">
+                        <div class="validation-icon">
+                            <i class="bi bi-check"></i>
+                        </div>
+                        <span class="validation-text">პატარა ლათინური ასო (a-დან z-მდე)</span>
+                    </li>
+                    <li class="validation">
+                        <div class="validation-icon">
+                            <i class="bi bi-check"></i>
+                        </div>
+                        <span class="validation-text">ერთი ციფრი (0-დან 9-მდე)</span>
+                    </li>
+                </ul>
+            </div>
+            <div class="user-confirm-password-input">
+                <div class="confirm-password-input-container">
+                    <input type="password" name="userConfirmPassword" id="confirm-password-input" placeholder=" ">
+                    <label for="confirm-password-input" class="confirm-password-label">გაიმეორე პაროლი*</label>
+                </div>
+                <div class="error-container">
+                    <!-- <p class="error">გთხოვთ, შეავსო პაროლის ველი</p> -->
+                </div>
+            </div>
+            <button type="button" id="register-btn">რეგისტრაცია</button>
+            <div class="division-line">
+                <span>ან</span>
+            </div>
+            <div class="register-options-buttons">
+                <button type="button" id="option-button">
+                    <img [src]="googleLogo" width="20" height="20" alt="">
+                </button>
+                <button type="button" id="option-button">
+                    <img [src]="facebookLogo" width="22" height="22" alt="">
+                </button>
+                <button type="button" id="option-button">
+                    <img [src]="appleLogo" alt="">
+                </button>
+            </div>
+            <div class="already-have-account-message">
+                <p>გაქვს ანგარიში? <a href="/auth/login">ავტორიზაცია</a></p>
+            </div>
+        </form>
+    </div>
+    <div class="terms">
+        <p>ანგარიშის რეგისტრაციით ეთანხმები ევროპოპის</p>
+        <p>პირობებს და კონფიდენციალურობის პოლიტიკას</p>
+    </div>
+</div>

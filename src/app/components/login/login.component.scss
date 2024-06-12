@@ -8,4 +8,223 @@
     background-size: cover;
     width: 100%;
     min-height: 100vh;
+
+    h3 {
+        @include font(700, 24px, #fff);
+        margin: 60px auto 50px;
+    }
+
+    .form-container {
+        background-color: rgb(28, 28, 29);
+        margin-bottom: 40px;
+        border-radius: 12px;
+        width: 464px;
+        height: auto;
+
+        #login-form {
+            @include flex(column, center, flex-start);
+            position: relative;
+            padding: 50px 60px;
+            width: 100%;
+            height: 100%;
+
+            .user-email-input {
+                @include flex(column, flex-start, center);
+                margin-bottom: 40px;
+
+                .email-input-container {
+                    @include flex(column, flex-start, center);
+                    border-bottom: 1px solid rgba(172, 172, 172, 0.5);
+                    position: relative;
+                    width: 344px;
+                    height: 58px;
+            
+                    .email-label {
+                        position: absolute;
+                        top: 50%;
+                        left: 6px;
+                        transform: translateY(-50%);
+                        color: #999;
+                        font-size: 16px;
+                        pointer-events: none;
+                        transition: all 0.2s ease;
+                        margin-bottom: 8px;
+                    }
+            
+                    #email-input {
+                        @include font(500, 16px, #fff);
+                        background-color: transparent;
+                        box-sizing: border-box;
+                        font-family: inherit;
+                        border: none;
+                        outline: none;
+                        width: 100%;
+                        height: 32px;
+                        padding: 8px 0;
+            
+                        &:focus+.email-label,
+                        &:not(:placeholder-shown)+.email-label {
+                            top: -6px;
+                            left: 0;
+                            font-size: 13px;
+                        }
+                    }
+                }
+
+                .error-container {
+                    @include flex(column, flex-start, center);
+                    margin-top: 6px;
+                    width: 100%;
+                    height: 17px;
+
+                    .error {
+                        @include font(300, 13px, #FF3B3B);
+                        line-height: 17px;
+                        margin-top: 6px;
+                    }
+                }
+            }
+
+            .user-password-input {
+                @include flex(column, flex-start, center);
+                margin-bottom: 40px;
+
+                .password-input-container {
+                    @include flex(column, flex-start, center);
+                    border-bottom: 1px solid rgba(172, 172, 172, 0.5);
+                    position: relative;
+                    width: 344px;
+                    height: 58px;
+             
+                    .password-label {
+                        position: absolute;
+                        top: 50%;
+                        left: 6px;
+                        transform: translateY(-50%);
+                        color: #999;
+                        font-size: 16px;
+                        pointer-events: none;
+                        transition: all 0.2s ease-in-out;
+                        margin-bottom: 8px;
+                    }
+            
+                    #password-input {
+                        @include font(500, 16px, #fff);
+                        border: 1px solid #b0b0b0;
+                        background-color: transparent;
+                        box-sizing: border-box;
+                        font-family: inherit;
+                        border: none;
+                        outline: none;
+                        width: 100%;
+                        height: 32px;
+                        padding: 8px 0;
+            
+                        &:focus+.password-label,
+                        &:not(:placeholder-shown)+.password-label {
+                            top: -6px;
+                            left: 0;
+                            font-size: 13px;
+                        }
+                    }
+                }
+
+                .error-container {
+                    @include flex(column, flex-start, center);
+                    margin-top: 6px;
+                    width: 100%;
+                    height: 17px;
+
+                    .error {
+                        @include font(300, 13px, #FF3B3B);
+                        line-height: 17px;
+                        margin-top: 6px;
+                    }
+                }
+            }
+
+            #login-btn {
+                @include font(500, 14px, #fff);
+                background-color: #F15A22;
+                border-radius: 12px;
+                font-family: inherit;
+                padding: 0 16px;
+                border: none;
+                width: 100%;
+                height: 48px;
+                cursor: pointer;
+            }
+
+            .forgot-password-message {
+                margin-top: 32px;
+
+                p {
+                    @include font(600, 15px, rgba(255, 255, 255, 0.7));
+
+                    a {
+                        text-decoration: none;
+                        color: #F15A22;
+                    }
+                }
+            }
+
+            .division-line {
+                @include flex(row, center, center);
+                position: relative;
+                margin: 36px 0 24px 0;
+                width: 100%;
+
+                span {
+                    @include font(300, 13px, rgba(255, 255, 255, 0.7));
+                    @include flex(column, center, center);
+                    position: relative;
+                    z-index: 1;
+                    background-color: rgb(28, 28, 29);
+                    width: 32px;
+                }
+
+                &::after {
+                    content: "";
+                    position: absolute;
+                    top: 50%;
+                    left: 0px;
+                    width: 100%;
+                    height: 1px;
+                    background-color: rgba(73, 73, 75, 0.5);
+                }
+            }
+
+            .login-options-buttons {
+                @include flex(row, center, center);
+                width: 100%;
+                margin-bottom: 40px;
+
+                #option-button {
+                    @include flex(column, center, center);
+                    background-color: rgba(31, 32, 33, 0.7);
+                    border-radius: 50%;
+                    border: none;
+                    width: 52px;
+                    height: 52px;
+                    margin: 0 6px;
+                    cursor: pointer;
+                }
+            }
+
+            .not-have-account-message {
+                p {
+                    @include font(600, 15px, rgba(255, 255, 255, 0.7));
+
+                    a {
+                        text-decoration: none;
+                        color: #F15A22;
+                    }
+                }
+            }
+        }
+    }
+
+    .terms {
+        margin: 30px 0;
+    }
 }

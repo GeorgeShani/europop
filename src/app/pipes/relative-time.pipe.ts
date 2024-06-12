@@ -4,16 +4,25 @@ import { Pipe, PipeTransform } from '@angular/core';
   name: 'relativeTime'
 })
 export class RelativeTimePipe implements PipeTransform {
-  transform(value: Date): string {
+  private monthsGeorgian = [
+    "იან", "თებ", "მარ", "აპრ", "მაი", "ივნ",
+    "ივლ", "აგვ", "სექ", "ოქტ", "ნოე", "დეკ"
+  ];
+  
+  transform(value: Date | string): string {
+    console.log('Original value:', value);
+
+    const date = new Date(value);
+    if (isNaN(date.getTime())) {
+      console.error('Invalid date:', value);
+      return 'Invalid date';
+    }
+
     const now = new Date();
     const diffMs = now.getTime() - new Date(value).getTime();
     const diffSec = Math.floor(diffMs / 1000);
     const diffMin = Math.floor(diffSec / 60);
     const diffHrs = Math.floor(diffMin / 60);
-    const diffDays = Math.floor(diffHrs / 24);
-    const diffWeeks = Math.floor(diffDays / 7);
-    const diffMonths = Math.floor(diffDays / 30);
-    const diffYears = Math.floor(diffDays / 365);
 
     if (diffSec < 60) {
       return `${diffSec} წამის წინ`;
@@ -21,14 +30,12 @@ export class RelativeTimePipe implements PipeTransform {
       return `${diffMin} წუთის წინ`;
     } else if (diffHrs < 24) {
       return `${diffHrs} საათის წინ`;
-    } else if (diffDays < 7) {
-      return `${diffDays} დღის წინ`;
-    } else if (diffWeeks < 4) {
-      return `${diffWeeks} კვირის წინ`;
-    } else if (diffMonths < 12) {
-      return `${diffMonths} თვის წინ`;
     } else {
-      return `${diffYears} წლის წინ`;
+      const publicationDate = new Date(value);
+      const day = publicationDate.getDate();
+      const month = this.monthsGeorgian[publicationDate.getMonth()];
+      const year = publicationDate.getFullYear();
+      return `${day} ${month} ${year}`;
     }
   }
 }

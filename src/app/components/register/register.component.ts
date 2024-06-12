@@ -6,5 +6,7 @@ import { Component } from '@angular/core';
   styleUrl: './register.component.scss'
 })
 export class RegisterComponent {
-
+  googleLogo: string = "./../../../assets/images/google-logo.svg";
+  facebookLogo: string = "./../../../assets/images/facebook-logo.svg";
+  appleLogo: string = "./../../../assets/images/apple-logo.svg";
 }

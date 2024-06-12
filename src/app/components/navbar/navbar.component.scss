@@ -81,7 +81,9 @@ header {
 
         .middle-side {
             @include flex(column, center, center);
-            height: 100%;
+            border-left: 0.5px solid #49494B;
+            padding-left: 48px;
+            height: 40%;
 
             .suggestions-list {
                 @include flex(row, center, space-between);

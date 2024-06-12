@@ -13,10 +13,10 @@ export class FooterComponent {
   decorationImage: string = "./../../../assets/images/footer-decoration.svg";
   userEmail!: string;
 
-  categories: string[] = ["ᲤᲔᲮᲑᲣᲠᲗᲘ", "ᲔᲠᲝᲕᲜᲣᲚᲘ ᲚᲘᲒᲐ", "ᲔᲠᲝᲕᲜᲣᲚᲘ ᲜᲐᲙᲠᲔᲑᲘ", "ᲡᲮᲕᲐ ᲡᲐᲮᲔᲝᲑᲔᲑᲘ", "ᲚᲔᲒᲘᲝᲜᲔᲠᲔᲑᲘ", "ᲤᲣᲢᲡᲐᲚᲘ"];
-  analytics: string[] = ["ᲐᲜᲐᲚᲘᲢᲘᲙᲐ", "ᲘᲡᲢᲝᲠᲘᲐ", "ᲘᲜᲢᲔᲠᲕᲘᲣ", "ᲥᲕᲘᲖᲘ", "ᲑᲚᲝᲒᲘ"];
-  help: string[] = ["ᲔᲚ-ᲤᲝᲡᲢᲐ", "ᲙᲝᲜᲤᲘᲓᲔᲜᲪᲘᲐᲚᲣᲠᲝᲑᲐ", "ᲬᲔᲡᲔᲑᲘ ᲓᲐ ᲞᲘᲠᲝᲑᲔᲑᲘ", "ᲙᲝᲜᲢᲐᲥᲢᲘ", "ᲩᲕᲔᲜ ᲨᲔᲡᲐᲮᲔᲑ"];
-  profile: string[] = ["ᲩᲔᲛᲘ ᲞᲠᲝᲤᲘᲚᲘ", "ᲩᲔᲛᲘ ᲘᲜᲢᲔᲠᲔᲡᲔᲑᲘ", "ᲞᲐᲠᲐᲛᲔᲢᲠᲔᲑᲘ", "ᲨᲔᲜᲐᲮᲣᲚᲘ"];
+  categories: string[] = ["ფეხბურთი", "ეროვნული ლიგა", "ეროვნული ნაკრები", "სხვა სახეობები", "ლეგიონერები", "ფუტსალი"];
+  analytics: string[] = ["ანალიტიკა", "ისტორია", "ინტერვიუ", "ქვიზი", "ბლოგი"];
+  help: string[] = ["ელ-ფოსტა", "კონფიდენციალურობა", "წესები და პირობები", "კონტაქტი", "ჩვენ შესახებ"];
+  profile: string[] = ["ჩემი პროფილი", "ჩემი ინტერესები", "პარამეტრები", "შენახული"];
 
   socialMediaLinks: externals[] = [
     { imageUrl: "./../../../assets/images/instagram-logo.svg", linkUrl: "https://www.instagram.com/europop.ge" },
