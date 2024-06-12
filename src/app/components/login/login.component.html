@@ -4,23 +4,23 @@
         <form action="" id="login-form">
             <div class="user-email-input">
                 <div class="email-input-container">
-                    <input type="email" name="userEmail" id="email-input" placeholder=" ">
+                    <input [(ngModel)]="login.getUserData().userEmail" (ngModelChange)="login.checkEmail()" type="email" name="userEmail" id="email-input" placeholder=" ">
                     <label for="email-input" class="email-label">ელ-ფოსტა*</label>
                 </div>
                 <div class="error-container">
-                    <!-- <p class="error">გთხოვთ, შეავსო მეილის ველი</p> -->
+                    <p class="error">{{ login.getUserData().errors.userEmailError }}</p>
                 </div>
             </div>
             <div class="user-password-input">
                 <div class="password-input-container">
-                    <input type="password" name="userPassword" id="password-input" placeholder=" ">
+                    <input [(ngModel)]="login.getUserData().userPassword" (ngModelChange)="login.checkPassword()" type="password" name="userPassword" id="password-input" placeholder=" ">
                     <label for="password-input" class="password-label">პაროლი*</label>
                 </div>
                 <div class="error-container">
-                    <!-- <p class="error">გთხოვთ, შეავსო პაროლის ველი</p> -->
+                    <p class="error">{{ login.getUserData().errors.userPasswordError }}</p>
                 </div>
             </div>
-            <button type="button" id="login-btn">ავტორიზაცია</button>
+            <button (click)="login.login()" type="button" id="login-btn">ავტორიზაცია</button>
             <div class="forgot-password-message">
                 <p>დაგავიწყდა პაროლი? <a href="/auth/password-recovery">პაროლის აღდგენა</a></p>
             </div>

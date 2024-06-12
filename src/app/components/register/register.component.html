@@ -5,20 +5,20 @@
         <form action="" id="registration-form">
             <div class="user-email-input">
                 <div class="email-input-container">
-                    <input type="email" name="userEmail" id="email-input" placeholder=" ">
+                    <input [(ngModel)]="register.getUserData().userEmail" (ngModelChange)="register.checkEmail()" type="email" name="userEmail" id="email-input" placeholder=" ">
                     <label for="email-input" class="email-label">ელ-ფოსტა*</label>
                 </div>
                 <div class="error-container">
-                    <!-- <p class="error">გთხოვთ, შეავსო მეილის ველი</p> -->
+                    <p class="error">{{ register.getUserData().errors.userEmailError }}</p>
                 </div>
             </div>
             <div class="user-password-input">
                 <div class="password-input-container">
-                    <input type="password" name="userPassword" id="password-input" placeholder=" ">
+                    <input [(ngModel)]="register.getUserData().userPassword" (ngModelChange)="register.checkPassword()" type="password" name="userPassword" id="password-input" placeholder=" ">
                     <label for="password-input" class="password-label">პაროლი*</label>
                 </div>
                 <div class="error-container">
-                    <!-- <p class="error">გთხოვთ, შეავსო პაროლის ველი</p> -->
+                    <p class="error">{{ register.getUserData().errors.userPasswordError }}</p>
                 </div>
             </div>
             <div class="password-validation-container">
@@ -51,14 +51,14 @@
             </div>
             <div class="user-confirm-password-input">
                 <div class="confirm-password-input-container">
-                    <input type="password" name="userConfirmPassword" id="confirm-password-input" placeholder=" ">
+                    <input [(ngModel)]="register.getUserData().userConfirmedPassword" (ngModelChange)="register.comparePasswords()" type="password" name="userConfirmedPassword" id="confirm-password-input" placeholder=" ">
                     <label for="confirm-password-input" class="confirm-password-label">გაიმეორე პაროლი*</label>
                 </div>
                 <div class="error-container">
-                    <!-- <p class="error">გთხოვთ, შეავსო პაროლის ველი</p> -->
+                    <p class="error">{{ register.getUserData().errors.userConfirmedPasswordError }}</p>
                 </div>
             </div>
-            <button type="button" id="register-btn">რეგისტრაცია</button>
+            <button (click)="register.register()" type="button" id="register-btn">რეგისტრაცია</button>
             <div class="division-line">
                 <span>ან</span>
             </div>
