@@ -5,7 +5,10 @@
         <form action="" id="registration-form">
             <div class="user-email-input">
                 <div class="email-input-container">
-                    <input [(ngModel)]="register.getUserData().userEmail" (ngModelChange)="register.checkEmail()" type="email" name="userEmail" id="email-input" placeholder=" ">
+                    <input 
+                        [(ngModel)]="register.getUserData().userEmail" (ngModelChange)="register.checkEmail()" 
+                        type="email" name="userEmail" id="email-input" placeholder=" "
+                    >
                     <label for="email-input" class="email-label">ელ-ფოსტა*</label>
                     <div [ngStyle]="revealCheckIcon(this.register.checkEmailPrecisely())" class="check-icon">
                         <i class="bi bi-check"></i>

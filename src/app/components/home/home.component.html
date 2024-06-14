@@ -5,6 +5,74 @@
             <h2 class="uppercase">გაეცანი შენზე მორგებულ სპორტულ სიახლეებსა და ანალიტიკურ სტატიებს.</h2>
             <button type="button" id="register-btn" (click)="redirectToRegister()">რეგისტრაცია</button>
         </div>
+        <ng-container *ngIf="featuredPostsData">
+            <div class="featured-posts-container">
+                <div class="big-post-card">
+                    <div class="image-container" (click)="redirectToPostDetails(featuredPostsData.data[featuredPostsData.data.length - 1].id)">
+                        <img [src]="featuredPostsData.data[featuredPostsData.data.length - 1].image.fileUrl" alt="">
+                    </div>
+                    <div class="info-container">
+                        <div class="main-info">
+                            <p>{{ featuredPostsData.data[featuredPostsData.data.length - 1].subtitle }}</p>
+                            <div class="title">
+                                <h3 (click)="redirectToPostDetails(featuredPostsData.data[featuredPostsData.data.length - 1].id)" class="uppercase">
+                                    <img *ngIf="featuredPostsData.data[featuredPostsData.data.length - 1].type.name == 'ანალიტიოკური სტატია'" [src]="epopPlusLogo" alt="">
+                                    {{ featuredPostsData.data[featuredPostsData.data.length - 1].title }}
+                                </h3>
+                            </div>
+                        </div>
+                        <div class="additional-info">
+                            <p>{{ featuredPostsData.data[featuredPostsData.data.length - 1].publishedAt | relativeTime }}
+                                <span>&centerdot;</span> <i class="bi bi-file-earmark-text"></i>
+                                {{ featuredPostsData.data[featuredPostsData.data.length - 1].estimatedReadTime }} წუთი
+                            </p>
+                            <div class="buttons-container">
+                                <button type="button" id="post-interaction-btn">
+                                    <i class="bi bi-hand-thumbs-up"></i>
+                                </button>
+                                <button type="button" id="post-interaction-btn">
+                                    <i class="bi bi-chat-dots"></i>
+                                </button>
+                                <button type="button" id="post-interaction-btn">
+                                    <i class="bi bi-bookmark-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="smaller-cards-container">
+                    <div class="small-card" *ngFor="let featuredPost of firstFourFeaturedPosts">
+                        <div class="image-container" (click)="redirectToPostDetails(featuredPost.id)">
+                            <img [src]="featuredPost.image.fileUrl" alt="">
+                        </div>
+                        <div class="info-container">
+                            <div class="main-info">
+                                <h3 (click)="redirectToPostDetails(featuredPost.id) " class="uppercase">
+                                    <img *ngIf="featuredPost.type.name == 'ანალიტიოკური სტატია'" [src]="epopPlusLogo" alt=""> {{ featuredPost.title }}
+                                </h3>
+                            </div>
+                            <div class="additional-info">
+                                <p>{{ featuredPost.publishedAt | relativeTime }}
+                                    <span>&centerdot;</span> <i class="bi bi-file-earmark-text"></i>
+                                    {{ featuredPost.estimatedReadTime }} წუთი
+                                </p>
+                                <div class="buttons-container">
+                                    <button type="button" id="post-interaction-btn">
+                                        <i class="bi bi-hand-thumbs-up"></i>
+                                    </button>
+                                    <button type="button" id="post-interaction-btn">
+                                        <i class="bi bi-chat-dots"></i>
+                                    </button>
+                                    <button type="button" id="post-interaction-btn">
+                                        <i class="bi bi-bookmark-plus"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </ng-container>
 
         <!-- <img width="820" height="300" src="./../../../assets/images/mobile-app-advertisment.jpg" alt=""> -->
     </div>

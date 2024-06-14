@@ -16,6 +16,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { PasswordRecoveryComponent } from './components/password-recovery/password-recovery.component';
 import { PrivacyPolicyComponent } from './components/privacy-policy/privacy-policy.component';
 import { TermsAndConditionsComponent } from './components/terms-and-conditions/terms-and-conditions.component';
+import { SearchResultsComponent } from './components/search-results/search-results.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { TermsAndConditionsComponent } from './components/terms-and-conditions/t
     RegisterComponent,
     PasswordRecoveryComponent,
     PrivacyPolicyComponent,
-    TermsAndConditionsComponent
+    TermsAndConditionsComponent,
+    SearchResultsComponent
   ],
   imports: [
     BrowserModule,

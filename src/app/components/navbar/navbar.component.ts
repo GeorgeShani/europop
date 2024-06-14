@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { FetchService } from '../../services/fetch.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -15,14 +15,14 @@ export class NavbarComponent {
   kvaratskheliaNumber: string = "https://cdn.europop.ge/8b247cf1-fca5-48bf-a143-20b3ab2d9142";
   nakrebiLogo: string = "https://cdn.europop.ge/49472241-5caf-4fc8-90b5-cbf3e96f5232";
 
-  constructor(private _fetch: FetchService) {}
+  constructor(private router: Router) {}
 
   searchQuery!: string;
 
   getSearchResults() {
-    this._fetch.getSearchResult(this.searchQuery).subscribe((data) => {
-      console.log(data);
-    });
+    if (this.searchQuery) {
+      this.router.navigate(['/search'], { queryParams: { query: this.searchQuery } });
+    }
   }
 
   onEnterPressed(event: KeyboardEvent) {

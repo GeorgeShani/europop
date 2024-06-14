@@ -26,9 +26,9 @@ export class RelativeTimePipe implements PipeTransform {
 
     if (diffSec < 60) {
       return `${diffSec} წამის წინ`;
-    } else if (diffMin < 60) {
+    } else if (diffMin <= 60) {
       return `${diffMin} წუთის წინ`;
-    } else if (diffHrs < 24) {
+    } else if (diffHrs <= 24) {
       return `${diffHrs} საათის წინ`;
     } else {
       const publicationDate = new Date(value);

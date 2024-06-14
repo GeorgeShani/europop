@@ -76,7 +76,7 @@ export class LoginService {
     this.checkPassword();
 
     if (this.checkIsFull() && this.checkAllCredentials()) {
-      alert("თქვენ დარეგისტრირდით ;)");
+      alert("თქვენ წარმატებულად გაიარეთ ავტორიზაცია ;)");
       this.emptyOutCredentials();
     }
   }

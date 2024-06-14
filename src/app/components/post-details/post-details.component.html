@@ -1,18 +1,122 @@
 <ng-container *ngIf="postDetails.data">
-    <div class="main">
-        <img [src]="postDetails.data.image.fileUrl" [alt]="postDetails.data.image.fileName">
-        <h1>{{ postDetails.data.title }}</h1>
-        <h3>{{ postDetails.data.subtitle }}</h3>
-        <div [innerHTML]="postDetails.data.text"></div>
-    </div>
-    <ng-container *ngIf="postDetails.data.modules">
-        <div class="div" *ngFor="let module of postDetails.data.modules">
-            <ng-container *ngIf="module.type === 'TEXT'">
-                <div class="text" [innerHTML]="module.text"></div>
-            </ng-container>
-            <ng-container *ngIf="module.type === 'PHOTO_GALLERY'">
-                <img *ngFor="let item of module.items" [src]="item.image.fileUrl" [alt]="item.image.description">
-            </ng-container>
+    <ng-container *ngIf="postDetails.data.type.name == 'სტანდარტული სტატია'">
+        <div class="standard-post-main">
+            <img [src]="postDetails.data.image.fileUrl" [alt]="postDetails.data.image.fileName">
+            <h3>{{ postDetails.data.subtitle }}</h3>
+            <h1>{{ postDetails.data.title }}</h1>
+            <div [innerHTML]="postDetails.data.text"></div>
+        </div>
+        <ng-container *ngIf="postDetails.data.modules">
+            <div class="div" *ngFor="let module of postDetails.data.modules">
+                <ng-container *ngIf="module.type === 'TEXT'">
+                    <div class="text" [innerHTML]="module.text"></div>
+                </ng-container>
+                <ng-container *ngIf="module.type === 'PHOTO_GALLERY'">
+                    <img *ngFor="let item of module.items" [src]="item.image.fileUrl" [alt]="item.image.description">
+                </ng-container>
+            </div>
+        </ng-container>
+    </ng-container>
+    <ng-container *ngIf="postDetails.data.type.name == 'ანალიტიოკური სტატია'">
+        <div class="analytical-post-main">
+            <div class="image-container">
+                <img [src]="postDetails.data.image.fileUrl" [alt]="postDetails.data.image.fileName">
+            </div>
+            <div class="info-container">
+                <p class="subtitle">{{ postDetails.data.subtitle }}</p>
+                <h3 class="title uppercase">
+                    <a href=""><img width="34" height="20" [src]="epopPlusLogo" alt=""></a>
+                    {{ postDetails.data.title }}
+                </h3>
+                <div class="buttons-list">
+                    <div class="buttons">
+                        <button type="button">
+                            <i class="bi bi-hand-thumbs-up"></i>
+                        </button>
+                        <button type="button">
+                            <i class="bi bi-chat-dots"></i>
+                        </button>
+                    </div>
+                    <div class="buttons">
+                        <button type="button">
+                            <i class="bi bi-bookmark-plus"></i>
+                        </button>
+                        <button type="button">
+                            <i class="bi bi-share"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="post-text-container">
+                    <div class="post-main-text" [innerHTML]="postDetails.data.text"></div>
+                    <div class="continue-reading-message">
+                        <div class="message-text">
+                            <h5>განაგრძე კითხვა.</h5>
+                            <p>ანალიტიკური სტატიების წასაკითხად გაიარე ავტორიზაცია</p>
+                            <button type="button" id="authorize-btn" (click)="redirectToAuthorization()">
+                                ავტორიზაცია
+                            </button>
+                            <div class="register-link">
+                                <span>არ გაქვს ანგარიში? <a href="/auth/register">რეგისტრაცია</a></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="authors-and-categories">
+                    <div class="author-container">
+                        <div class="author-info">
+                            <div class="author-avatar">
+                                <img width="40" height="40" [src]="postDetails.data.author.avatar.fileUrl" alt="">
+                            </div>
+                            <div class="author-name-container">
+                                <p class="author">ავტორი</p>
+                                <p class="full-name">
+                                    {{ postDetails.data.author.firstName }} {{ postDetails.data.author.lastName }}
+                                </p>
+                            </div>
+                        </div>
+                        <div class="author-subscribe">
+                            <ul class="socials-list">
+                                <li class="social-item"
+                                    *ngIf="postDetails.data.author.socials.facebookUrl !== '' && postDetails.data.author.socials.facebookUrl !== null">
+                                    <a target="_blank" [href]="postDetails.data.author.socials.facebookUrl" class="social"><i
+                                            class="fa-brands fa-facebook-f"></i></a>
+                                </li>
+                                <li class="social-item"
+                                    *ngIf="postDetails.data.author.socials.youtubeUrl !== '' && postDetails.data.author.socials.youtubeUrl !== null">
+                                    <a target="_blank" [href]="postDetails.data.author.socials.youtubeUrl" class="social"><i
+                                            class="bi bi-youtube"></i></a>
+                                </li>
+                                <li class="social-item"
+                                    *ngIf="postDetails.data.author.socials.instagramUrl !== '' && postDetails.data.author.socials.instagramUrl !== null">
+                                    <a target="_blank" [href]="postDetails.data.author.socials.instagramUrl" class="social"><i
+                                            class="bi bi-instagram"></i></a>
+                                </li>
+                                <li class="social-item"
+                                    *ngIf="postDetails.data.author.socials.messengerUrl !== '' && postDetails.data.author.socials.messengerUrl !== null">
+                                    <a target="_blank" [href]="postDetails.data.author.socials.messengerUrl" class="social"><i
+                                            class="bi bi-messenger"></i></a>
+                                </li>
+                                <li class="social-item"
+                                    *ngIf="postDetails.data.author.socials.tiktokUrl !== '' && postDetails.data.author.socials.tiktokUrl !== null">
+                                    <a target="_blank" [href]="postDetails.data.author.socials.tiktokUrl" class="social"><i
+                                            class="fa-brands fa-tiktok"></i></a>
+                                </li>
+                            </ul>
+                            <button type="button" id="subscribe-btn">
+                                გამოწერა <i class="fa-solid fa-user-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="categories-container">
+                        <h6 class="uppercase">კატეგორიები</h6>
+                        <div class="categories-list">
+                            <div class="category" *ngFor="let category of postDetails.data.categories">
+                                <p>{{ category.name }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </ng-container>
 </ng-container>

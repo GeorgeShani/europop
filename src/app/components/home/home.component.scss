@@ -1,6 +1,7 @@
 @import './../../../styles.scss';
 
 .home-container {
+    @include flex(column, center, flex-start);
     position: relative;
     width: 100%;
     height: 100%;
@@ -30,7 +31,7 @@
         .registration-message {
             @include flex(column, center, center);
             max-width: 1320px;
-            padding: 50px 48px;
+            margin: 50px auto 0;
 
             h2 {
                 @include font(600, 32px, #fff);
@@ -48,6 +49,197 @@
                 border-radius: 8px;
                 border: none;
                 cursor: pointer;
+            }
+        }
+
+        .featured-posts-container {
+            @include flex(row, center, space-between);
+            width: 1220px;
+            height: 690px;
+            margin: 60px 0 80px;
+
+            .big-post-card {
+                @include flex(column, center, center);
+                background-color: #1C1C1D;
+                border-radius: 12px;
+                width: 534px;
+                height: 100%;
+
+                .image-container {
+                    border-radius: 12px 12px 0 0;
+                    width: 100%;
+                    height: 75%;
+                    cursor: pointer;
+
+                    img {
+                        width: 100%;
+                        height: 100%;
+                        border-radius: inherit;
+                        object-fit: cover;
+                        display: block;
+                    }
+                }
+
+                .info-container {
+                    @include flex(column, flex-start, space-between);
+                    padding: 16px;
+                    width: 100%;
+                    height: 25%;
+
+                    .main-info {
+                        @include flex(column, flex-start, center);
+                        width: 100%;
+
+                        p {
+                            @include font(500, 14px, #f15a22);
+                            margin-bottom: 12px;
+                        }
+
+                        .title {
+                            @include flex(row, center, center);
+                            
+                            h3 {
+                                @include font(600, 16px, #fff);
+                                cursor: pointer;
+
+                                img {
+                                    width: 34px;
+                                    height: 20px;
+                                }
+                            }
+                        }
+                    }
+
+                    .additional-info {
+                        @include flex(row, center, space-between);
+                        border-top: 1px solid rgba(73, 73, 75, 0.3);
+                        margin-top: 16px;
+                        padding-top: 12px;
+                        width: 100%;
+
+                        p {
+                            font-size: 14px;
+                            color: #B5B5B5;
+
+                            span {
+                                padding: 0 8px;
+                            }
+                        }
+
+                        .buttons-container {
+                            @include flex(row, center, center);
+                            gap: 16px;
+
+                            #post-interaction-btn {
+                                background-color: transparent;
+                                border: none;
+                                cursor: pointer;
+
+                                i {
+                                    transition: all 0.2s ease-in-out;
+                                    font-size: 18px;
+                                    color:#B5B5B5;
+                                }
+
+                                &:hover i {
+                                    color: #fff;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            .smaller-cards-container {
+                @include flex(row, center, center);
+                flex-wrap: wrap;
+                gap: 20px;
+                width: 55%;
+                height: 100%;
+
+                .small-card {
+                    @include flex(column, center, center);
+                    background-color: #1C1C1D;
+                    border-radius: 12px;
+                    width: 319px;
+                    height: 333px;
+
+                    .image-container {
+                        border-radius: 12px 12px 0 0;
+                        width: 100%;
+                        height: 57%;
+                        cursor: pointer;
+                
+                        img {
+                            width: 100%;
+                            height: 100%;
+                            border-radius: inherit;
+                            object-fit: cover;
+                            display: block;
+                        }
+                    }
+
+                    .info-container {
+                        @include flex(column, flex-start, space-between);
+                        padding: 16px;
+                        width: 100%;
+                        height: 43%;
+
+                        .main-info {
+                            @include flex(row, flex-start, center);
+                            width: 100%;
+                    
+                            h3 {
+                                @include font(600, 16px, #fff);
+                                cursor: pointer;
+                        
+                                img {
+                                    width: 34px;
+                                    height: 20px;
+                                    margin: 0;
+                                }
+                            }
+                        }
+
+                        .additional-info {
+                            @include flex(row, center, space-between);
+                            border-top: 1px solid rgba(73, 73, 75, 0.3);
+                            margin-top: 16px;
+                            padding-top: 12px;
+                            width: 100%;
+
+                            p {
+                                font-size: 13px;
+                                color: #B5B5B5;
+
+                                span {
+                                    padding: 0 8px;
+                                }
+                            }
+
+                            .buttons-container {
+                                @include flex(row, center, center);
+                                gap: 16px;
+
+                                #post-interaction-btn {
+                                    background-color: transparent;
+                                    border: none;
+                                    cursor: pointer;
+
+                                    i {
+                                        transition: all 0.2s ease-in-out;
+                                        font-size: 16px;
+                                        color: #B5B5B5;
+                                    }
+
+                                    &:hover i {
+                                        color: #fff;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
             }
         }
     }

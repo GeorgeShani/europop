@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { APIs } from '../interfaces/api.model';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -42,8 +43,8 @@ export class FetchService {
     return this._http.get(url);
   }
 
-  getSearchResult(searchQuery: string) {
+  getSearchResult(searchQuery: string): Observable<any[]> {
     let url = this._europopAPIs["searchAPI"] + `?query=${searchQuery}&detailed=true`;
-    return this._http.get(url);
+    return this._http.get<any[]>(url);
   }
 }

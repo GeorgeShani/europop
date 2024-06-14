@@ -9,11 +9,13 @@ import { RegisterComponent } from './components/register/register.component';
 import { PasswordRecoveryComponent } from './components/password-recovery/password-recovery.component';
 import { PrivacyPolicyComponent } from './components/privacy-policy/privacy-policy.component';
 import { TermsAndConditionsComponent } from './components/terms-and-conditions/terms-and-conditions.component';
+import { SearchResultsComponent } from './components/search-results/search-results.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full'},
   { path: 'home', component: HomeComponent },
   { path: 'posts/:id', component: PostDetailsComponent },
+  { path: 'search', component: SearchResultsComponent},
   { path: 'auth/login', title: "Login - europop", component: LoginComponent },
   { path: 'auth/register', title: "Register - europop", component: RegisterComponent },
   { path: 'auth/password-recovery', title: "Recover password - europop", component: PasswordRecoveryComponent },

@@ -4,7 +4,10 @@
         <form action="" id="login-form">
             <div class="user-email-input">
                 <div class="email-input-container">
-                    <input [(ngModel)]="login.getUserData().userEmail" (ngModelChange)="login.checkEmail()" type="email" name="userEmail" id="email-input" placeholder=" ">
+                    <input 
+                        [(ngModel)]="login.getUserData().userEmail" (ngModelChange)="login.checkEmail()" 
+                        type="email" name="userEmail" id="email-input" placeholder=" "
+                    >
                     <label for="email-input" class="email-label">ელ-ფოსტა*</label>
                 </div>
                 <div class="error-container">
