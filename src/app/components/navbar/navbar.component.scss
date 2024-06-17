@@ -36,7 +36,7 @@ header {
         .left-side {
             @include flex(row, center, center);
             height: 100%;
-            gap: 32px;
+            gap: 40px;
 
             .burger-menu {
                 @include flex(column, flex-start, space-between);
@@ -67,44 +67,38 @@ header {
                 img {
                     width: 100%;
                     height: 100%;
-                    object-fit: cover;
+                    // object-fit: contain;
                     display: block;
                 }
             }
-        }
 
-        .separation-line {
-            background-color: #49494B;
-            width: 0.5px;
-            height: 40%;
-        }
+            .popular-themes {
+                @include flex(column, center, center);
+                border-left: 0.5px solid #49494B;
+                padding-left: 40px;
+                height: 40%;
 
-        .middle-side {
-            @include flex(column, center, center);
-            border-left: 0.5px solid #49494B;
-            padding-left: 48px;
-            height: 40%;
+                .suggestions-list {
+                    @include flex(row, center, space-between);
+                    list-style: none;
+                    padding: 0;
+                    gap: 24px;
 
-            .suggestions-list {
-                @include flex(row, center, space-between);
-                list-style: none;
-                padding: 0;
-                gap: 24px;
+                    .list-item {
+                        .suggestion {
+                            @include flex(row, center, center);
+                            text-decoration: none;
+                            gap: 8px;
 
-                .list-item {
-                    .suggestion {
-                        @include flex(row, center, center);
-                        text-decoration: none;
-                        gap: 8px;
+                            .eplus-logo {
+                                margin: 8px 0;
+                                width: 41px;
+                                height: 24px;
+                            }
 
-                        .eplus-logo {
-                            margin-right: 8px;
-                            width: 41px;
-                            height: 24px;
-                        }
-
-                        .link-text {
-                            @include font(500, 15px, #fff);
+                            .link-text {
+                                @include font(500, 15px, #fff);
+                            }
                         }
                     }
                 }

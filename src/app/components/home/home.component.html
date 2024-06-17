@@ -73,7 +73,51 @@
                 </div>
             </div>
         </ng-container>
-
+        <div class="more-content">
+            <div class="posts-container">
+            
+            </div>
+            <aside class="aside">
+                <ng-container *ngIf="europebetPosts && featuredEuropebetPost">
+                    <div class="europebet-posts">
+                        <span class="powered-by"><img src="./../../../assets/images/powered-by.svg" alt=""></span>
+                        <span class="europebet"><img src="./../../../assets/images/europebet-logo.svg" alt=""></span>
+                        <div class="featured-post-card">
+                            <div class="image-container" (click)="redirectToPostDetails(featuredEuropebetPost.data.id)">
+                                <img [src]="featuredEuropebetPost.data.image.fileUrl" alt="">
+                            </div>
+                            <div class="info-container">
+                                <p class="subtitle">{{ featuredEuropebetPost.data.subtitle }}</p>
+                                <h3 class="title uppercase" (click)="redirectToPostDetails(featuredEuropebetPost.data.id)">
+                                    <img width="18" height="18" src="./../../../assets/images/europop-logo.png" alt="">
+                                    {{ featuredEuropebetPost.data.title }}
+                                </h3>
+                                <div class="author-data">
+                                    <img width="28" height="28" [src]="featuredEuropebetPost.data.author.avatar.fileUrl" alt="">
+                                    <p>{{ featuredEuropebetPost.data.author.firstName }} {{ featuredEuropebetPost.data.author.lastName }}</p>
+                                </div>
+                                <div class="additional-info">
+                                    <p>{{ featuredEuropebetPost.data.publishedAt | relativeTime }}
+                                    <span>&centerdot;</span> <i class="bi bi-file-earmark-text"></i>
+                                    {{ featuredEuropebetPost.data.estimatedReadTime }} წუთი</p>
+                                    <div class="buttons-container">
+                                        <button type="button" id="post-interaction-btn">
+                                            <i class="bi bi-hand-thumbs-up"></i>
+                                        </button>
+                                        <button type="button" id="post-interaction-btn">
+                                            <i class="bi bi-chat-dots"></i>
+                                        </button>
+                                        <button type="button" id="post-interaction-btn">
+                                            <i class="bi bi-bookmark-plus"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </ng-container>
+            </aside>
+        </div>
         <!-- <img width="820" height="300" src="./../../../assets/images/mobile-app-advertisment.jpg" alt=""> -->
     </div>
 </div>

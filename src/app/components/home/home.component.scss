@@ -54,7 +54,7 @@
 
         .featured-posts-container {
             @include flex(row, center, space-between);
-            width: 1220px;
+            max-width: 1220px;
             height: 690px;
             margin: 60px 0 80px;
 
@@ -196,7 +196,7 @@
                                 img {
                                     width: 34px;
                                     height: 20px;
-                                    margin: 0;
+                                    margin-bottom: 0;
                                 }
                             }
                         }
@@ -234,6 +234,135 @@
 
                                     &:hover i {
                                         color: #fff;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        .more-content {
+            @include flex(row, center, flex-start);
+            max-width: 1220px;
+
+            .aside {
+                @include flex(column, center, center);
+                width: 375px;
+
+                .europebet-posts {
+                    @include flex(column, flex-start, center);
+                    background-image: url("./../../../assets/images/powered-by-europebet-cover.png"),
+                    linear-gradient(rgba(14, 15, 16, 0) 0%, rgba(14, 16, 16, 0.3) 100%);
+                    background-position-x: center;
+                    background-position-y: center;
+                    background-size: cover;
+                    background-repeat: no-repeat;
+                    border-radius: 12px;
+                    padding: 32px 16px 24px;
+                    width: 100%;
+                    height: 100%;
+
+                    .powered-by {
+                        margin-bottom: 2px;
+                        padding-left: 26px;
+                    }
+
+                    .europebet {
+                        margin-bottom: 24px;
+                    }
+
+                    .featured-post-card {
+                        @include flex(column, center, center);
+                        background-color: rgb(20, 21, 22);
+                        border-radius: 12px;
+                        width: 100%;
+                        height: 405px;
+
+                        .image-container {
+                            width: 100%;
+                            height: 190px;
+                            border-radius: 12px 12px 0 0;
+                            cursor: pointer;
+
+                            img {
+                                width: 100%;
+                                height: 100%;
+                                border-radius: inherit;
+                                object-fit: cover;
+                                display: block;
+                            }
+                        }
+
+                        .info-container {
+                            @include flex(column, flex-start, center);
+                            padding: 16px;
+                            width: 100%;
+                            height: 215px;
+
+                            .subtitle {
+                                @include font(500, 14px, #f15a22);
+                                line-height: 18px;
+                                margin-bottom: 12px;
+                            }
+
+                            .title {
+                                @include font(600, 16px, #fff);
+                                cursor: pointer;
+                                min-height: 64px;
+                                margin: 0;
+                            }
+
+                            .author-data {
+                                @include flex(row, center, flex-start);
+                                margin-top: 12px;
+                                width: 100%;
+
+                                img {
+                                    border-radius: 50%;
+                                    margin-right: 8px;
+                                }
+
+                                p {
+                                    @include font(500, 12px, #fff);
+                                }
+                            }
+
+                            .additional-info {
+                                @include flex(row, center, space-between);
+                                border-top: 1px solid rgba(73, 73, 75, 0.3);
+                                margin-top: 16px;
+                                padding-top: 12px;
+                                width: 100%;
+
+                                p {
+                                    font-size: 13px;
+                                    color: rgb(181, 181, 181);
+                            
+                                    span {
+                                        padding: 0 8px;
+                                    }
+                                }
+
+                                .buttons-container {
+                                    @include flex(row, center, center);
+                                    gap: 16px;
+
+                                    #post-interaction-btn {
+                                        background-color: transparent;
+                                        border: none;
+                                        cursor: pointer;
+
+                                        i {
+                                            transition: all 0.2s ease-in-out;
+                                            font-size: 16px;
+                                            color: #B5B5B5;
+                                        }
+
+                                        &:hover i {
+                                            color: #fff;
+                                        }
                                     }
                                 }
                             }

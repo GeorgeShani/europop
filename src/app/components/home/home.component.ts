@@ -11,15 +11,26 @@ export class HomeComponent {
 
   featuredPostsData!: any;
   firstFourFeaturedPosts: any[] = [];
+  europebetPosts!: any;
+  featuredEuropebetPost!: any;
 
-  constructor(private _fecth: FetchService) {
-    this._fecth.getData("featuredPosts").subscribe((data) => {
+  constructor(private _fetch: FetchService) {
+    this._fetch.getData("featuredPosts").subscribe((data) => {
       this.featuredPostsData = data;
 
       for (let i = 0; i < 4; i++) {
         this.firstFourFeaturedPosts.push(this.featuredPostsData.data[i]);
       }
     });
+
+    this._fetch.getPostsByEuropebet(3).subscribe((data) => {
+      this.europebetPosts = data;
+    });
+
+    this._fetch.getData("featuredPostPoweredByEuropebet").subscribe((data) => {
+      this.featuredEuropebetPost = data;
+      console.log(this.featuredEuropebetPost);
+    })
   }
 
   redirectToRegister() {

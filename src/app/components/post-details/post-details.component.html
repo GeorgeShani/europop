@@ -4,12 +4,18 @@
             <img [src]="postDetails.data.image.fileUrl" [alt]="postDetails.data.image.fileName">
             <h3>{{ postDetails.data.subtitle }}</h3>
             <h1>{{ postDetails.data.title }}</h1>
-            <div [innerHTML]="postDetails.data.text"></div>
+            <div [innerHTML]="this._domSanitizer.bypassSecurityTrustHtml(postDetails.data.text)"></div>
         </div>
         <ng-container *ngIf="postDetails.data.modules">
-            <div class="div" *ngFor="let module of postDetails.data.modules">
+            <div class="div" *ngFor="let module of postDetails.data.modules; let i = index">
                 <ng-container *ngIf="module.type === 'TEXT'">
-                    <div class="text" [innerHTML]="module.text"></div>
+                    <div class="text" [innerHTML]="_domSanitizer.bypassSecurityTrustHtml(module.text)"></div>
+                    <ng-container *ngIf="oembedContents[i]">
+                        <div class="oembed-content" [innerHTML]="oembedContents[i]"></div>
+                    </ng-container>
+                    <ng-container *ngIf="_contentExtractor.extractVideoLink(module.text)">
+                        <div class="video-player" [innerHtml]="videoPlayerHtml"></div>
+                    </ng-container>
                 </ng-container>
                 <ng-container *ngIf="module.type === 'PHOTO_GALLERY'">
                     <img *ngFor="let item of module.items" [src]="item.image.fileUrl" [alt]="item.image.description">
@@ -61,6 +67,60 @@
                         </div>
                     </div>
                 </div>
+                <div class="comment-section">
+                    <div class="header">
+                        <h2 class="comment-count">{{ postComments.count }} კომენტარი</h2>
+                    </div>
+                    <ng-container *ngIf="postComments.data">
+                        <div class="comments-list">
+                            <div class="comment" *ngFor="let comment of postComments.data">
+                                <div class="user-container">
+                                    <ng-container *ngIf="comment.author.avatar === null">
+                                        <div class="image">
+                                            <span class="no-avatar"><img [src]="userIcon" alt=""></span>
+                                        </div>
+                                    </ng-container>
+                                    <ng-container *ngIf="comment.author.avatar">
+                                        <div class="image">
+                                            <img [src]="comment.author.avatar.fileUrl" alt="">
+                                        </div>
+                                    </ng-container>
+                                    <div class="author-username">
+                                        <p>{{ comment.author.username }}</p>
+                                    </div>
+                                    <div class="publication-date">
+                                        <p>{{ comment.createdAt | relativeTime }}</p>
+                                    </div>
+                                </div>
+                                <div class="comment-text">
+                                    <p>{{ comment.text }}</p>
+                                </div>
+                                <div class="comment-interaction-buttons">
+                                    <div class="like-button">
+                                        <button type="button">
+                                            <i class="bi bi-hand-thumbs-up"></i>
+                                        </button>
+                                        <p class="like-count" *ngIf="comment.likeCount !== 0">
+                                            {{ comment.likeCount }}
+                                        </p>
+                                    </div>
+                                    <div class="comment-button">
+                                        <button type="button">
+                                            <i class="bi bi-chat-dots"></i>
+                                        </button>
+                                    </div>
+                                    <div class="reply-button">
+                                        <button type="button">უპასუხე</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="write-comment-input">
+                                <input type="text" id="comment-input" placeholder="დაწერე რას ფიქრობ">
+                                <button type="button" id="send-comment-btn"><i class="bi bi-send"></i></button>
+                            </div>
+                        </div>
+                    </ng-container>
+                </div>
                 <div class="authors-and-categories">
                     <div class="author-container">
                         <div class="author-info">
@@ -76,30 +136,20 @@
                         </div>
                         <div class="author-subscribe">
                             <ul class="socials-list">
-                                <li class="social-item"
-                                    *ngIf="postDetails.data.author.socials.facebookUrl !== '' && postDetails.data.author.socials.facebookUrl !== null">
-                                    <a target="_blank" [href]="postDetails.data.author.socials.facebookUrl" class="social"><i
-                                            class="fa-brands fa-facebook-f"></i></a>
+                                <li class="social-item" *ngIf="postDetails.data.author.socials.facebookUrl !== '' && postDetails.data.author.socials.facebookUrl !== null">
+                                    <a target="_blank" [href]="postDetails.data.author.socials.facebookUrl" class="social"><i class="fa-brands fa-facebook-f"></i></a>
                                 </li>
-                                <li class="social-item"
-                                    *ngIf="postDetails.data.author.socials.youtubeUrl !== '' && postDetails.data.author.socials.youtubeUrl !== null">
-                                    <a target="_blank" [href]="postDetails.data.author.socials.youtubeUrl" class="social"><i
-                                            class="bi bi-youtube"></i></a>
+                                <li class="social-item" *ngIf="postDetails.data.author.socials.youtubeUrl !== '' && postDetails.data.author.socials.youtubeUrl !== null">
+                                    <a target="_blank" [href]="postDetails.data.author.socials.youtubeUrl" class="social"><i class="bi bi-youtube"></i></a>
                                 </li>
-                                <li class="social-item"
-                                    *ngIf="postDetails.data.author.socials.instagramUrl !== '' && postDetails.data.author.socials.instagramUrl !== null">
-                                    <a target="_blank" [href]="postDetails.data.author.socials.instagramUrl" class="social"><i
-                                            class="bi bi-instagram"></i></a>
+                                <li class="social-item" *ngIf="postDetails.data.author.socials.instagramUrl !== '' && postDetails.data.author.socials.instagramUrl !== null">
+                                    <a target="_blank" [href]="postDetails.data.author.socials.instagramUrl" class="social"><i class="bi bi-instagram"></i></a>
                                 </li>
-                                <li class="social-item"
-                                    *ngIf="postDetails.data.author.socials.messengerUrl !== '' && postDetails.data.author.socials.messengerUrl !== null">
-                                    <a target="_blank" [href]="postDetails.data.author.socials.messengerUrl" class="social"><i
-                                            class="bi bi-messenger"></i></a>
+                                <li class="social-item" *ngIf="postDetails.data.author.socials.messengerUrl !== '' && postDetails.data.author.socials.messengerUrl !== null">
+                                    <a target="_blank" [href]="postDetails.data.author.socials.messengerUrl" class="social"><i class="bi bi-messenger"></i></a>
                                 </li>
-                                <li class="social-item"
-                                    *ngIf="postDetails.data.author.socials.tiktokUrl !== '' && postDetails.data.author.socials.tiktokUrl !== null">
-                                    <a target="_blank" [href]="postDetails.data.author.socials.tiktokUrl" class="social"><i
-                                            class="fa-brands fa-tiktok"></i></a>
+                                <li class="social-item" *ngIf="postDetails.data.author.socials.tiktokUrl !== '' && postDetails.data.author.socials.tiktokUrl !== null">
+                                    <a target="_blank" [href]="postDetails.data.author.socials.tiktokUrl" class="social"><i class="fa-brands fa-tiktok"></i></a>
                                 </li>
                             </ul>
                             <button type="button" id="subscribe-btn">
@@ -116,6 +166,83 @@
                         </div>
                     </div>
                 </div>
+                <ng-container *ngIf="similarPosts.data">
+                    <div class="similar-posts-container">
+                        <div class="header">
+                            <h3 class="uppercase">მსგავსი პოსტები</h3>
+                        </div>
+                        <div class="posts-cards-container">
+                            <ng-container *ngFor="let similarPost of similarPosts.data">
+                                <ng-container *ngIf="similarPost.type.name === 'სტანდარტული სტატია'">
+                                    <div class="standart-post-card">
+                                        <div class="image-container">
+                                            <img (click)="redirectToPostDetails(similarPost.id)" [src]="similarPost.image.fileUrl" alt="">
+                                        </div>
+                                        <div class="info-container">
+                                            <p class="subtitle">{{ similarPost.subtitle }}</p>
+                                            <h3 (click)="redirectToPostDetails(similarPost.id)" class="title">{{ similarPost.title }}</h3>
+                                            <div class="text" [innerHTML]="similarPost.text"></div>
+                                            <div class="additional-info">
+                                                <p>{{ similarPost.publishedAt | relativeTime }}
+                                                    <span>&centerdot;</span> <i class="bi bi-file-earmark-text"></i>
+                                                    {{ similarPost.estimatedReadTime }} წუთი
+                                                </p>
+                                                <div class="interaction-buttons">
+                                                    <button type="button" id="post-interaction-btn">
+                                                        <i class="bi bi-hand-thumbs-up"></i>
+                                                    </button>
+                                                    <button type="button" id="post-interaction-btn">
+                                                        <i class="bi bi-chat-dots"></i>
+                                                    </button>
+                                                    <button type="button" id="post-interaction-btn">
+                                                        <i class="bi bi-bookmark-plus"></i>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </ng-container>
+                                <ng-container *ngIf="similarPost.type.name === 'ანალიტიოკური სტატია'">
+                                    <div class="analytical-post-card">
+                                        <div class="image-container">
+                                            <img (click)="redirectToPostDetails(similarPost.id)" [src]="similarPost.image.fileUrl" alt="">
+                                        </div>
+                                        <div class="info-container">
+                                            <div class="main-info">
+                                                <p class="subtitle">{{ similarPost.subtitle }}</p>
+                                                <h3 (click)="redirectToPostDetails(similarPost.id)" class="title uppercase">
+                                                    <img *ngIf="similarPost.type.name === 'ანალიტიოკური სტატია'" width="34" height="20" [src]="epopPlusLogo" alt="">
+                                                    {{ similarPost.title }}
+                                                </h3>
+                                            </div>
+                                            <div class="additional-info">
+                                                <div class="add-info">
+                                                    <img [src]="similarPost.author.avatar.fileUrl" alt="">
+                                                    <p class="author-name">{{ similarPost.author.firstName }} {{ similarPost.author.lastName }}</p>
+                                                    <span>&centerdot;</span>
+                                                    <p>{{ similarPost.publishedAt | relativeTime }}</p>
+                                                    <span>&centerdot;</span> <i class="bi bi-file-earmark-text"></i>
+                                                    <p>{{ similarPost.estimatedReadTime }} წუთი</p>
+                                                </div>
+                                                <div class="interaction-buttons">
+                                                    <button type="button" id="post-interaction-btn">
+                                                        <i class="bi bi-hand-thumbs-up"></i>
+                                                    </button>
+                                                    <button type="button" id="post-interaction-btn">
+                                                        <i class="bi bi-chat-dots"></i>
+                                                    </button>
+                                                    <button type="button" id="post-interaction-btn">
+                                                        <i class="bi bi-bookmark-plus"></i>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </ng-container>
+                            </ng-container>
+                        </div>
+                    </div>
+                </ng-container>
             </div>
         </div>
     </ng-container>
