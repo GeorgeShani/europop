@@ -7,8 +7,8 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class FetchService {
-  constructor(private _http: HttpClient) {}
-  
+  constructor(private _http: HttpClient) { }
+
   private _europopAPIs: APIs = {
     regularPosts: "http://localhost:3000/proxy?targetUrl=https://europop.ge/api/posts",
     featuredPosts: "http://localhost:3000/proxy?targetUrl=https://europop.ge/api/featured-posts",
@@ -43,12 +43,12 @@ export class FetchService {
     let url = this._europopAPIs["regularPosts"] + `/${id}/similar`;
     return this._http.get(url);
   }
-  
+
 
   getAuthors(page: number, size: number) {
     let url = this._europopAPIs["authors"] + `?page=${page}&size=${size}`;
     return this._http.get(url);
-  } 
+  }
 
   getPostsByEuropebet(size: number) {
     let url = this._europopAPIs["postsPoweredByEuropebet"] + `?size=${size}`;

@@ -10,9 +10,9 @@ export class RegisterComponent {
   googleLogo: string = "./../../../assets/images/google-logo.svg";
   facebookLogo: string = "./../../../assets/images/facebook-logo.svg";
   appleLogo: string = "./../../../assets/images/apple-logo.svg";
-  
+
   constructor(public register: RegisterService) { }
-  
+
   showPassword: boolean = false;
   showConfirmedPassword: boolean = false;
 
@@ -23,7 +23,7 @@ export class RegisterComponent {
   toggleConfirmedPasswordVisibility() {
     this.showConfirmedPassword = !this.showConfirmedPassword;
   }
-  
+
   checkPassword(): boolean {
     return this.register.checkPasswordPrecisely();
   }

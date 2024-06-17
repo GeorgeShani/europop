@@ -15,7 +15,7 @@ declare var twitter: any;
 export class PostDetailsComponent implements OnInit {
   epopPlusLogo: string = "./../../../assets/images/eplus.png";
   userIcon: string = "./../../../assets/images/user-icon.svg";
-  
+
   postDetails!: any;
   postComments!: any;
   similarPosts!: any;
@@ -29,7 +29,7 @@ export class PostDetailsComponent implements OnInit {
   redirectToPostDetails(id: number) {
     window.location.href = `/posts/${id}`;
   }
-  
+
   constructor(
     public _contentExtractor: ExternalContentExtractorService,
     public _domSanitizer: DomSanitizer,
@@ -37,7 +37,7 @@ export class PostDetailsComponent implements OnInit {
     private _route: ActivatedRoute,
     private _title: Title,
   ) { }
-  
+
   ngOnInit(): void {
     this._route.params.subscribe((params) => {
       const id = params['id'];

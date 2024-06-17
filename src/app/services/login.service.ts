@@ -7,7 +7,7 @@ import { LogInUser } from '../interfaces/login-user.model';
 })
 export class LoginService {
   constructor(private _regex: RegexService) { }
-  
+
   user: LogInUser = {
     userEmail: "",
     userPassword: "",

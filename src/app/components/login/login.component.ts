@@ -12,7 +12,7 @@ export class LoginComponent {
   appleLogo: string = "./../../../assets/images/apple-logo.svg";
 
   constructor(public login: LoginService) { }
-  
+
   showPassword: boolean = false;
   togglePasswordVisibility() {
     this.showPassword = !this.showPassword;

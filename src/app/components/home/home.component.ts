@@ -8,6 +8,9 @@ import { FetchService } from '../../services/fetch.service';
 })
 export class HomeComponent {
   epopPlusLogo: string = "./../../../assets/images/eplus.png";
+  poweredBy: string = "./../../../assets/images/powered-by.svg";
+  europeBetLogo: string = "./../../../assets/images/europebet-logo.svg";
+  europeBetLittleLogo: string = "./../../../assets/images/europop-logo.png";
 
   featuredPostsData!: any;
   firstFourFeaturedPosts: any[] = [];
@@ -30,7 +33,7 @@ export class HomeComponent {
     this._fetch.getData("featuredPostPoweredByEuropebet").subscribe((data) => {
       this.featuredEuropebetPost = data;
       console.log(this.featuredEuropebetPost);
-    })
+    });
   }
 
   redirectToRegister() {

@@ -7,7 +7,7 @@ import { RegUser } from '../interfaces/register-user.model';
 })
 export class RegisterService {
   constructor(private _regex: RegexService) { }
-  
+
   user: RegUser = {
     userEmail: "",
     userPassword: "",

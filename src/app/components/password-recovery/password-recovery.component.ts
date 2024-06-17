@@ -7,8 +7,8 @@ import { RegexService } from '../../services/regex.service';
   styleUrl: './password-recovery.component.scss'
 })
 export class PasswordRecoveryComponent {
-  constructor(private _regex: RegexService) {}
-  
+  constructor(private _regex: RegexService) { }
+
   recoverPassword() {
     if (this.userEmailOrPhoneNumber === "") {
       this.userEmailOrPhoneNumberError = "გთხოვთ, შეავსოთ ველი";

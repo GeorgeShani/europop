@@ -17,6 +17,19 @@
                         <div class="video-player" [innerHtml]="videoPlayerHtml"></div>
                     </ng-container>
                 </ng-container>
+                <ng-container *ngIf="module.type === 'MORE_ABOUT_THIS_SUBJECT'">
+                    <div class="more-about-this-subject">
+                        <h3 class="title uppercase">მეტი ამ თემაზე</h3>
+                        <div class="list">
+                            <div class="post-card" *ngFor="let post of module.items" (click)="redirectToPostDetails(post.postId)">
+                                <h3 class="post-title">{{ post.title }}</h3>
+                                <button type="button">
+                                    <i class="bi bi-arrow-right-circle"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </ng-container>
                 <ng-container *ngIf="module.type === 'PHOTO_GALLERY'">
                     <img *ngFor="let item of module.items" [src]="item.image.fileUrl" [alt]="item.image.description">
                 </ng-container>
@@ -114,10 +127,10 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="write-comment-input">
-                                <input type="text" id="comment-input" placeholder="დაწერე რას ფიქრობ">
-                                <button type="button" id="send-comment-btn"><i class="bi bi-send"></i></button>
-                            </div>
+                        </div>
+                        <div class="write-comment-input">
+                            <input type="text" id="comment-input" placeholder="დაწერე რას ფიქრობ">
+                            <button type="button" id="send-comment-btn"><i class="bi bi-send"></i></button>
                         </div>
                     </ng-container>
                 </div>
