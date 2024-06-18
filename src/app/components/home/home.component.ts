@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { FetchService } from '../../services/fetch.service';
+import { externals } from '../../interfaces/external-links.model';
+import { externalsV2 } from '../../interfaces/external-links-v2.model';
 
 @Component({
   selector: 'app-home',
@@ -16,6 +18,19 @@ export class HomeComponent {
   firstFourFeaturedPosts: any[] = [];
   europebetPosts!: any;
   featuredEuropebetPost!: any;
+  latestPosts!: any;
+
+  socialMediaLinks: externalsV2[] = [
+    { name: "Instagram", imageUrl: "./../../../assets/images/instagram-logo.svg", linkUrl: "https://www.instagram.com/europop.ge" },
+    { name: "Facebook", imageUrl: "./../../../assets/images/facebook-logo.svg", linkUrl: "https://www.facebook.com/europop.ge" },
+    { name: "Youtube", imageUrl: "./../../../assets/images/youtube-logo.svg", linkUrl: "https://www.youtube.com/@europop_" },
+    { name: "Tiktok", imageUrl: "./../../../assets/images/tiktok-logo.svg", linkUrl: "https://www.tiktok.com/@europop.ge" }
+  ];
+
+  mobileStoreLinks: externals[] = [
+    { imageUrl: "./../../../assets/images/appstore.png", linkUrl: "https://apps.apple.com/ge/app/europop-sports-news/id6480219097" },
+    { imageUrl: "./../../../assets/images/googleplay.png", linkUrl: "https://play.google.com/store/apps/details?id=ge.europop.sport.news&hl=en_US" },
+  ];
 
   constructor(private _fetch: FetchService) {
     this._fetch.getData("featuredPosts").subscribe((data) => {
@@ -32,7 +47,10 @@ export class HomeComponent {
 
     this._fetch.getData("featuredPostPoweredByEuropebet").subscribe((data) => {
       this.featuredEuropebetPost = data;
-      console.log(this.featuredEuropebetPost);
+    });
+
+    this._fetch.getData("popularPosts").subscribe((data) => {
+      this.latestPosts = data;
     });
   }
 
