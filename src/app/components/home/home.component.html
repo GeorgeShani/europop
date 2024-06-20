@@ -76,6 +76,41 @@
         <ng-container *ngIf="latestPosts && europebetPosts">
             <div class="more-content">
                 <div class="posts-container">
+                    <ng-container *ngIf="latePosts">
+                        <div class="late-posts">
+                            <div class="header">
+                                <h3 class="uppercase">ახალი ამბები</h3>
+                                <p>გაეცანი მსოფლიო სპორტის სიახლეებს</p>
+                            </div>
+                            <div class="post-card" *ngFor="let latePost of latePosts.data">
+                                <div class="image-container">
+                                    <img (click)="redirectToPostDetails(latePost.id)" [src]="latePost.image.fileUrl" alt="">
+                                </div>
+                                <div class="info-container">
+                                    <p class="subtitle">{{ latePost.subtitle }}</p>
+                                    <h3 (click)="redirectToPostDetails(latePost.id)" class="title">{{ latePost.title }}</h3>
+                                    <div class="text" [innerHTML]="latePost.text"></div>
+                                    <div class="additional-info">
+                                        <p>{{ latePost.publishedAt | relativeTime }}
+                                            <span>&centerdot;</span> <i class="bi bi-file-earmark-text"></i>
+                                            {{ latePost.estimatedReadTime }} წუთი
+                                        </p>
+                                        <div class="interaction-buttons">
+                                            <button type="button" id="post-interaction-btn">
+                                                <i class="bi bi-hand-thumbs-up"></i>
+                                            </button>
+                                            <button type="button" id="post-interaction-btn">
+                                                <i class="bi bi-chat-dots"></i>
+                                            </button>
+                                            <button type="button" id="post-interaction-btn">
+                                                <i class="bi bi-bookmark-plus"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </ng-container>
                     <ng-container *ngIf="latestPosts">
                         <div class="latest-posts">
                             <div class="header">
@@ -104,6 +139,37 @@
                             </a>
                         </div>
                     </div>
+                    <ng-container *ngIf="moreLatestPosts">
+                        <div class="more-latest-posts">
+                            <div class="post-card" *ngFor="let moreLatestPost of moreLatestPosts.data">
+                                <div class="image-container">
+                                    <img (click)="redirectToPostDetails(moreLatestPost.id)" [src]="moreLatestPost.image.fileUrl" alt="">
+                                </div>
+                                <div class="info-container">
+                                    <p class="subtitle">{{ moreLatestPost.subtitle }}</p>
+                                    <h3 (click)="redirectToPostDetails(moreLatestPost.id)" class="title">{{ moreLatestPost.title }}</h3>
+                                    <div class="text" [innerHTML]="moreLatestPost.text"></div>
+                                    <div class="additional-info">
+                                        <p>{{ moreLatestPost.publishedAt | relativeTime }}
+                                            <span>&centerdot;</span> <i class="bi bi-file-earmark-text"></i>
+                                            {{ moreLatestPost.estimatedReadTime }} წუთი
+                                        </p>
+                                        <div class="interaction-buttons">
+                                            <button type="button" id="post-interaction-btn">
+                                                <i class="bi bi-hand-thumbs-up"></i>
+                                            </button>
+                                            <button type="button" id="post-interaction-btn">
+                                                <i class="bi bi-chat-dots"></i>
+                                            </button>
+                                            <button type="button" id="post-interaction-btn">
+                                                <i class="bi bi-bookmark-plus"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </ng-container>
                 </div>
                 <aside class="aside">
                     <div class="subscribe-prompt">
@@ -118,8 +184,7 @@
                             </div>
                             <div class="message">
                                 <p>* სიახლეების გამოწერით ადასტურებ, რომ გაეცანი კონფიდენციალურობის პოლიტიკას და ეთანხმები, რომ შენი
-                                    მონაცემები დაამუშავოს
-                                    კომპანიამ შეტყობინებების გამოსაგზავნად</p>
+                                 მონაცემები დაამუშავოს კომპანიამ შეტყობინებების გამოსაგზავნად</p>
                             </div>
                         </div>
                     </div>
@@ -200,6 +265,42 @@
                             </div>
                         </div>
                     </ng-container>
+                    <div class="social-media-links">
+                        <div class="header">
+                            <h3 class="uppercase">სოციალური ქსელები</h3>
+                        </div>
+                        <ul class="list">
+                            <li class="item" *ngFor="let link of socialMediaLinks">
+                                <a class="link" [href]="link.linkUrl">
+                                    <div class="media-link-name">
+                                        <img [src]="link.imageUrl" alt=""> {{ link.name }}
+                                    </div>
+                                    <button type="button">
+                                        <i class="bi bi-arrow-right-short"></i>
+                                    </button>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="even-more-latest-posts">
+                        <div class="header">
+                            <h3 class="uppercase">ბოლო სიახლეები</h3>
+                            <p>გაეცანი მსოფლიო სპორტის სიახლეებს</p>
+                        </div>
+                        <div class="list">
+                            <div class="post-link" *ngFor="let evenMoreLatestPost of evenMoreLatestPosts.data" 
+                                (click)="redirectToPostDetails(evenMoreLatestPost.id)">
+                                <div class="title">
+                                    <h6>{{ evenMoreLatestPost.title }}</h6>
+                                </div>
+                                <div class="button-container">
+                                    <button type="button">
+                                        <i class="bi bi-arrow-right-circle"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </aside>
             </div>
         </ng-container>

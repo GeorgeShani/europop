@@ -18,7 +18,10 @@ export class HomeComponent {
   firstFourFeaturedPosts: any[] = [];
   europebetPosts!: any;
   featuredEuropebetPost!: any;
+  latePosts!: any;
   latestPosts!: any;
+  moreLatestPosts!: any;
+  evenMoreLatestPosts!: any;
 
   socialMediaLinks: externalsV2[] = [
     { name: "Instagram", imageUrl: "./../../../assets/images/instagram-logo.svg", linkUrl: "https://www.instagram.com/europop.ge" },
@@ -49,8 +52,20 @@ export class HomeComponent {
       this.featuredEuropebetPost = data;
     });
 
+    this._fetch.getData("latestPosts").subscribe((data) => {
+      this.latePosts = data;
+    });
+
     this._fetch.getData("popularPosts").subscribe((data) => {
       this.latestPosts = data;
+    });
+
+    this._fetch.getMoreLatestPosts().subscribe((data) => {
+      this.moreLatestPosts = data;
+    });
+
+    this._fetch.getEvenMoreLatestPosts().subscribe((data) => {
+      this.evenMoreLatestPosts = data;
     });
   }
 

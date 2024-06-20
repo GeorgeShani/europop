@@ -159,7 +159,7 @@ header {
                 }
 
                 #search-input {
-                    @include font(400, 14px, #7e7e7e);
+                    @include font(400, 14px, #fff);
                     background-color: transparent;
                     font-family: inherit;
                     border: none;

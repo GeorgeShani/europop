@@ -1,14 +1,20 @@
 @import './../../../styles.scss';
 
 .standard-post-main {
+    width: 805px;
+
     h3 {
         color: #f15a22;
     }
 
-    img {
+    &::ng-deep img {
         width: 805px;
         height: 520px;
         border-radius: 12px;
+    }
+
+    &::ng-deep p {
+        margin: 20px 0;
     }
 }
 
@@ -35,6 +41,10 @@
             width: 100%;
             min-height: 400px;
         }
+
+        &::ng-deep .instagram-media {
+            width: 498px;
+        }
     }
 
     .video-player {
@@ -45,6 +55,50 @@
         &::ng-deep iframe {
             width: 100%;
             min-height: 450px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+        }
+    }
+
+    .quote-block {
+        @include flex(column, center, center);
+        background-color: #f15a22;
+        border-radius: 12px;
+        margin-bottom: 32px;
+        position: relative;
+        min-height: 140px;
+        padding: 36px;
+
+        blockquote {
+            @include font(700, 20px, rgba(255, 255, 255, 0.85));
+            line-height: 24px;
+            text-align: center;
+        }
+
+        .top-left-quote, 
+        .bottom-right-quote {
+            position: absolute;
+            width: 79px;
+            height: 54px;
+
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                display: block
+            }
+        }
+
+        .top-left-quote {
+            transform: rotate(180deg);
+            top: 10px;
+            left: 10px;
+        }
+
+        .bottom-right-quote {
+            left: 100%;
+            top: 100%;
+            transform: translate(calc(-100% - 10px), calc(-100% - 10px));
         }
     }
 
@@ -103,6 +157,51 @@
         width: 100%;
         height: 520px;
         border-radius: 12px;
+    }
+
+    .image-slider {
+        width: 100%;
+        margin: auto;
+        overflow: hidden;
+
+        .slides {
+            display: flex;
+            width: 100%;
+            transition: transform 0.6s ease-in-out;
+
+            .slide {
+                min-width: 100%;
+                box-sizing: border-box;
+
+                img {
+                    width: 100%;
+                    height: auto;
+                }
+            }
+        }
+
+        .dots {
+            margin-top: 16px;
+            text-align: center;
+            width: 100%;
+
+            .dot {
+                width: 8px;
+                height: 8px;
+                margin: 0 4px;
+                background-color: rgb(86, 86, 87);
+                border-radius: 50%;
+                display: inline-block;
+                cursor: pointer;
+                transition: all 0.3s ease-in-out;
+            }
+        
+            .dot.active {
+                background-color: #f15a22;
+                border-radius: 4px;
+                width: 25px;
+            }
+        }
     }
 }
 

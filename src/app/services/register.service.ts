@@ -77,10 +77,6 @@ export class RegisterService {
     }
   }
 
-  checkPasswordPrecisely() {
-    return this._regex.validatePassword(this.user.userPassword);
-  }
-
   comparePasswords() {
     if (this.user.userConfirmedPassword === "") {
       this.user.errors.userConfirmedPasswordError = "გთხოვთ, განმეორებით შეავსოთ პაროლის ველი";

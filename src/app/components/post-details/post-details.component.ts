@@ -5,8 +5,6 @@ import { FetchService } from '../../services/fetch.service';
 import { Title } from '@angular/platform-browser';
 import { ExternalContentExtractorService } from '../../services/external-content-extractor.service';
 
-declare var twitter: any;
-
 @Component({
   selector: 'app-post-details',
   templateUrl: './post-details.component.html',
@@ -15,6 +13,8 @@ declare var twitter: any;
 export class PostDetailsComponent implements OnInit {
   epopPlusLogo: string = "./../../../assets/images/eplus.png";
   userIcon: string = "./../../../assets/images/user-icon.svg";
+  leftQuote: string = "./../../../assets/images/left-quote.svg";
+  rightQuote: string = "./../../../assets/images/right-quote.svg";
 
   postDetails!: any;
   postComments!: any;
@@ -22,13 +22,7 @@ export class PostDetailsComponent implements OnInit {
   videoPlayerHtml!: SafeHtml;
   oembedContents: { [key: number]: SafeHtml } = {};
 
-  redirectToAuthorization(): void {
-    window.location.href = "/auth/login";
-  }
-
-  redirectToPostDetails(id: number) {
-    window.location.href = `/posts/${id}`;
-  }
+  currentIndexes: number[] = [];
 
   constructor(
     public _contentExtractor: ExternalContentExtractorService,
@@ -37,6 +31,18 @@ export class PostDetailsComponent implements OnInit {
     private _route: ActivatedRoute,
     private _title: Title,
   ) { }
+
+  showSlide(moduleIndex: number, index: number): void {
+    this.currentIndexes[moduleIndex] = index;
+  }
+
+  redirectToAuthorization(): void {
+    window.location.href = "/auth/login";
+  }
+
+  redirectToPostDetails(id: number) {
+    window.location.href = `/posts/${id}`;
+  }
 
   ngOnInit(): void {
     this._route.params.subscribe((params) => {
@@ -60,6 +66,12 @@ export class PostDetailsComponent implements OnInit {
               if (videoLink) {
                 const videoPlayerHtmlString = `<iframe src="${videoLink}" frameborder="0" allowfullscreen></iframe>`;
                 this.videoPlayerHtml = this._domSanitizer.bypassSecurityTrustHtml(videoPlayerHtmlString);
+              }
+            }
+
+            if (module.type === 'PHOTO_GALLERY') {
+              if (module.items.length > 1) {
+                this.currentIndexes[index] = 0;
               }
             }
           });

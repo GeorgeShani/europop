@@ -36,25 +36,25 @@
             <div class="password-validation-container">
                 <ul class="password-validations-list">
                     <li class="validation">
-                        <div [ngStyle]="getIconStyles(this.checkPassword())" class="validation-icon">
+                        <div [ngStyle]="getIconStyles(this.checkIfPasswordIs8CharsLong())" class="validation-icon">
                             <i class="bi bi-check"></i>
                         </div>
                         <span class="validation-text">მინიმუმ 8 სიმბოლო</span>
                     </li>
                     <li class="validation">
-                        <div [ngStyle]="getIconStyles(this.checkPassword())" class="validation-icon">
+                        <div [ngStyle]="getIconStyles(this.checkIfPasswordContainsCapitalLetters())" class="validation-icon">
                             <i class="bi bi-check"></i>
                         </div>
                         <span class="validation-text">დიდი ლათინური ასო (A-დან Z-მდე)</span>
                     </li>
                     <li class="validation">
-                        <div [ngStyle]="getIconStyles(this.checkPassword())" class="validation-icon">
+                        <div [ngStyle]="getIconStyles(this.checkIfPasswordContainsLowercaseLetters())" class="validation-icon">
                             <i class="bi bi-check"></i>
                         </div>
                         <span class="validation-text">პატარა ლათინური ასო (a-დან z-მდე)</span>
                     </li>
                     <li class="validation">
-                        <div [ngStyle]="getIconStyles(this.checkPassword())" class="validation-icon">
+                        <div [ngStyle]="getIconStyles(this.checkIfPasswordContainsNumbers())" class="validation-icon">
                             <i class="bi bi-check"></i>
                         </div>
                         <span class="validation-text">ერთი ციფრი (0-დან 9-მდე)</span>

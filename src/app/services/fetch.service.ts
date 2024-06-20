@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class FetchService {
-  constructor(private _http: HttpClient) { }
+  constructor(private _http: HttpClient) {}
 
   private _europopAPIs: APIs = {
     regularPosts: "http://localhost:3000/proxy?targetUrl=https://europop.ge/api/posts",
@@ -28,7 +28,6 @@ export class FetchService {
     return this._http.get(this._europopAPIs[endpoint]);
   }
 
-  // Get Posts Details by ID //
   getById(id: number) {
     let url = this._europopAPIs["regularPosts"] + `/${id}`;
     return this._http.get(url);
@@ -44,7 +43,6 @@ export class FetchService {
     return this._http.get(url);
   }
 
-
   getAuthors(page: number, size: number) {
     let url = this._europopAPIs["authors"] + `?page=${page}&size=${size}`;
     return this._http.get(url);
@@ -58,5 +56,15 @@ export class FetchService {
   getSearchResult(searchQuery: string): Observable<any[]> {
     let url = this._europopAPIs["searchAPI"] + `?query=${searchQuery}&detailed=true`;
     return this._http.get<any[]>(url);
+  }
+
+  getMoreLatestPosts() {
+    let url = "http://localhost:3000/proxy?targetUrl=https://europop.ge/api/posts/latest?siteBlockId=509";
+    return this._http.get(url);
+  }
+
+  getEvenMoreLatestPosts() {
+    let url = "http://localhost:3000/proxy?targetUrl=https://europop.ge/api/posts/latest?siteBlockId=527";
+    return this._http.get(url);
   }
 }

@@ -7,7 +7,7 @@
             <div [innerHTML]="this._domSanitizer.bypassSecurityTrustHtml(postDetails.data.text)"></div>
         </div>
         <ng-container *ngIf="postDetails.data.modules">
-            <div class="div" *ngFor="let module of postDetails.data.modules; let i = index">
+            <div class="div" *ngFor="let module of postDetails.data.modules; let i = index; let moduleIndex = index">
                 <ng-container *ngIf="module.type === 'TEXT'">
                     <div class="text" [innerHTML]="_domSanitizer.bypassSecurityTrustHtml(module.text)"></div>
                     <ng-container *ngIf="oembedContents[i]">
@@ -30,8 +30,37 @@
                         </div>
                     </div>
                 </ng-container>
+                <ng-container *ngIf="module.type === 'QUOTE'">
+                    <div class="quote-block">
+                        <div class="top-left-quote">
+                            <img [src]="leftQuote" alt="">
+                        </div>
+                        <blockquote class="uppercase">{{ module.text }}</blockquote>
+                        <div class="bottom-right-quote">
+                            <img [src]="rightQuote" alt="">
+                        </div>
+                    </div>
+                </ng-container>
                 <ng-container *ngIf="module.type === 'PHOTO_GALLERY'">
-                    <img *ngFor="let item of module.items" [src]="item.image.fileUrl" [alt]="item.image.description">
+                    <ng-container *ngIf="module.items.length === 1">
+                        <img [src]="module.items[0].image.fileUrl" [alt]="module.items[0].image.description">
+                    </ng-container>
+                    <ng-container *ngIf="module.items.length > 1">
+                        <div class="image-slider">
+                            <div class="slides" [style.transform]="'translateX(' + (-currentIndexes[moduleIndex] * 100) + '%)'">
+                                <img *ngFor="let item of module.items; let j = index" 
+                                    [class.active]="j === currentIndexes[moduleIndex]" 
+                                    class="slide" [src]="item.image.fileUrl"
+                                >
+                            </div>
+                            <div class="dots">
+                                <span *ngFor="let item of module.items; let j = index" 
+                                    [class.active]="j === currentIndexes[moduleIndex]"
+                                    (click)="showSlide(moduleIndex, j)" class="dot">
+                                </span>
+                            </div>
+                        </div>
+                    </ng-container>
                 </ng-container>
             </div>
         </ng-container>

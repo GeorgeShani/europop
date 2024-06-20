@@ -24,8 +24,24 @@ export class RegisterComponent {
     this.showConfirmedPassword = !this.showConfirmedPassword;
   }
 
-  checkPassword(): boolean {
-    return this.register.checkPasswordPrecisely();
+  checkIfPasswordIs8CharsLong() {
+    const regex: RegExp = /^.{8,}$/;
+    return regex.test(this.register.getUserData().userPassword);
+  }
+
+  checkIfPasswordContainsCapitalLetters(): boolean {
+    const regex: RegExp = /[A-Z]/;
+    return regex.test(this.register.getUserData().userPassword);
+  }
+
+  checkIfPasswordContainsLowercaseLetters(): boolean {
+    const regex: RegExp = /[a-z]/;
+    return regex.test(this.register.getUserData().userPassword);
+  }
+
+  checkIfPasswordContainsNumbers(): boolean {
+    const regex: RegExp = /[0-9]/;
+    return regex.test(this.register.getUserData().userPassword);
   }
 
   checkEmail(): boolean {

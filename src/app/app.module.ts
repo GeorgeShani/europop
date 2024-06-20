@@ -17,6 +17,7 @@ import { PasswordRecoveryComponent } from './components/password-recovery/passwo
 import { PrivacyPolicyComponent } from './components/privacy-policy/privacy-policy.component';
 import { TermsAndConditionsComponent } from './components/terms-and-conditions/terms-and-conditions.component';
 import { SearchResultsComponent } from './components/search-results/search-results.component';
+import { ReplaceAnchorWithIframePipe } from './pipes/replace-anchor-with-iframe.pipe';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { SearchResultsComponent } from './components/search-results/search-resul
     PasswordRecoveryComponent,
     PrivacyPolicyComponent,
     TermsAndConditionsComponent,
-    SearchResultsComponent
+    SearchResultsComponent,
+    ReplaceAnchorWithIframePipe
   ],
   imports: [
     BrowserModule,
