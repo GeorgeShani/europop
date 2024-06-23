@@ -37,15 +37,15 @@
                     <p class="title uppercase">კატეგორია</p>
                     <ul class="links-list">
                         <li class="link-item" *ngFor="let item of categories">
-                            <a class="link uppercase" href="">{{ item }}</a>
+                            <a class="link uppercase" href="/category/{{ item.id }}">{{ item.name }}</a>
                         </li>
                     </ul>
                 </div>
                 <div class="analytics-links-container">
-                    <img [src]="epopPlusLogo"  width="34" height="20" alt="">
+                    <img [src]="epopPlusLogo" width="34" height="20" alt="">
                     <ul class="links-list">
                         <li class="link-item" *ngFor="let item of analytics">
-                            <a class="link uppercase" href="">{{ item }}</a>
+                            <a class="link uppercase" [href]="item.link">{{ item.name }}</a>
                         </li>
                     </ul>
                 </div>
@@ -53,7 +53,7 @@
                     <p class="title uppercase">დახმარება</p>
                     <ul class="links-list">
                         <li class="link-item" *ngFor="let item of help">
-                            <a class="link uppercase" href="">{{ item }}</a>
+                            <a class="link uppercase" [href]="item.link">{{ item.name }}</a>
                         </li>
                     </ul>
                 </div>
@@ -61,7 +61,7 @@
                     <p class="title uppercase">პროფილი</p>
                     <ul class="links-list">
                         <li class="link-item" *ngFor="let item of profile">
-                            <a class="link uppercase" href="">{{ item }}</a>
+                            <a class="link uppercase" href="/">{{ item }}</a>
                         </li>
                     </ul>
                 </div>

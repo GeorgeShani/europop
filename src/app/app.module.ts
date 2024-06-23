@@ -17,7 +17,12 @@ import { PasswordRecoveryComponent } from './components/password-recovery/passwo
 import { PrivacyPolicyComponent } from './components/privacy-policy/privacy-policy.component';
 import { TermsAndConditionsComponent } from './components/terms-and-conditions/terms-and-conditions.component';
 import { SearchResultsComponent } from './components/search-results/search-results.component';
-import { ReplaceAnchorWithIframePipe } from './pipes/replace-anchor-with-iframe.pipe';
+import { EuropebetPostsComponent } from './components/europebet-posts/europebet-posts.component';
+import { AnalyticalPostsComponent } from './components/analytical-posts/analytical-posts.component';
+import { AuthorsComponent } from './components/authors/authors.component';
+import { CategoryDetailsComponent } from './components/category-details/category-details.component';
+import { KFormaterPipe } from './pipes/k-formater.pipe';
+import { AboutUsComponent } from './components/about-us/about-us.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +39,12 @@ import { ReplaceAnchorWithIframePipe } from './pipes/replace-anchor-with-iframe.
     PrivacyPolicyComponent,
     TermsAndConditionsComponent,
     SearchResultsComponent,
-    ReplaceAnchorWithIframePipe
+    EuropebetPostsComponent,
+    AnalyticalPostsComponent,
+    AuthorsComponent,
+    CategoryDetailsComponent,
+    KFormaterPipe,
+    AboutUsComponent
   ],
   imports: [
     BrowserModule,

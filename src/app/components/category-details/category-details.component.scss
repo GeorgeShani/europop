@@ -1,0 +1,423 @@
+@import './../../../styles.scss';
+
+.category-details-container {
+    @include flex(column, center, center);
+    margin: 50px 0;
+    width: 100%;
+    height: auto;
+
+    .container-inner {
+        @include flex(row, flex-start, space-between);
+        width: 1220px;
+        height: 100%;
+
+        .category-main-data {
+            @include flex(column, center, center);
+            width: 805px;
+
+            .header {
+                @include flex(row, flex-start, space-between);
+                border-bottom: 1px solid rgba(51, 51, 52, 0.7);
+                margin-bottom: 32px;
+                padding-bottom: 32px;
+                width: 100%;
+                min-height: 50px;
+
+                .main-info {
+                    @include flex(column, flex-start, center);
+
+                    h3 {
+                        @include font(700, 20px, #fff);
+                        margin-bottom: 8px;
+                    }
+
+                    p {
+                        @include font(400, 13px, rgba(207, 207, 207, 0.9));
+
+                        span {
+                            padding: 0 6px;
+                        }
+                    }
+                }
+
+                #subscribe-btn {
+                    @include font(500, 13px, #fff);
+                    font-family: inherit;
+                    background-color: #f15a22;
+                    border-radius: 20px;
+                    border: none;
+                    width: 96px;
+                    height: 39px;
+                    cursor: pointer;
+                }
+            }
+
+            .posts-by-category-container {
+                @include flex(column, center, center);
+                width: 100%;
+
+                .standart-post-card {
+                    @include flex(row, center, center);
+                    background-color: rgb(20, 21, 22);
+                    padding: 16px;
+                    border-radius: 12px;
+                    overflow: hidden;
+                    margin-bottom: 12px;
+                    width: 100%;
+                    height: 210px;
+            
+                    .image-container {
+                        width: 34%;
+                        height: 180px;
+                        border-radius: 12px;
+            
+                        img {
+                            width: 248px;
+                            height: 100%;
+                            object-fit: cover;
+                            border-radius: inherit;
+                            display: block;
+                            cursor: pointer;
+                        }
+                    }
+            
+                    .info-container {
+                        @include flex(column, flex-start, space-between);
+                        margin-left: 24px;
+                        padding: 0;
+                        width: 66%;
+                        height: 180px;
+            
+                        .subtitle {
+                            @include font(500, 14px, #f15a22);
+                            line-height: 18px;
+                            margin-bottom: 12px;
+                        }
+            
+                        .title {
+                            @include font(600, 16px, #fff);
+                            line-height: 21px;
+                            min-height: 33px;
+                            cursor: pointer;
+                            margin: 0;
+            
+                            img {
+                                margin-right: 2px;
+                            }
+                        }
+            
+                        .text {
+                            margin-top: 8px;
+                            width: 90%;
+                            display: -webkit-box;
+                            overflow: hidden;
+                            text-overflow: ellipsis;
+                            -webkit-line-clamp: 2;
+                            -webkit-box-orient: vertical;
+            
+                            &::ng-deep p,
+                            &::ng-deep ul {
+                                @include font(300, 14px, rgb(142, 142, 146));
+                            }
+            
+                            &::ng-deep a {
+                                @include font(300, 14px, #f15a22);
+                                text-decoration: none;
+                            }
+                        }
+            
+                        .additional-info {
+                            @include flex(row, center, space-between);
+                            border-top: 1px solid rgba(73, 73, 75, 0.3);
+                            margin-top: 12px;
+                            padding-top: 12px;
+                            width: 100%;
+            
+                            p {
+                                font-size: 14px;
+                                color: #B5B5B5;
+            
+                                span {
+                                    padding: 0 8px;
+                                }
+                            }
+            
+                            .interaction-buttons {
+                                @include flex(row, center, center);
+                                gap: 16px;
+            
+                                #post-interaction-btn {
+                                    background-color: transparent;
+                                    border: none;
+                                    cursor: pointer;
+            
+                                    i {
+                                        font-size: 18px;
+                                        color: #B5B5B5;
+                                        transition: all 0.2s ease-in-out;
+                                    }
+            
+                                    &:hover i {
+                                        color: #fff;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            
+                .analytical-post-card {
+                    @include flex(column, center, center);
+                    background-color: rgb(20, 21, 22);
+                    padding: 16px;
+                    border-radius: 12px;
+                    overflow: hidden;
+                    margin-bottom: 8px;
+                    width: 100%;
+                    height: 607px;
+            
+                    .image-container {
+                        width: 100%;
+                        height: 436px;
+                        border-radius: 12px;
+            
+                        img {
+                            width: 100%;
+                            height: 100%;
+                            object-fit: cover;
+                            border-radius: inherit;
+                            display: block;
+                            cursor: pointer;
+                        }
+                    }
+            
+                    .info-container {
+                        @include flex(column, flex-start, space-between);
+                        margin-top: 12px;
+                        padding-top: 12px;
+                        width: 100%;
+            
+                        .main-info {
+                            @include flex(column, flex-start, center);
+                            width: 100%;
+            
+                            .subtitle {
+                                @include font(500, 14px, #f15a22);
+                                line-height: 18px;
+                                margin-bottom: 12px;
+                            }
+            
+                            .title {
+                                @include font(600, 16px, #fff);
+                                line-height: 21px;
+                                min-height: 33px;
+                                cursor: pointer;
+                                margin: 0;
+            
+                                img {
+                                    margin-right: 4px;
+                                }
+                            }
+                        }
+            
+                        p {
+                            font-size: 14px;
+                            color: #B5B5B5;
+            
+                            span {
+                                padding: 0 8px;
+                            }
+                        }
+            
+                        .additional-info {
+                            @include flex(row, center, space-between);
+                            border-top: 1px solid rgba(73, 73, 75, 0.3);
+                            margin-top: 12px;
+                            padding-top: 12px;
+                            width: 100%;
+            
+                            .add-info {
+                                @include flex(row, center, center);
+            
+                                .author-name {
+                                    @include font(500, 14px, #fff);
+                                }
+            
+                                img {
+                                    width: 28px;
+                                    height: 28px;
+                                    object-fit: cover;
+                                    border-radius: 50%;
+                                    margin-right: 8px;
+                                }
+            
+                                p {
+                                    font-size: 14px;
+                                    color: #B5B5B5;
+                                }
+            
+                                span {
+                                    padding: 0 8px;
+                                }
+                            }
+            
+                            .interaction-buttons {
+                                @include flex(row, center, center);
+                                gap: 16px;
+            
+                                #post-interaction-btn {
+                                    background-color: transparent;
+                                    border: none;
+                                    cursor: pointer;
+            
+                                    i {
+                                        font-size: 18px;
+                                        color: #B5B5B5;
+                                        transition: all 0.2s ease-in-out;
+                                    }
+            
+                                    &:hover i {
+                                        color: #fff;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        .aside {
+            @include flex(column, center, center);
+            width: 375px;
+
+            .regular-posts {
+                @include flex(column, flex-start, center);
+                background-color: rgb(20, 21, 22);
+                padding: 24px 24px 12px;
+                margin-bottom: 24px;
+                border-radius: 12px;
+                width: 100%;
+        
+                .header {
+                    h3 {
+                        @include font(600, 16px, #fff);
+                        margin-bottom: 10px;
+                    }
+        
+                    p {
+                        @include font(300, 14px, rgb(142, 142, 146));
+                        line-height: 18px;
+                        margin-bottom: 10px;
+                    }
+                }
+        
+                .list {
+                    @include flex(column, center, center);
+                    position: relative;
+                    width: 100%;
+        
+                    .post-link {
+                        @include flex(row, center, space-between);
+                        border-bottom: 1px solid rgba(73, 73, 75, 0.3);
+                        height: 66px;
+                        cursor: pointer;
+        
+                        &:last-child {
+                            border-bottom: none;
+                        }
+        
+                        .title {
+                            width: 88%;
+        
+                            h6 {
+                                @include font(400, 14px, rgba(255, 255, 255, 0.8));
+                                line-height: 19px;
+                            }
+                        }
+        
+                        .button-container {
+                            button {
+                                background-color: transparent;
+                                border: none;
+                                cursor: pointer;
+        
+                                i {
+                                    font-size: 20px;
+                                    color: #b5b5b5;
+                                    transition: all 0.2s ease-in-out;
+                                }
+                            }
+                        }
+        
+                        &:hover .button-container button i {
+                            color: #f15a22;
+                        }
+                    }
+                }
+            }
+
+            .social-media-links {
+                @include flex(column, center, center);
+                background-color: rgb(31, 32, 33);
+                border-radius: 12px;
+                padding: 0 24px;
+                width: 100%;
+        
+                .header {
+                    @include flex(column, flex-start, center);
+                    border-bottom: 1px solid rgba(51, 51, 52, 0.7);
+                    width: 100%;
+                    height: 68px;
+        
+                    h3 {
+                        @include font(600, 16px, #fff);
+                        text-align: left;
+                    }
+                }
+        
+                .list {
+                    @include flex(column, center, center);
+                    list-style: none;
+                    padding: 0;
+                    width: 100%;
+        
+                    .item {
+                        @include flex(column, center, center);
+                        border-bottom: 1px solid rgba(51, 51, 52, 0.7);
+                        width: 100%;
+                        height: 52px;
+        
+                        &:last-child {
+                            border-bottom: none;
+                        }
+        
+                        a {
+                            @include flex(row, center, space-between);
+                            text-decoration: none;
+                            font-weight: 500;
+                            color: #fff;
+                            width: 100%;
+        
+                            .media-link-name {
+                                @include flex(row, center, center);
+                                gap: 8px;
+                            }
+        
+                            button {
+                                background-color: transparent;
+                                border: none;
+                                cursor: pointer;
+        
+                                i {
+                                    font-size: 28px;
+                                    color: #b5b5b5;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

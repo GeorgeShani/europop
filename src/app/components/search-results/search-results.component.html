@@ -1,1 +1,166 @@
-<p>search-results works!</p>
+<div class="search-results-container">
+    <div class="container-inner">
+        <div class="posts-by-query-container">
+            <div class="header">
+                <h3>ძებნის შედეგი <span>{{ query }}</span>-სთვის</h3>
+            </div>
+            <div class="posts-cards-container">
+                <ng-container *ngIf="results.data.posts.length > 0; else noResults">
+                    <ng-container *ngFor="let post of results.data.posts">
+                        <ng-container *ngIf="post.type.name === 'სტანდარტული სტატია'">
+                            <div class="standart-post-card">
+                                <div class="image-container">
+                                    <img (click)="redirectToPostDetails(post.id)" [src]="post.image.fileUrl" alt="">
+                                </div>
+                                <div class="info-container">
+                                    <p class="subtitle">{{ post.subtitle }}</p>
+                                    <h3 (click)="redirectToPostDetails(post.id)" class="title">
+                                        <img width="18" height="18" *ngIf="post.tag.name === 'Powered by Europebet'" [src]="europeBetMiniLogo" alt="">
+                                        {{ post.title }}
+                                    </h3>
+                                    <div class="text" [innerHTML]="post.text"></div>
+                                    <div class="additional-info">
+                                        <p>{{ post.publishedAt | relativeTime }}
+                                            <span>&centerdot;</span> <i class="bi bi-file-earmark-text"></i>
+                                            {{ post.estimatedReadTime }} წუთი
+                                        </p>
+                                        <div class="interaction-buttons">
+                                            <button type="button" id="post-interaction-btn">
+                                                <i class="bi bi-hand-thumbs-up"></i>
+                                            </button>
+                                            <button type="button" id="post-interaction-btn">
+                                                <i class="bi bi-chat-dots"></i>
+                                            </button>
+                                            <button type="button" id="post-interaction-btn">
+                                                <i class="bi bi-bookmark-plus"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </ng-container>
+                        <ng-container *ngIf="post.type.name === 'ანალიტიოკური სტატია'">
+                            <div class="analytical-post-card">
+                                <div class="image-container">
+                                    <img (click)="redirectToPostDetails(post.id)" [src]="post.image.fileUrl" alt="">
+                                </div>
+                                <div class="info-container">
+                                    <div class="main-info">
+                                        <p class="subtitle">{{ post.subtitle }}</p>
+                                        <h3 (click)="redirectToPostDetails(post.id)" class="title uppercase">
+                                            <img *ngIf="post.type.name === 'ანალიტიოკური სტატია'" width="34" height="20" [src]="epopPlusLogo" alt="">
+                                            {{ post.title }}
+                                        </h3>
+                                    </div>
+                                    <div class="additional-info">
+                                        <div class="add-info">
+                                            <img [src]="post.author.avatar.fileUrl" alt="">
+                                            <p class="author-name">{{ post.author.firstName }} {{ post.author.lastName }}</p>
+                                            <span>&centerdot;</span>
+                                            <p>{{ post.publishedAt | relativeTime }}</p>
+                                            <span>&centerdot;</span> <i class="bi bi-file-earmark-text"></i>
+                                            <p>{{ post.estimatedReadTime }} წუთი</p>
+                                        </div>
+                                        <div class="interaction-buttons">
+                                            <button type="button" id="post-interaction-btn">
+                                                <i class="bi bi-hand-thumbs-up"></i>
+                                            </button>
+                                            <button type="button" id="post-interaction-btn">
+                                                <i class="bi bi-chat-dots"></i>
+                                            </button>
+                                            <button type="button" id="post-interaction-btn">
+                                                <i class="bi bi-bookmark-plus"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </ng-container>
+                    </ng-container>
+                </ng-container>
+                <ng-template #noResults>
+                    <div class="no-results-found">
+                        <p>მითითებული საძიებო სიტყვით, <span>სტატია ვერ მოიძებნა</span></p>
+                    </div>
+                </ng-template>
+            </div>
+        </div>
+        <aside class="aside">
+            <ng-container *ngIf="results.data.authors.length > 0">
+                <div class="authors-by-query-container">
+                    <div class="header">
+                        <h5 class="uppercase">ავტორები ძებნის მიხედვით</h5>
+                    </div>
+                    <div class="authors-list">
+                        <div class="author" *ngFor="let author of results.data.authors">
+                            <div class="info-container">
+                                <div class="image">
+                                    <img [src]="author.avatar.fileUrl" alt="">
+                                </div>
+                                <div class="main-info">
+                                    <h3>{{ author.firstName }} {{ author.lastName }}</h3>
+                                </div>
+                            </div>
+                            <button class="add-author-button">
+                                <i class="fa-solid fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="show-all-button-container">
+                        <button type="button" id="show-all-btn">
+                            ყველა <i class="fa-solid fa-circle-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </ng-container>
+            <ng-container *ngIf="results.data.interests.length > 0">
+                <div class="interests-by-query-container">
+                    <div class="header">
+                        <h5 class="uppercase">ინტერესები ძებნის მიხედვით</h5>
+                    </div>
+                    <div class="interests-list">
+                        <div class="interest" *ngFor="let interest of results.data.interests">
+                            <div class="info-container">
+                                <div class="image" (click)="redirectToCategory(interest.id)">
+                                    <span class="e-logo"><img [src]="eLogo" alt=""></span>
+                                </div>
+                                <div class="main-info">
+                                    <h3 (click)="redirectToCategory(interest.id)">{{ interest.name }}</h3>
+                                    <p>{{ interest.subscriptionsCount }} გამომწერი</p>
+                                </div>
+                            </div>
+                            <button class="add-interest-button">
+                                <i class="fa-solid fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="show-all-button-container">
+                        <button type="button" id="show-all-btn">
+                            ყველა <i class="fa-solid fa-circle-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </ng-container>
+            <ng-container *ngIf="first8Posts.length > 0">
+                <div class="posts-by-query-links-list">
+                    <div class="header">
+                        <h3 class="uppercase">სტატიები</h3>
+                    </div>
+                    <div class="list">
+                        <div class="post-link" *ngFor="let postLink of first8Posts"
+                            (click)="redirectToPostDetails(postLink.id)">
+                            <div class="title">
+                                <h6>{{ postLink.title }}</h6>
+                            </div>
+                            <div class="button-container">
+                                <button type="button">
+                                    <i class="bi bi-arrow-right-circle"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </ng-container>
+        </aside>
+    </div>
+</div>

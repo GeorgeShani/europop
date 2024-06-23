@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FetchService } from '../../services/fetch.service';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-search-results',
@@ -8,18 +9,44 @@ import { FetchService } from '../../services/fetch.service';
   styleUrl: './search-results.component.scss'
 })
 export class SearchResultsComponent {
-  results: any[] = [];
   query: string = "";
+  results!: any;
+  first8Posts: any[] = [];
 
-  constructor(private _fetch: FetchService, private _route: ActivatedRoute) {
+  europeBetMiniLogo: string = "./../../../assets/images/europebet-little-logo.png";
+  epopPlusLogo: string = "./../../../assets/images/eplus.png";
+  eLogo: string = "./../../../assets/images/e-logo-gray.svg";
+
+  constructor(
+    private _fetch: FetchService,
+    private _route: ActivatedRoute,
+    private _title: Title
+  ) {
     this._route.queryParams.subscribe((params) => {
       this.query = params['query'];
       if (this.query) {
+        this._title.setTitle(`${this.query} - Europop`);
+        
         this._fetch.getSearchResult(this.query).subscribe((data) => {
           this.results = data;
-          console.log(this.results);
+
+          if (this.results.data.posts.length >= 8) {
+            this.first8Posts = [];
+
+            for (let i = 0; i < 8; i++) {
+              this.first8Posts.push(this.results.data.posts[i]);
+            }
+          }
         });
       }
     });
+  }
+
+  redirectToPostDetails(id: number) {
+    window.location.href = `/post/${id}`;
+  }
+
+  redirectToCategory(id: number) {
+    window.location.href = `/category/${id}`;
   }
 }

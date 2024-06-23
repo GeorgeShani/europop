@@ -10,17 +10,25 @@ import { PasswordRecoveryComponent } from './components/password-recovery/passwo
 import { PrivacyPolicyComponent } from './components/privacy-policy/privacy-policy.component';
 import { TermsAndConditionsComponent } from './components/terms-and-conditions/terms-and-conditions.component';
 import { SearchResultsComponent } from './components/search-results/search-results.component';
+import { EuropebetPostsComponent } from './components/europebet-posts/europebet-posts.component';
+import { AnalyticalPostsComponent } from './components/analytical-posts/analytical-posts.component';
+import { CategoryDetailsComponent } from './components/category-details/category-details.component';
+import { AboutUsComponent } from './components/about-us/about-us.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full'},
   { path: 'home', component: HomeComponent },
-  { path: 'posts/:id', component: PostDetailsComponent },
-  { path: 'search', component: SearchResultsComponent},
-  { path: 'auth/login', title: "Login - europop", component: LoginComponent },
-  { path: 'auth/register', title: "Register - europop", component: RegisterComponent },
-  { path: 'auth/password-recovery', title: "Recover password - europop", component: PasswordRecoveryComponent },
-  { path: 'privacy-policy', title: "Privacy Policy - europop", component: PrivacyPolicyComponent },
-  { path: 'terms-and-conditions', title: "Terms and Conditions - europop", component: TermsAndConditionsComponent},
+  { path: 'search', component: SearchResultsComponent },
+  { path: 'category/:id', component: CategoryDetailsComponent },
+  { path: 'posts/analytics', title: "epop plus - სპორტული ანალიტიკა", component: AnalyticalPostsComponent },
+  { path: 'posts/powered-by-europebet', title: "Powered by Europebet - Europop", component: EuropebetPostsComponent },
+  { path: 'post/:id', component: PostDetailsComponent },
+  { path: 'auth/login', title: "Login - Europop", component: LoginComponent },
+  { path: 'auth/register', title: "Register - Europop", component: RegisterComponent },
+  { path: 'auth/password-recovery', title: "Recover password - Europop", component: PasswordRecoveryComponent },
+  { path: 'about-us', title: "ჩვენ შესახებ - Europop", component: AboutUsComponent },
+  { path: 'privacy-policy', title: "Privacy Policy - Europop", component: PrivacyPolicyComponent },
+  { path: 'terms-and-conditions', title: "Terms and Conditions - Europop", component: TermsAndConditionsComponent},
   { path: "**", title: "404 - Not Found", component: ErrorComponent }
 ];
 

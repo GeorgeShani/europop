@@ -17,11 +17,10 @@ export class FetchService {
     analyticPosts: "http://localhost:3000/proxy?targetUrl=https://europop.ge/api/posts/analytic",
     authors: "http://localhost:3000/proxy?targetUrl=https://europop.ge/api/authors",
     searchAPI: "http://localhost:3000/proxy?targetUrl=https://europop.ge/api/search",
+    categoryData: "http://localhost:3000/proxy?targetUrl=https://europop.ge/api/categories",
+    postsByCategoryId: "http://localhost:3000/proxy?targetUrl=https://europop.ge/api/posts/by-category-id",
     postsPoweredByEuropebet: "http://localhost:3000/proxy?targetUrl=https://europop.ge/api/posts/powered-by-europebet",
-    featuredPostPoweredByEuropebet: "http://localhost:3000/proxy?targetUrl=https://europop.ge/api/posts/powered-by-europebet/featured",
-    georgianSportPosts: "http://localhost:3000/proxy?targetUrl=https://europop.ge/api/posts/by-category-id?categoryId=180837&size=30",
-    khvichaKvaratskheliaPosts: "http://localhost:3000/proxy?targetUrl=https://europop.ge/api/posts/by-category-id?categoryId=182094&size=30",
-    nationalFootballTeamPosts: "http://localhost:3000/proxy?targetUrl=https://europop.ge/api/posts/by-category-id?categoryId=180246&size=30",
+    featuredPostPoweredByEuropebet: "http://localhost:3000/proxy?targetUrl=https://europop.ge/api/posts/powered-by-europebet/featured"
   };
 
   getData(endpoint: string) {
@@ -43,6 +42,16 @@ export class FetchService {
     return this._http.get(url);
   }
 
+  getCategoryById(id: number) {
+    let url = this._europopAPIs["categoryData"] + `/${id}`;
+    return this._http.get(url);
+  }
+
+  getPostsByCategory(categoryId: number) {
+    let url = this._europopAPIs["postsByCategoryId"] + `?categoryId=${categoryId}&size=30`;
+    return this._http.get(url);
+  }
+
   getAuthors(page: number, size: number) {
     let url = this._europopAPIs["authors"] + `?page=${page}&size=${size}`;
     return this._http.get(url);
@@ -58,13 +67,8 @@ export class FetchService {
     return this._http.get<any[]>(url);
   }
 
-  getMoreLatestPosts() {
-    let url = "http://localhost:3000/proxy?targetUrl=https://europop.ge/api/posts/latest?siteBlockId=509";
-    return this._http.get(url);
-  }
-
-  getEvenMoreLatestPosts() {
-    let url = "http://localhost:3000/proxy?targetUrl=https://europop.ge/api/posts/latest?siteBlockId=527";
+  getLatestPostsById(id: number) {
+    let url = this._europopAPIs["latestPosts"] + `?siteBlockId=${id}`;
     return this._http.get(url);
   }
 }

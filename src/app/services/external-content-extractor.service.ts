@@ -3,14 +3,14 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 
 declare var twttr: any;
+declare var instgrm: any;
+declare var FB: any;
 
 @Injectable({
   providedIn: 'root'
 })
 export class ExternalContentExtractorService {
-  constructor(private _http: HttpClient) {}
-
-  renderer: any;
+  constructor(private _http: HttpClient) { }
 
   private providers: { [key: string]: string } = {
     'youtube.com': 'https://www.youtube.com/oembed',
@@ -46,37 +46,77 @@ export class ExternalContentExtractorService {
           <a href="${oembedUrl}"></a>
         </blockquote>
       `;
-      if (twttr.widgets) twttr.widgets.load();
+
+      this.loadTwitterScript();
+
+      const loadTwitterWidgets = () => {
+        if (typeof twttr !== 'undefined' && twttr.widgets) {
+          twttr.widgets.load();
+        } else {
+          setTimeout(loadTwitterWidgets, 50);
+        }
+      };
+
+      loadTwitterWidgets();
       return of({ html: twitterEmbedHtml });
     }
 
+
     if (provider.includes('https://graph.facebook.com/v10.0/instagram_oembed')) {
-      const instagramHtml = ` 
+      const instagramHtml = `
         <blockquote class="instagram-media" data-instgrm-permalink="${oembedUrl}" data-instgrm-version="13">
           <a href="${oembedUrl}"></a>
         </blockquote>
       `;
+
       this.loadInstagramScript();
+      const loadInstagramEmbeds = () => {
+        if (typeof instgrm !== 'undefined' && instgrm.Embeds) {
+          instgrm.Embeds.process();
+        } else {
+          setTimeout(loadInstagramEmbeds, 50);
+        }
+      };
+
+      loadInstagramEmbeds();
       return of({ html: instagramHtml });
     }
 
+
     if (provider.includes('https://graph.facebook.com/v10.0/oembed_post')) {
       let facebookHtml: string;
+
       if (oembedUrl.includes('/videos/')) {
-        facebookHtml = `
-          <div class="fb-video" data-href="${oembedUrl}" data-width="500" data-show-text="false"></div>
-        `;
+        facebookHtml = `<div class="fb-video" data-href="${oembedUrl}" data-width="500" data-show-text="false"></div>`;
       } else {
-        facebookHtml = `
-          <div class="fb-post" data-href="${oembedUrl}" data-width="500"></div>
-        `;
+        facebookHtml = `<div class="fb-post" data-href="${oembedUrl}" data-width="500" style="background-color: #ffffff; color: #000000;"></div>`;
       }
+
       this.loadFacebookScript();
+      const loadFacebookEmbeds = () => {
+        if (typeof FB !== 'undefined' && FB.XFBML) {
+          FB.XFBML.parse();
+        } else {
+          setTimeout(loadFacebookEmbeds, 50);
+        }
+      };
+
+      loadFacebookEmbeds();
       return of({ html: facebookHtml });
     }
 
     const oembedEndpoint = `${provider}?url=${encodeURIComponent(oembedUrl)}`;
     return this._http.get(oembedEndpoint);
+  }
+
+  private loadInstagramScript(): void {
+    if (!document.getElementById('instagram-embed-script')) {
+      const script = document.createElement('script');
+      script.id = 'instagram-embed-script';
+      script.src = 'https://www.instagram.com/embed.js';
+      script.async = true;
+      document.body.appendChild(script);
+    }
   }
 
   private loadFacebookScript(): void {
@@ -86,14 +126,14 @@ export class ExternalContentExtractorService {
       script.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v10.0';
       script.async = true;
       document.body.appendChild(script);
-    } 
+    }
   }
 
-  private loadInstagramScript(): void {
-    if (!document.getElementById('instagram-embed-script')) {
+  private loadTwitterScript(): void {
+    if (!document.getElementById('twitter-widgets-script')) { 
       const script = document.createElement('script');
-      script.id = 'instagram-embed-script';
-      script.src = 'https://www.instagram.com/embed.js';
+      script.id = 'twitter-widgets-script';
+      script.src = 'https://platform.twitter.com/widgets.js';
       script.async = true;
       document.body.appendChild(script);
     }

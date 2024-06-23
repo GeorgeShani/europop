@@ -11,11 +11,13 @@ import { ExternalContentExtractorService } from '../../services/external-content
   styleUrl: './post-details.component.scss'
 })
 export class PostDetailsComponent implements OnInit {
+  europeBetMiniLogo: string = "./../../../assets/images/europebet-little-logo.png";
   epopPlusLogo: string = "./../../../assets/images/eplus.png";
   userIcon: string = "./../../../assets/images/user-icon.svg";
   leftQuote: string = "./../../../assets/images/left-quote.svg";
   rightQuote: string = "./../../../assets/images/right-quote.svg";
 
+  regularPosts!: any;
   postDetails!: any;
   postComments!: any;
   similarPosts!: any;
@@ -41,12 +43,17 @@ export class PostDetailsComponent implements OnInit {
   }
 
   redirectToPostDetails(id: number) {
-    window.location.href = `/posts/${id}`;
+    window.location.href = `/post/${id}`;
+  }
+
+  redirectToCategory(id: number) {
+    window.location.href = `/category/${id}`;
   }
 
   ngOnInit(): void {
     this._route.params.subscribe((params) => {
       const id = params['id'];
+      
       this._fetch.getById(id).subscribe((data) => {
         this.postDetails = data;
         this._title.setTitle(`${this.postDetails.data.title} - Europop`);
@@ -85,6 +92,10 @@ export class PostDetailsComponent implements OnInit {
       this._fetch.getSimilarPosts(id).subscribe((similarPosts) => {
         this.similarPosts = similarPosts;
       });
+    });
+
+    this._fetch.getData("regularPosts").subscribe((data) => {
+      this.regularPosts = data;
     });
   }
 }

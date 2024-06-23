@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { FetchService } from '../../services/fetch.service';
 import { externals } from '../../interfaces/external-links.model';
-import { externalsV2 } from '../../interfaces/external-links-v2.model';
 
 @Component({
   selector: 'app-home',
@@ -12,7 +11,7 @@ export class HomeComponent {
   epopPlusLogo: string = "./../../../assets/images/eplus.png";
   poweredBy: string = "./../../../assets/images/powered-by.svg";
   europeBetLogo: string = "./../../../assets/images/europebet-logo.svg";
-  europeBetLittleLogo: string = "./../../../assets/images/europop-logo.png";
+  europeBetLittleLogo: string = "./../../../assets/images/europebet-little-logo.png";
 
   featuredPostsData!: any;
   firstFourFeaturedPosts: any[] = [];
@@ -23,7 +22,7 @@ export class HomeComponent {
   moreLatestPosts!: any;
   evenMoreLatestPosts!: any;
 
-  socialMediaLinks: externalsV2[] = [
+  socialMediaLinks: externals[] = [
     { name: "Instagram", imageUrl: "./../../../assets/images/instagram-logo.svg", linkUrl: "https://www.instagram.com/europop.ge" },
     { name: "Facebook", imageUrl: "./../../../assets/images/facebook-logo.svg", linkUrl: "https://www.facebook.com/europop.ge" },
     { name: "Youtube", imageUrl: "./../../../assets/images/youtube-logo.svg", linkUrl: "https://www.youtube.com/@europop_" },
@@ -31,8 +30,8 @@ export class HomeComponent {
   ];
 
   mobileStoreLinks: externals[] = [
-    { imageUrl: "./../../../assets/images/appstore.png", linkUrl: "https://apps.apple.com/ge/app/europop-sports-news/id6480219097" },
-    { imageUrl: "./../../../assets/images/googleplay.png", linkUrl: "https://play.google.com/store/apps/details?id=ge.europop.sport.news&hl=en_US" },
+    { name: "", imageUrl: "./../../../assets/images/appstore.png", linkUrl: "https://apps.apple.com/ge/app/europop-sports-news/id6480219097" },
+    { name: "", imageUrl: "./../../../assets/images/googleplay.png", linkUrl: "https://play.google.com/store/apps/details?id=ge.europop.sport.news&hl=en_US" },
   ];
 
   constructor(private _fetch: FetchService) {
@@ -60,11 +59,11 @@ export class HomeComponent {
       this.latestPosts = data;
     });
 
-    this._fetch.getMoreLatestPosts().subscribe((data) => {
+    this._fetch.getLatestPostsById(509).subscribe((data) => {
       this.moreLatestPosts = data;
     });
 
-    this._fetch.getEvenMoreLatestPosts().subscribe((data) => {
+    this._fetch.getLatestPostsById(527).subscribe((data) => {
       this.evenMoreLatestPosts = data;
     });
   }
@@ -74,6 +73,6 @@ export class HomeComponent {
   }
 
   redirectToPostDetails(id: number) {
-    window.location.href = `/posts/${id}`;
+    window.location.href = `/post/${id}`;
   }
 }
