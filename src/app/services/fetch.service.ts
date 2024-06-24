@@ -14,7 +14,7 @@ export class FetchService {
     featuredPosts: "http://localhost:3000/proxy?targetUrl=https://europop.ge/api/featured-posts",
     latestPosts: "http://localhost:3000/proxy?targetUrl=https://europop.ge/api/posts/latest",
     popularPosts: "http://localhost:3000/proxy?targetUrl=https://europop.ge/api/posts/popular",
-    analyticPosts: "http://localhost:3000/proxy?targetUrl=https://europop.ge/api/posts/analytic",
+    analyticalPosts: "http://localhost:3000/proxy?targetUrl=https://europop.ge/api/posts/analytic",
     authors: "http://localhost:3000/proxy?targetUrl=https://europop.ge/api/authors",
     searchAPI: "http://localhost:3000/proxy?targetUrl=https://europop.ge/api/search",
     categoryData: "http://localhost:3000/proxy?targetUrl=https://europop.ge/api/categories",
