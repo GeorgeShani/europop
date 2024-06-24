@@ -89,7 +89,6 @@
                 .post-text-container {
                     @include flex(column, center, center);
                     border-bottom: 1px solid rgba(73, 73, 75, 0.3);
-                    margin-bottom: 32px;
                     padding-bottom: 32px;
                     width: 100%;
                     height: auto;
@@ -101,13 +100,54 @@
                         &::ng-deep p {
                             @include font(600, 16px, rgba(255, 255, 255, 0.85));
                             line-height: 26px;
-                            margin: 0;
+                            margin-bottom: 20px;
+
+                            &::ng-deep a {
+                                color: #f15a22;
+                            }
+                        }
+
+                        &::ng-deep ul {
+                            width: 100%;
+                            list-style: none;
+                            margin-left: 16px;
+                            padding: 0;
+
+                            li {
+                                @include font(600, 16px, #fff);
+                                position: relative;
+                                margin-bottom: 20px;
+
+                                &::before {
+                                    position: absolute;
+                                    content: "";
+                                    display: block;
+                                    width: 100%;
+                                    height: 1px;
+                                    background-color: rgba(73, 73, 75, 0.3);
+                                    left: -20px;
+                                    bottom: -10px;
+                                }
+
+                                &::after {
+                                    content: "";
+                                    width: 8px;
+                                    height: 8px;
+                                    display: block;
+                                    border-radius: 50%;
+                                    position: absolute;
+                                    left: -16px;
+                                    top: 50%;
+                                    transform: translateY(-50%);
+                                    background: #f15a22;
+                                }
+                            }
                         }
                     }
 
                     .author-and-publication-data {
                         @include flex(row, center, flex-start);
-                        margin-top: 24px;
+                        margin-top: 4px;
                         width: 100%;
 
                         span {
@@ -124,6 +164,23 @@
                     
                                 img {
                                     border-radius: 50%;
+                                }
+
+                                .no-avatar {
+                                    @include flex(column, center, center);
+                                    background: rgb(28, 28, 29);
+                                    border-radius: 50%;
+                                    border: 1px solid rgb(51, 51, 52);
+                                    width: 40px;
+                                    height: 40px;
+
+                                    img {
+                                        width: 24px;
+                                        height: 24px;
+                                        border-radius: inherit;
+                                        object-fit: cover;
+                                        display: block;
+                                    }
                                 }
                             }
                     
@@ -148,6 +205,7 @@
 
                 .modules {
                     @include flex(column, center, center);
+                    margin-top: 32px;
                     width: 100%;
 
                     .text {
@@ -404,8 +462,8 @@
                                 background-color: rgb(86, 86, 87);
                                 border-radius: 50%;
                                 display: inline-block;
-                                cursor: pointer;
                                 transition: all 0.3s ease-in-out;
+                                cursor: pointer;
                             }
 
                             .dot.active {
@@ -421,8 +479,8 @@
                     @include flex(column, center, center);
                     background-color: rgb(28, 28, 29);
                     border-radius: 12px;
-                    margin-top: 40px;
                     padding-bottom: 32px;
+                    margin-top: 32px;
                     width: 100%;
 
                     .header {
@@ -595,6 +653,23 @@
 
                                 img {
                                     border-radius: 50%;
+                                }
+
+                                .no-avatar {
+                                    @include flex(column, center, center);
+                                    background: rgb(28, 28, 29);
+                                    border-radius: 50%;
+                                    border: 1px solid rgb(51, 51, 52);
+                                    width: 40px;
+                                    height: 40px;
+
+                                    img {
+                                        width: 24px;
+                                        height: 24px;
+                                        border-radius: inherit;
+                                        object-fit: cover;
+                                        display: block;
+                                    }
                                 }
                             }
 
@@ -900,6 +975,11 @@
                                         span {
                                             padding: 0 8px;
                                         }
+
+                                        i {
+                                            color: #b5b5b5;
+                                            margin-right: 4px;
+                                        }
                                     }
 
                                     .interaction-buttons {
@@ -960,6 +1040,7 @@
                     border-bottom: 1px solid rgba(73, 73, 75, 0.3);
                     padding: 16px;
                     width: 100%;
+                    height: auto;
                     cursor: pointer;
 
                     .post-title {
@@ -983,7 +1064,7 @@
 
                         span {
                             color: rgb(181, 181, 181);
-                            padding: 0 8px;
+                            padding: 0 6px;
                         }
 
                         i {

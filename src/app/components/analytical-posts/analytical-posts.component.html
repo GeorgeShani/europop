@@ -1,1 +1,180 @@
-<p>analytical-posts works!</p>
+<div class="analytical-posts-container">
+    <div class="container-inner">
+        <div class="analytical-posts-main">
+            <div class="header">
+                <h3 class="uppercase">ანალიტიკური სტატიები</h3>
+                <p>გაეცანი საინტერესო სპორტულ სტატისტიკას და ანალიზს</p>
+            </div>
+            <div class="posts-container">
+                <div class="analytical-post-card" *ngFor="let post of analyticalPosts.data">
+                    <div class="image-container">
+                        <img (click)="redirectToPostDetails(post.id)" [src]="post.image.fileUrl" alt="">
+                    </div>
+                    <div class="info-container">
+                        <div class="main-info">
+                            <p class="subtitle">{{ post.subtitle }}</p>
+                            <h3 (click)="redirectToPostDetails(post.id)" class="title uppercase">
+                                <img *ngIf="post.type.name === 'ანალიტიოკური სტატია'" width="34" height="20" [src]="epopPlusLogo"
+                                    alt="">
+                                {{ post.title }}
+                            </h3>
+                        </div>
+                        <div class="additional-info">
+                            <div class="add-info">
+                                <img [src]="post.author.avatar.fileUrl" alt="">
+                                <p class="author-name">{{ post.author.firstName }} {{ post.author.lastName }}</p>
+                                <span>&centerdot;</span>
+                                <p>{{ post.publishedAt | relativeTime }}</p>
+                                <span>&centerdot;</span> <i class="bi bi-file-earmark-text"></i>
+                                <p>{{ post.estimatedReadTime }} წუთი</p>
+                            </div>
+                            <div class="interaction-buttons">
+                                <button type="button" id="post-interaction-btn">
+                                    <i class="bi bi-hand-thumbs-up"></i>
+                                </button>
+                                <button type="button" id="post-interaction-btn">
+                                    <i class="bi bi-chat-dots"></i>
+                                </button>
+                                <button type="button" id="post-interaction-btn">
+                                    <i class="bi bi-bookmark-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <aside class="aside">
+            <ng-container *ngIf="first7RegularPosts">
+                <div class="regular-posts">
+                    <div class="header">
+                        <h3 class="uppercase">ბოლო სიახლეები</h3>
+                        <p>გაეცანი მსოფლიო სპორტის სიახლეებს</p>
+                    </div>
+                    <div class="list">
+                        <div class="post-link" *ngFor="let post of first7RegularPosts" (click)="redirectToPostDetails(post.id)">
+                            <div class="title">
+                                <h6>{{ post.title }}</h6>
+                            </div>
+                            <div class="button-container">
+                                <button type="button">
+                                    <i class="bi bi-arrow-right-circle"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </ng-container>
+            <div class="subscribe-prompt">
+                <div class="header">
+                    <h3 class="uppercase">გამოიწერე სიახლეები!</h3>
+                    <p>შემოგვიერთდი და პირველი გაეცანი მსოფლიო სპორტის უახლეს ამბებს</p>
+                </div>
+                <div class="subscribe-input-container">
+                    <div class="input-container">
+                        <input type="email" name="" id="email-input" placeholder="ელ-ფოსტა">
+                        <button type="button" id="subscribe-btn">გამოიწერე</button>
+                    </div>
+                    <div class="message">
+                        <p>* სიახლეების გამოწერით ადასტურებ, რომ გაეცანი კონფიდენციალურობის პოლიტიკას და ეთანხმები, რომ შენი
+                        მონაცემები დაამუშავოს კომპანიამ შეტყობინებების გამოსაგზავნად</p>
+                    </div>
+                </div>
+            </div>
+            <div class="social-media-links" *ngIf="socialMediaLinks">
+                <div class="header">
+                    <h3 class="uppercase">სოციალური ქსელები</h3>
+                </div>
+                <ul class="list">
+                    <li class="item" *ngFor="let link of socialMediaLinks">
+                        <a class="link" [href]="link.linkUrl">
+                            <div class="media-link-name">
+                                <img [src]="link.imageUrl" alt=""> {{ link.name }}
+                            </div>
+                            <button type="button">
+                                <i class="bi bi-arrow-right-short"></i>
+                            </button>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <ng-container *ngIf="europebetPosts && featuredEuropebetPost">
+                <div class="europebet-posts">
+                    <span class="powered-by"><img [src]="poweredBy" alt=""></span>
+                    <span class="europebet"><img [src]="europeBetLogo" alt=""></span>
+                    <div class="featured-post-card">
+                        <div class="image-container" (click)="redirectToPostDetails(featuredEuropebetPost.data.id)">
+                            <img [src]="featuredEuropebetPost.data.image.fileUrl" alt="">
+                        </div>
+                        <div class="info-container">
+                            <p class="subtitle">{{ featuredEuropebetPost.data.subtitle }}</p>
+                            <h3 class="title uppercase" (click)="redirectToPostDetails(featuredEuropebetPost.data.id)">
+                                <img width="18" height="18" [src]="europeBetLittleLogo" alt="">
+                                {{ featuredEuropebetPost.data.title }}
+                            </h3>
+                            <div class="author-data">
+                                <img width="28" height="28" [src]="featuredEuropebetPost.data.author.avatar.fileUrl" alt="">
+                                <p>{{ featuredEuropebetPost.data.author.firstName }} {{
+                                    featuredEuropebetPost.data.author.lastName }}</p>
+                            </div>
+                            <div class="additional-info">
+                                <p>{{ featuredEuropebetPost.data.publishedAt | relativeTime }}
+                                    <span>&centerdot;</span> <i class="bi bi-file-earmark-text"></i>
+                                    {{ featuredEuropebetPost.data.estimatedReadTime }} წუთი
+                                </p>
+                                <div class="buttons-container">
+                                    <button type="button" id="post-interaction-btn">
+                                        <i class="bi bi-hand-thumbs-up"></i>
+                                    </button>
+                                    <button type="button" id="post-interaction-btn">
+                                        <i class="bi bi-chat-dots"></i>
+                                    </button>
+                                    <button type="button" id="post-interaction-btn">
+                                        <i class="bi bi-bookmark-plus"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="smaller-post-card" *ngFor="let post of europebetPosts.data">
+                        <div class="main-info">
+                            <div class="image-container" (click)="redirectToPostDetails(post.id)">
+                                <img [src]="post.image.fileUrl" alt="">
+                            </div>
+                            <div class="info-container">
+                                <p class="subtitle">{{ post.subtitle }}</p>
+                                <h3 class="title" (click)="redirectToPostDetails(post.id)">
+                                    <img width="16" height="16" [src]="europeBetLittleLogo" alt="">
+                                    {{ post.title }}
+                                </h3>
+                                <div class="text" [innerHTML]="post.text"></div>
+                            </div>
+                        </div>
+                        <div class="additional-info">
+                            <p>{{ post.publishedAt | relativeTime }}
+                                <span>&centerdot;</span> <i class="bi bi-file-earmark-text"></i>
+                                {{ post.estimatedReadTime }} წუთი
+                            </p>
+                            <div class="buttons-container">
+                                <button type="button" id="post-interaction-btn">
+                                    <i class="bi bi-hand-thumbs-up"></i>
+                                </button>
+                                <button type="button" id="post-interaction-btn">
+                                    <i class="bi bi-chat-dots"></i>
+                                </button>
+                                <button type="button" id="post-interaction-btn">
+                                    <i class="bi bi-bookmark-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="more-posts-link">
+                        <div class="link">
+                            <a href="">მეტი <i class="bi bi-arrow-right-circle-fill"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </ng-container>
+        </aside>
+    </div>
+</div>

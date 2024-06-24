@@ -101,8 +101,11 @@
                             <div class="post-text" [innerHTML]="postDetails.data.text"></div>
                             <div class="author-and-publication-data">
                                 <div class="author-info" *ngIf="postDetails.data.author">
-                                    <div class="author-avatar">
+                                    <div class="author-avatar" *ngIf="postDetails.data.author.avatar !== null">
                                         <img width="40" height="40" [src]="postDetails.data.author.avatar.fileUrl" alt="">
+                                    </div>
+                                    <div class="author-avatar" *ngIf="postDetails.data.author.avatar === null">
+                                        <span class="no-avatar"><img [src]="userIcon" alt=""></span>
                                     </div>
                                     <div class="author-name-container">
                                         <p class="full-name">{{ postDetails.data.author.firstName }} {{ postDetails.data.author.lastName }}</p>
@@ -119,7 +122,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="modules" *ngIf="postDetails.data.modules">
+                        <div class="modules" *ngIf="postDetails.data.modules.length > 0">
                             <ng-container *ngFor="let module of postDetails.data.modules; let i = index; let moduleIndex = index">
                                 <ng-container *ngIf="module.type === 'TEXT'">
                                     <div class="text" [innerHTML]="_domSanitizer.bypassSecurityTrustHtml(module.text)"></div>
@@ -167,8 +170,7 @@
                                             <div class="slides" [style.transform]="'translateX(' + (-currentIndexes[moduleIndex] * 100) + '%)'">
                                                 <div class="slide" *ngFor="let item of module.items; let j = index" >
                                                     <img [class.active]="j === currentIndexes[moduleIndex]" 
-                                                        class="slide-image" [src]="item.image.fileUrl"
-                                                    >
+                                                        class="slide-image" [src]="item.image.fileUrl">
                                                     <h6 *ngIf="item.description !== ''">{{ item.description }}</h6>
                                                     <p *ngIf="item.author !== ''">📷 ფოტო: {{ item.author }}</p>
                                                 </div>
@@ -241,7 +243,10 @@
                         <div class="authors-and-categories">
                             <div class="author-container" *ngIf="postDetails.data.author">
                                 <div class="author-info">
-                                    <div class="author-avatar">
+                                    <div class="author-avatar" *ngIf="postDetails.data.author.avatar === null">
+                                        <span class="no-avatar"><img [src]="userIcon" alt=""></span>
+                                    </div>
+                                    <div class="author-avatar" *ngIf="postDetails.data.author.avatar">
                                         <img width="40" height="40" [src]="postDetails.data.author.avatar.fileUrl" alt="">
                                     </div>
                                     <div class="author-name-container">
@@ -276,8 +281,9 @@
                             </div>
                             <div class="categories-container">
                                 <h6 class="uppercase">კატეგორიები</h6>
-                                <div class="categories-list">
-                                    <div class="category" *ngFor="let category of postDetails.data.categories" (click)="redirectToCategory(category.id)">
+                                <div class="categories-list" *ngIf="postDetails.data.categories">
+                                    <div class="category" *ngFor="let category of postDetails.data.categories" 
+                                        (click)="redirectToCategory(category.id)">
                                         <p>{{ category.name }}</p>
                                     </div>
                                 </div>
@@ -362,16 +368,18 @@
                         </ng-container>
                     </div>
                 </div>
-                <aside class="aside">
-                    <div class="regular-posts-container" *ngIf="regularPosts">
-                        <div class="regular-post" *ngFor="let post of regularPosts.data" (click)="redirectToPostDetails(post.id)">
-                            <h3 class="post-title">{{ post.title }}</h3>
+                <aside class="aside" *ngIf="regularPosts.data">
+                    <div class="regular-posts-container">
+                        <div class="regular-post" *ngFor="let regularPost of regularPosts.data" (click)="redirectToPostDetails(regularPost.id)">
+                            <h3 class="post-title">{{ regularPost.title }}</h3>
                             <div class="additional-info">
-                                <p class="author-name">{{ post.author.firstName }} {{ post.author.lastName }}</p>
-                                <span>&centerdot;</span>
-                                <p class="publication-date">{{ post.publishedAt | relativeTime }}</p>
+                                <p class="author-name" *ngIf="regularPost.author">
+                                    {{ regularPost.author.firstName }} {{ regularPost.author.lastName }}
+                                </p>
+                                <span *ngIf="regularPost.author">&centerdot;</span>
+                                <p class="publication-date">{{ regularPost.publishedAt | relativeTime }}</p>
                                 <span>&centerdot;</span> <i class="bi bi-file-earmark-text"></i>
-                                <p class="estimated-read-time">{{ post.estimatedReadTime }} წუთი</p>
+                                <p class="estimated-read-time">{{ regularPost.estimatedReadTime }} წუთი</p>
                             </div>
                         </div>
                     </div>
