@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
 import { PostDetailsComponent } from './components/post-details/post-details.component';
@@ -23,6 +24,7 @@ import { AuthorsComponent } from './components/authors/authors.component';
 import { CategoryDetailsComponent } from './components/category-details/category-details.component';
 import { KFormaterPipe } from './pipes/k-formater.pipe';
 import { AboutUsComponent } from './components/about-us/about-us.component';
+import { ɵBrowserAnimationBuilder } from '@angular/animations';
 
 @NgModule({
   declarations: [
@@ -50,7 +52,8 @@ import { AboutUsComponent } from './components/about-us/about-us.component';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

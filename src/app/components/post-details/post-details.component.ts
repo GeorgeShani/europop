@@ -96,7 +96,6 @@ export class PostDetailsComponent implements OnInit {
 
     this._fetch.getData("regularPosts").subscribe((data) => {
       this.regularPosts = data;
-      console.log(data);
     });
   }
 }

@@ -48,7 +48,6 @@ export class ExternalContentExtractorService {
       `;
 
       this.loadTwitterScript();
-
       const loadTwitterWidgets = () => {
         if (typeof twttr !== 'undefined' && twttr.widgets) {
           twttr.widgets.load();
@@ -87,9 +86,13 @@ export class ExternalContentExtractorService {
       let facebookHtml: string;
 
       if (oembedUrl.includes('/videos/')) {
-        facebookHtml = `<div class="fb-video" data-href="${oembedUrl}" data-width="500" data-show-text="false"></div>`;
+        facebookHtml = `
+          <div class="fb-video" data-href="${oembedUrl}" data-width="500" data-show-text="false"></div>
+        `;
       } else {
-        facebookHtml = `<div class="fb-post" data-href="${oembedUrl}" data-width="500" style="background-color: #ffffff; color: #000000;"></div>`;
+        facebookHtml = `
+          <div class="fb-post" data-href="${oembedUrl}" data-width="500" style="background-color: #ffffff; color: #000000;"></div>
+        `;
       }
 
       this.loadFacebookScript();

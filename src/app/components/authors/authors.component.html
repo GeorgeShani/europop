@@ -1,1 +1,120 @@
-<p>authors works!</p>
+<div class="authors-container">
+    <div class="container-inner">
+        <div class="authors-main">
+            <ng-container *ngIf="authorsData">
+                <div class="header">
+                    <h3 class="uppercase">{{ authorsData.title }}</h3>
+                    <p>{{ authorsData.description }}</p>
+                </div>
+                <div class="author-cards-container">
+                    <div class="author-card" *ngFor="let author of authorsData.data">
+                        <div class="cover">
+                            <img *ngIf="author.coverImage !== null" class="author-cover" [src]="author.coverImage.fileUrl" alt="">
+                            <img *ngIf="author.avatar !== null" class="author-avatar" [src]="author.avatar.fileUrl" alt="">
+                            <span *ngIf="author.coverImage === null" class="no-author-cover"></span>
+                            <span *ngIf="author.avatar === null" class="no-avatar"><img [src]="userIcon" alt=""></span>
+                        </div>
+                        <div class="main-info">
+                            <p class="author-full-name uppercase">
+                                {{ author.firstName }} {{ author.lastName }}
+                            </p>
+                            <div class="additional-info">
+                                <div class="scores">
+                                    <div class="subscribers">
+                                        <i class="bi bi-person-check"></i>
+                                        {{ author.subscribersCount }}
+                                    </div>
+                                    <div class="likes">
+                                        <i class="bi bi-hand-thumbs-up"></i>
+                                        {{ author.likesCount }}
+                                    </div>
+                                    <div class="posts">
+                                        <i class="bi bi-file-earmark-text"></i>
+                                        {{ author.postsCount }}
+                                    </div>
+                                </div>
+                                <div class="social-media-links">
+                                    <ul class="socials-links-list">
+                                        <li class="social-item" *ngIf="author.socials.facebookUrl !== '' && author.socials.facebookUrl !== null">
+                                            <a target="_blank" [href]="author.socials.facebookUrl" class="social"><i class="fa-brands fa-facebook-f"></i></a>
+                                        </li>
+                                        <li class="social-item" *ngIf="author.socials.youtubeUrl !== '' && author.socials.youtubeUrl !== null">
+                                            <a target="_blank" [href]="author.socials.youtubeUrl" class="social"><i class="bi bi-youtube"></i></a>
+                                        </li>
+                                        <li class="social-item" *ngIf="author.socials.instagramUrl !== '' && author.socials.instagramUrl !== null">
+                                            <a target="_blank" [href]="author.socials.instagramUrl" class="social"><i class="bi bi-instagram"></i></a>
+                                        </li>
+                                        <li class="social-item" *ngIf="author.socials.messengerUrl !== '' && author.socials.messengerUrl !== null">
+                                            <a target="_blank" [href]="author.socials.messengerUrl" class="social"><i class="bi bi-messenger"></i></a>
+                                        </li>
+                                        <li class="social-item" *ngIf="author.socials.tiktokUrl !== '' && author.socials.tiktokUrl !== null">
+                                            <a target="_blank" [href]="author.socials.tiktokUrl" class="social"><i class="fa-brands fa-tiktok"></i></a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <button type="button" id="subscribe-btn">
+                                    გამოწერა <i class="fa-solid fa-user-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </ng-container>
+        </div>
+        <aside class="aside">
+            <ng-container *ngIf="first7RegularPosts">
+                <div class="regular-posts">
+                    <div class="header">
+                        <h3 class="uppercase">ბოლო სიახლეები</h3>
+                        <p>გაეცანი მსოფლიო სპორტის სიახლეებს</p>
+                    </div>
+                    <div class="list">
+                        <div class="post-link" *ngFor="let post of first7RegularPosts" (click)="redirectToPostDetails(post.id)">
+                            <div class="title">
+                                <h6>{{ post.title }}</h6>
+                            </div>
+                            <div class="button-container">
+                                <button type="button">
+                                    <i class="bi bi-arrow-right-circle"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </ng-container>
+            <div class="subscribe-prompt">
+                <div class="header">
+                    <h3 class="uppercase">გამოიწერე სიახლეები!</h3>
+                    <p>შემოგვიერთდი და პირველი გაეცანი მსოფლიო სპორტის უახლეს ამბებს</p>
+                </div>
+                <div class="subscribe-input-container">
+                    <div class="input-container">
+                        <input type="email" name="" id="email-input" placeholder="ელ-ფოსტა">
+                        <button type="button" id="subscribe-btn">გამოიწერე</button>
+                    </div>
+                    <div class="message">
+                        <p>* სიახლეების გამოწერით ადასტურებ, რომ გაეცანი კონფიდენციალურობის პოლიტიკას და ეთანხმები, რომ შენი
+                        მონაცემები დაამუშავოს კომპანიამ შეტყობინებების გამოსაგზავნად</p>
+                    </div>
+                </div>
+            </div>
+            <div class="social-media-links" *ngIf="socialMediaLinks">
+                <div class="header">
+                    <h3 class="uppercase">სოციალური ქსელები</h3>
+                </div>
+                <ul class="list">
+                    <li class="item" *ngFor="let link of socialMediaLinks">
+                        <a class="link" [href]="link.linkUrl">
+                            <div class="media-link-name">
+                                <img [src]="link.imageUrl" alt=""> {{ link.name }}
+                            </div>
+                            <button type="button">
+                                <i class="bi bi-arrow-right-short"></i>
+                            </button>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </aside>
+    </div>
+</div>

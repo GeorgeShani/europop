@@ -4,16 +4,18 @@ header {
     @include flex(column, center, center);
     background-color: #131415;
     position: sticky;
-    top: 0;
-    z-index: 5;
     overflow: hidden;
+    z-index: 10;
+    top: 0;
     width: 100%;
-    height: 76px;
 
     .modified-nav {
         @include flex(row, center, center);
-        width: 98%;
-        height: 100%;
+        position: relative;
+        padding: 8px 16px;
+        width: 100%;
+        height: 76px;
+        z-index: 11;
 
         .logo-container {
             width: 128px;
@@ -30,8 +32,11 @@ header {
 
     nav {
         @include flex(row, center, space-between);
-        width: 98%;
-        height: 100%;
+        position: relative;
+        padding: 8px 16px;
+        width: 100%;
+        height: 76px;
+        z-index: 11;
 
         .left-side {
             @include flex(row, center, center);
@@ -62,21 +67,23 @@ header {
                         transition: all 0.3s ease-in-out;
                     }
                 }
+            }
 
-                &:hover .line {
+            .burger-menu.active {
+                .line {
                     &:first-child {
                         transform: rotate(-45deg);
                         position: absolute;
                         width: 100%;
                         top: 8px;
                     }
-
+            
                     &:nth-child(2) {
                         transform: rotate(45deg);
                         position: absolute;
                         top: 8px;
                     }
-
+            
                     &:last-child {
                         transform: rotate(-45deg);
                         position: absolute;
@@ -192,5 +199,184 @@ header {
                 }
             }
         }
+    }
+
+    .hidden-dropdown {
+        position: fixed;
+        top: 75px;
+        width: 100%;
+        height: 542px;
+        z-index: 9;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.2s ease 0s;
+    }
+
+    .dropdown-menu-container {
+        @include flex(row, stretch, space-between);
+        background-color: rgb(28, 28, 29);
+        padding-left: 16px;
+        overflow: hidden;
+        position: fixed;
+        top: 75px;
+        width: 100%;
+        height: 542px;
+        z-index: 9;
+        opacity: 1;
+        visibility: visible;
+
+        .listing {
+            @include flex(column, flex-start, flex-start);
+            animation: 0.75s ease 0s 1 normal none running appearance;
+            padding-right: 24px;
+            margin: 32px 0;
+            width: 260px;
+
+            .categories-list {
+                @include flex(column, flex-start, center);
+                width: 100%;
+
+                .category {
+                    @include flex(row, center, space-between);
+                    margin-bottom: 24px;
+                    min-height: 24px;
+                    width: 100%;
+                    cursor: pointer;
+
+                    .category-name {
+                        max-width: 80%;
+
+                        p {
+                            @include font(600, 14px, #fff);
+                        }
+                    }
+
+                    #arrow-button {
+                        background-color: transparent;
+                        border: none;
+                        cursor: pointer;
+
+                        i {
+                            font-size: 28px;
+                            color: #b5b5b5;
+                        }
+                    }
+
+                    &:hover, &:active {
+                        #arrow-button i {
+                            color: #f15a22;
+                        }
+                    }
+                }
+            }
+
+            .contact {
+                @include flex(row, center, space-between);
+                border-top: 1px solid rgba(51, 51, 52, 0.7);
+                padding-top: 32px;
+                width: 100%;
+                cursor: pointer;
+
+                .title {
+                    max-width: 80%;
+                    
+                    p {
+                        @include font(600, 14px, #fff);
+                    }
+                }
+
+                #arrow-button {
+                    background-color: transparent;
+                    border: none;
+                    cursor: pointer;
+
+                    i {
+                        font-size: 28px;
+                        color: #b5b5b5;
+                    }
+                }
+
+                &:hover,
+                &:active {
+                    #arrow-button i {
+                        color: #f15a22;
+                    }
+                }
+            }
+        }
+
+        @keyframes appearance {
+            0% {
+                opacity: 0;
+            }
+
+            60% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+
+        .sub-listing {
+            @include flex(column, center, flex-start);
+            animation: 0.9s ease-in 0s 1 normal none running appearance;
+            border-left: 1px solid rgba(51, 51, 52, 0.7);
+            margin: 32px 16px 32px 0;
+            padding-left: 24px;
+            width: 734px;
+
+            .grid-list {
+                width: 100%;
+                display: grid;
+                flex: 1 1 0%;
+                grid-template-columns: 1fr 1fr 1fr;
+                grid-template-rows: repeat(10, 1fr);
+                grid-auto-flow: column;
+                grid-auto-columns: 0px;
+                overflow: hidden;
+            
+                .link {
+                    @include font(400, 14px, #fff);
+                    transition: all 0.25s ease-in-out;
+                    margin-bottom: 24px;
+                    cursor: pointer;
+
+                    &:hover {
+                        color: #f15a22;
+                    }
+                }
+            
+                .link.lead {
+                    @include font(600, 16px, #fff);
+                    transition: all 0.25s ease-in-out;
+                    
+                    &:hover {
+                        color: #f15a22;
+                    }
+                }
+            }
+        }
+
+        .aside {
+            @include flex(column, flex-start, center);
+            background-color: #232324;
+            padding: 32px 16px 32px 32px;
+            width: 420px;
+        }
+    }
+
+    .dim-container {
+        background-color: rgba(0, 0, 0, 0.44);
+        position: fixed;
+        top: 75px;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        z-index: 8;
+        opacity: 1;
+        visibility: visible;
+        transition: all 0.6s ease 0s;
     }
 }

@@ -1,7 +1,9 @@
 <header>
     <nav *ngIf="!modified">
         <div class="left-side">
-            <div class="burger-menu">
+            <div class="burger-menu" 
+                [ngClass]="{'active': isToggled}" 
+                (click)="toggleDropDown()">
                 <div class="line"></div>
                 <div class="line"></div>
                 <div class="line"></div>
@@ -66,4 +68,61 @@
             </a>
         </div>
     </nav>
+    <div *ngIf="isToggled" class="dim-container" [@fadeAnimation]></div>
+    <div *ngIf="isToggled" class="dropdown-menu-container" [@dropdownAnimation]>
+        <div class="listing">
+            <div class="categories-list">
+                <div class="category" *ngFor="let category of listing" 
+                    (click)="setSelectOption(category.value)">
+                    <div class="category-name">
+                        <p class="uppercase">{{ category.name }}</p>
+                    </div>
+                    <button type="button" id="arrow-button">
+                        <i class="bi bi-arrow-right-short"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="contact" (click)="setSelectOption('contacts')">
+                <div class="title">
+                    <p class="uppercase">კონტაქტი</p>
+                </div>
+                <button type="button" id="arrow-button">
+                    <i class="bi bi-arrow-right-short"></i>
+                </button>
+            </div>
+        </div>
+        <div class="sub-listing">
+            <div class="grid-list" *ngIf="selectedOption === 'default'">
+                <div class="link lead uppercase" (click)="redirectToCategory(defaultSubListing.mainId)">{{ defaultSubListing.mainTitle }}</div>
+                <div class="link" *ngFor="let subcategory of defaultSubListing.subCategoryList" (click)="redirectToCategory(subcategory.id)">{{ subcategory.name }}</div>
+            </div>
+            <div class="grid-list" *ngIf="selectedOption === 'world_football'">
+                <div class="link lead uppercase" (click)="redirectToCategory(worldFootballSubListing.mainId)">{{ worldFootballSubListing.mainTitle }}</div>
+                <div class="link" *ngFor="let subcategory of worldFootballSubListing.subCategoryList" (click)="redirectToCategory(subcategory.id)">{{ subcategory.name }}</div>
+            </div>
+            <div class="grid-list" *ngIf="selectedOption === 'basketball'">
+                <div class="link lead uppercase" (click)="redirectToCategory(basketballSubListing.mainId)">{{ basketballSubListing.mainTitle }}</div>
+                <div class="link" *ngFor="let subcategory of basketballSubListing.subCategoryList" (click)="redirectToCategory(subcategory.id)">{{ subcategory.name }}</div>
+            </div>
+            <div class="grid-list" *ngIf="selectedOption === 'goergian_rugby'">
+                <div class="link lead uppercase" (click)="redirectToCategory(georgianRugbySubListing.mainId)">{{ georgianRugbySubListing.mainTitle }}</div>
+                <div class="link" *ngFor="let subcategory of georgianRugbySubListing.subCategoryList" (click)="redirectToCategory(subcategory.id)">{{ subcategory.name }}</div>
+            </div>
+            <div class="grid-list" *ngIf="selectedOption === 'MMA'">
+                <div class="link lead uppercase" (click)="redirectToCategory(MMASubListing.mainId)">{{ MMASubListing.mainTitle }}</div>
+                <div class="link" *ngFor="let subcategory of MMASubListing.subCategoryList" (click)="redirectToCategory(subcategory.id)">{{ subcategory.name }}</div>
+            </div>
+            <div class="grid-list" *ngIf="selectedOption === 'judo'">
+                <div class="link lead uppercase" (click)="redirectToCategory(judoSubListing.mainId)">{{ judoSubListing.mainTitle }}</div>
+                <div class="link" *ngFor="let subcategory of judoSubListing.subCategoryList" (click)="redirectToCategory(subcategory.id)">{{ subcategory.name }}</div>
+            </div>
+            <div class="grid-list" *ngIf="selectedOption === 'others'">
+                <div class="link lead uppercase" (click)="redirectToCategory(othersSubListing.mainId)">{{ othersSubListing.mainTitle }}</div>
+                <div class="link" *ngFor="let subcategory of othersSubListing.subCategoryList" (click)="redirectToCategory(subcategory.id)">{{ subcategory.name }}</div>
+            </div>
+        </div>
+        <div class="aside">
+
+        </div>
+    </div>
 </header>

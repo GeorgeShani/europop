@@ -9,7 +9,7 @@
             <div class="featured-posts-container">
                 <div class="big-post-card">
                     <div class="image-container" (click)="redirectToPostDetails(featuredPostsData.data[featuredPostsData.data.length - 1].id)">
-                        <img [src]="featuredPostsData.data[featuredPostsData.data.length - 1].image.fileUrl" alt="">
+                        <img [src]="featuredPostsData.data[featuredPostsData.data.length - 1].bigFeaturedImage.fileUrl" alt="">
                     </div>
                     <div class="info-container">
                         <div class="main-info">
@@ -260,7 +260,7 @@
                             </div>
                             <div class="more-posts-link">
                                 <div class="link">
-                                    <a href="">მეტი <i class="bi bi-arrow-right-circle-fill"></i></a>
+                                    <a href="/posts/powered-by-europebet">მეტი <i class="bi bi-arrow-right-circle-fill"></i></a>
                                 </div>
                             </div>
                         </div>

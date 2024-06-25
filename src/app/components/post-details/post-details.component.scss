@@ -118,6 +118,10 @@
                                 position: relative;
                                 margin-bottom: 20px;
 
+                                a {
+                                    color: #f15a22;
+                                }
+
                                 &::before {
                                     position: absolute;
                                     content: "";

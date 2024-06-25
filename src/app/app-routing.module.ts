@@ -14,6 +14,7 @@ import { EuropebetPostsComponent } from './components/europebet-posts/europebet-
 import { AnalyticalPostsComponent } from './components/analytical-posts/analytical-posts.component';
 import { CategoryDetailsComponent } from './components/category-details/category-details.component';
 import { AboutUsComponent } from './components/about-us/about-us.component';
+import { AuthorsComponent } from './components/authors/authors.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full'},
@@ -26,6 +27,7 @@ const routes: Routes = [
   { path: 'auth/login', title: "Login - Europop", component: LoginComponent },
   { path: 'auth/register', title: "Register - Europop", component: RegisterComponent },
   { path: 'auth/password-recovery', title: "Recover password - Europop", component: PasswordRecoveryComponent },
+  { path: 'authors', title: 'ავტორები - Europop', component: AuthorsComponent }, 
   { path: 'about-us', title: "ჩვენ შესახებ - Europop", component: AboutUsComponent },
   { path: 'privacy-policy', title: "Privacy Policy - Europop", component: PrivacyPolicyComponent },
   { path: 'terms-and-conditions', title: "Terms and Conditions - Europop", component: TermsAndConditionsComponent},
