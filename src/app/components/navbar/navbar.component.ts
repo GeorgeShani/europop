@@ -1,9 +1,11 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FetchService } from '../../services/fetch.service';
-import { trigger, state, style, transition, animate } from '@angular/animations';
 import { DDCategories } from '../../interfaces/drop-down-categories.model';
 import { DDSubCategories } from '../../interfaces/drop-down-sub-categories.model';
+import { externals } from '../../interfaces/external-links.model';
+import { RegexService } from '../../services/regex.service';
+import { trigger, state, style, transition, animate } from '@angular/animations';
 
 @Component({
   selector: 'app-navbar',
@@ -27,7 +29,7 @@ import { DDSubCategories } from '../../interfaces/drop-down-sub-categories.model
     ])
   ]
 })
-export class NavbarComponent {
+export class NavbarComponent implements OnInit {
   @Input() modified!: boolean;
 
   europopLogo: string = "./../../../assets/images/europop-main-logo.svg";
@@ -39,10 +41,27 @@ export class NavbarComponent {
   searchQuery!: string;
   isToggled: boolean = false;
 
+  email: string = "";
+  message: string = "";
+  emailError: string = "";
+
   selectedOption: string = "default";
 
-  dropdownMenuData!: any;
-  epopPlusMenuData!: any;
+  defaultCategoryPosts!: any;
+  worldFootballCategoryPosts!: any;
+  basketballCategoryPosts!: any;
+  georgianRugbyCategoryPosts!: any;
+  MMACategoryPosts!: any;
+  judoCategoryPosts!: any;
+  othersCategoryPosts!: any;
+
+  socialMediaLinks: externals[] = [
+    { name: "Instagram", imageUrl: "./../../../assets/images/instagram-logo.svg", linkUrl: "https://www.instagram.com/europop.ge" },
+    { name: "Facebook", imageUrl: "./../../../assets/images/facebook-logo.svg", linkUrl: "https://www.facebook.com/europop.ge" },
+    { name: "Youtube", imageUrl: "./../../../assets/images/youtube-logo.svg", linkUrl: "https://www.youtube.com/@europop_" },
+    { name: "Tiktok", imageUrl: "./../../../assets/images/tiktok-logo.svg", linkUrl: "https://www.tiktok.com/@europop.ge" },
+    { name: "მესენჯერი", imageUrl: "./../../../assets/images/messenger-logo.svg", linkUrl: "https://m.me/1159313984168136" }
+  ];
 
   listing: DDCategories[] = [
     { id: 180243, name: "ქართული ფეხბურთი", value: "default" },
@@ -53,7 +72,7 @@ export class NavbarComponent {
     { id: 180294, name: "ძიუდო", value: "judo" },
     { id: 180300, name: "სხვა სახეობები", value: "others" },
   ];
-  
+
   defaultSubListing: DDSubCategories = {
     mainId: 180243,
     mainTitle: "ქართული ფეხბურთი",
@@ -149,7 +168,69 @@ export class NavbarComponent {
     ]
   };
 
-  constructor(private _router: Router, private _fetch: FetchService) { }
+  constructor(
+    private _router: Router,
+    private _fetch: FetchService,
+    private _regex: RegexService
+  ) { }
+  
+  ngOnInit(): void {
+    this._fetch.getPostsByCategory(this.defaultSubListing.mainId).subscribe((data) => {
+      this.defaultCategoryPosts = data;
+
+      if (this.defaultCategoryPosts.data.length > 4) {
+        this.defaultCategoryPosts.data = this.defaultCategoryPosts.data.slice(0, 4);
+      }
+    });
+
+    this._fetch.getPostsByCategory(this.worldFootballSubListing.mainId).subscribe((data) => {
+      this.worldFootballCategoryPosts = data;
+
+      if (this.worldFootballCategoryPosts.data.length > 4) {
+        this.worldFootballCategoryPosts.data = this.worldFootballCategoryPosts.data.slice(0, 4);
+      }
+    });
+
+    this._fetch.getPostsByCategory(this.basketballSubListing.mainId).subscribe((data) => {
+      this.basketballCategoryPosts = data;
+
+      if (this.basketballCategoryPosts.data.length > 4) {
+        this.basketballCategoryPosts.data = this.basketballCategoryPosts.data.slice(0, 4);
+      }
+    });
+
+    this._fetch.getPostsByCategory(this.georgianRugbySubListing.mainId).subscribe((data) => {
+      this.georgianRugbyCategoryPosts = data;
+
+      if (this.georgianRugbyCategoryPosts.data.length > 4) {
+        this.georgianRugbyCategoryPosts.data = this.georgianRugbyCategoryPosts.data.slice(0, 4);
+      }
+    });
+
+    this._fetch.getPostsByCategory(this.MMASubListing.mainId).subscribe((data) => {
+      this.MMACategoryPosts = data;
+
+      if (this.MMACategoryPosts.data.length > 4) {
+        this.MMACategoryPosts.data = this.MMACategoryPosts.data.slice(0, 4);
+      }
+    });
+
+    this._fetch.getPostsByCategory(this.judoSubListing.mainId).subscribe((data) => {
+      this.judoCategoryPosts = data;
+
+      if (this.judoCategoryPosts.data.length > 4) {
+        this.judoCategoryPosts.data = this.judoCategoryPosts.data.slice(0, 4);
+      }
+    });
+
+    this._fetch.getPostsByCategory(this.othersSubListing.mainId).subscribe((data) => {
+      this.othersCategoryPosts = data;
+
+      if (this.othersCategoryPosts.data.length > 4) {
+        this.othersCategoryPosts.data = this.othersCategoryPosts.data.slice(0, 4);
+      }
+    });
+  }
 
   getSearchResults() {
     if (this.searchQuery) {
@@ -167,6 +248,35 @@ export class NavbarComponent {
     }
   }
 
+  checkEmail() {
+    if (this.email === "") {
+      this.emailError = "გთხოვთ შეავსოთ მეილის ველი";
+      return;
+    } else if (!this._regex.validateEmail(this.email)) {
+      this.emailError = "ელ-ფოსტის ფორმატი არასწორია";
+    } else {
+      this.emailError = "";
+    }
+  }
+
+  checkEmailAndMessage() {
+    if (this.email && this.message) { 
+      if (this._regex.validateEmail(this.email) && this.message.length <= 150) {
+        alert("თქვენი მესიჯი წარმატებულად გაიგზავნა");
+        this.email = "";
+        this.message = "";
+      } else if (!this._regex.validateEmail(this.email)) {
+        this.emailError = "ელ-ფოსტის ფორმატი არასწორია";
+      } else if (this.message.length > 150) { 
+        alert("მესიჯი აჭარბებს მაქსიმალური სიმბოლოების რაოდენობას");
+      }
+    }
+  }
+
+  checkIfBeyond150Chars() {
+    return { 'color': this.message.length > 150 ? '#FF3B3B' : 'rgba(255, 255, 255, 0.7)' };
+  }
+
   toggleDropDown() {
     this.isToggled = !this.isToggled;
   }
@@ -177,5 +287,9 @@ export class NavbarComponent {
 
   redirectToCategory(id: number) {
     window.location.href = `/category/${id}`;
+  }
+
+  redirectToPostDetails(id: number) {
+    window.location.href = `/post/${id}`;
   }
 }

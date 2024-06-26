@@ -132,6 +132,58 @@
                             </div>
                         </div>
                     </ng-container>
+                    <ng-container *ngIf="analyticalPosts">
+                        <div class="analytical-posts-container">
+                            <div class="header">
+                                <div class="main-info">
+                                    <h5 class="uppercase">ანალიტიკური სტატიები</h5>
+                                    <p>ევროპოპის ანალიტიკა, ბლოგები, ინტერვიუები</p>
+                                </div>
+                                <button type="button" id="show-all" (click)="redirectToAnalyticalPosts()">
+                                    მეტი <i class="bi bi-arrow-right-circle-fill"></i>
+                                </button>
+                            </div>
+                            <div class="analytical-posts-slider">
+                                <div class="post-card" *ngFor="let post of analyticalPosts.data">
+                                    <div class="image-container" (click)="redirectToPostDetails(post.id)">
+                                        <img [src]="post.image.fileUrl" alt="">
+                                    </div>
+                                    <div class="info-container">
+                                        <p class="subtitle">{{ post.subtitle }}</p>
+                                        <h3 class="title uppercase" (click)="redirectToPostDetails(post.id)">
+                                            <img width="34" height="20" [src]="epopPlusLogo" alt=""> {{ post.title }}
+                                        </h3>
+                                        <div class="author-info-container">
+                                            <div class="author-image">
+                                                <img [src]="post.author.avatar.fileUrl" alt="">
+                                            </div>
+                                            <div class="author-info">
+                                                <p class="name">{{ post.author.firstName }} {{ post.author.lastName }}</p>
+                                            </div>
+                                        </div>
+                                        <div class="additional-info">
+                                            <div class="date-and-read-time">
+                                                <p>{{ post.publishedAt | relativeTime }}</p>
+                                                <span>&centerdot;</span> <i class="bi bi-file-earmark-text"></i>
+                                                <p>{{ post.estimatedReadTime }} წუთი</p>
+                                            </div>
+                                            <div class="interaction-buttons">
+                                                <button type="button" id="post-interaction-btn">
+                                                    <i class="bi bi-hand-thumbs-up"></i>
+                                                </button>
+                                                <button type="button" id="post-interaction-btn">
+                                                    <i class="bi bi-chat-dots"></i>
+                                                </button>
+                                                <button type="button" id="post-interaction-btn">
+                                                    <i class="bi bi-bookmark-plus"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </ng-container>
                     <div class="mobile-app-advertisment">
                         <div class="links-wrapper">
                             <a target="_blank" *ngFor="let mobileLink of mobileStoreLinks" [href]="mobileLink.linkUrl">
@@ -139,6 +191,98 @@
                             </a>
                         </div>
                     </div>
+                    <ng-container *ngIf="authorsData">
+                        <div class="authors-container">
+                            <div class="header">
+                                <div class="main-info">
+                                    <h3 class="uppercase">პოპულარული ავტორები</h3>
+                                    <p>გაიცანი და გამოიწერე ყველაზე პოპულარული ავტორები.</p>
+                                </div>
+                                <button type="button" id="show-all" (click)="redirectToAuthors()">
+                                    მეტი <i class="bi bi-arrow-right-circle-fill"></i>
+                                </button>
+                            </div>
+                            <div class="author-cards-slider">
+                                <div class="author-card" *ngFor="let author of authorsData.data">
+                                    <div class="author-image">
+                                        <img [src]="author.coverImage.fileUrl" alt="" class="author-cover">
+                                        <img [src]="author.avatar.fileUrl" alt="" class="author-avatar">
+                                    </div>
+                                    <div class="author-info">
+                                        <p class="author-full-name">
+                                            {{ author.firstName }} {{ author.lastName }}
+                                        </p>
+                                        <div class="additional-info">
+                                            <div class="scores">
+                                                <div class="subscribers">
+                                                    <i class="bi bi-person-check"></i>
+                                                    {{ author.subscribersCount }}
+                                                </div>
+                                                <div class="likes">
+                                                    <i class="bi bi-hand-thumbs-up"></i>
+                                                    {{ author.likesCount }}
+                                                </div>
+                                            </div>
+                                            <button type="button" id="subscribe-btn">
+                                                გამოწერა <i class="fa-solid fa-user-plus"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- <div class="author-card" *ngFor="let author of authorsData.data">
+                                        <div class="cover">
+                                            <img *ngIf="author.coverImage !== null" class="author-cover" [src]="author.coverImage.fileUrl" alt="">
+                                            <img *ngIf="author.avatar !== null" class="author-avatar" [src]="author.avatar.fileUrl" alt="">
+                                            <span *ngIf="author.coverImage === null" class="no-author-cover"></span>
+                                            <span *ngIf="author.avatar === null" class="no-avatar"><img [src]="userIcon" alt=""></span>
+                                        </div>
+                                        <div class="main-info">
+                                            <p class="author-full-name uppercase">
+                                                {{ author.firstName }} {{ author.lastName }}
+                                            </p>
+                                            <div class="additional-info">
+                                                <div class="scores">
+                                                    <div class="subscribers">
+                                                        <i class="bi bi-person-check"></i>
+                                                        {{ author.subscribersCount }}
+                                                    </div>
+                                                    <div class="likes">
+                                                        <i class="bi bi-hand-thumbs-up"></i>
+                                                        {{ author.likesCount }}
+                                                    </div>
+                                                    <div class="posts">
+                                                        <i class="bi bi-file-earmark-text"></i>
+                                                        {{ author.postsCount }}
+                                                    </div>
+                                                </div>
+                                                <div class="social-media-links">
+                                                    <ul class="socials-links-list">
+                                                        <li class="social-item" *ngIf="author.socials.facebookUrl !== '' && author.socials.facebookUrl !== null">
+                                                            <a target="_blank" [href]="author.socials.facebookUrl" class="social"><i class="fa-brands fa-facebook-f"></i></a>
+                                                        </li>
+                                                        <li class="social-item" *ngIf="author.socials.youtubeUrl !== '' && author.socials.youtubeUrl !== null">
+                                                            <a target="_blank" [href]="author.socials.youtubeUrl" class="social"><i class="bi bi-youtube"></i></a>
+                                                        </li>
+                                                        <li class="social-item" *ngIf="author.socials.instagramUrl !== '' && author.socials.instagramUrl !== null">
+                                                            <a target="_blank" [href]="author.socials.instagramUrl" class="social"><i class="bi bi-instagram"></i></a>
+                                                        </li>
+                                                        <li class="social-item" *ngIf="author.socials.messengerUrl !== '' && author.socials.messengerUrl !== null">
+                                                            <a target="_blank" [href]="author.socials.messengerUrl" class="social"><i class="bi bi-messenger"></i></a>
+                                                        </li>
+                                                        <li class="social-item" *ngIf="author.socials.tiktokUrl !== '' && author.socials.tiktokUrl !== null">
+                                                            <a target="_blank" [href]="author.socials.tiktokUrl" class="social"><i class="fa-brands fa-tiktok"></i></a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                <button type="button" id="subscribe-btn">
+                                                    გამოწერა <i class="fa-solid fa-user-plus"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div> -->
+                            </div>
+                        </div>
+                    </ng-container>
                     <ng-container *ngIf="moreLatestPosts">
                         <div class="more-latest-posts">
                             <div class="post-card" *ngFor="let moreLatestPost of moreLatestPosts.data">

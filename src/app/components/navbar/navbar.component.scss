@@ -225,135 +225,294 @@ header {
         opacity: 1;
         visibility: visible;
 
-        .listing {
-            @include flex(column, flex-start, flex-start);
-            animation: 0.75s ease 0s 1 normal none running appearance;
-            padding-right: 24px;
-            margin: 32px 0;
-            width: 260px;
+        .lists-container {
+            @include flex(row, center, center);
 
-            .categories-list {
-                @include flex(column, flex-start, center);
-                width: 100%;
-
-                .category {
+            .listing {
+                @include flex(column, flex-start, flex-start);
+                animation: 0.75s ease 0s 1 normal none running appearance;
+                padding-right: 24px;
+                margin: 32px 0;
+                width: 260px;
+        
+                .categories-list {
+                    @include flex(column, flex-start, center);
+                    width: 100%;
+        
+                    .category {
+                        @include flex(row, center, space-between);
+                        margin-bottom: 24px;
+                        min-height: 24px;
+                        width: 100%;
+                        cursor: pointer;
+        
+                        .category-name {
+                            max-width: 80%;
+        
+                            p {
+                                @include font(600, 14px, #fff);
+                            }
+                        }
+        
+                        #arrow-button {
+                            background-color: transparent;
+                            border: none;
+                            cursor: pointer;
+        
+                            i {
+                                font-size: 28px;
+                                color: #b5b5b5;
+                            }
+                        }
+        
+                        &:hover,
+                        &:active {
+                            #arrow-button i {
+                                color: #f15a22;
+                            }
+                        }
+                    }
+                }
+        
+                .contact {
                     @include flex(row, center, space-between);
-                    margin-bottom: 24px;
-                    min-height: 24px;
+                    border-top: 1px solid rgba(51, 51, 52, 0.7);
+                    padding-top: 32px;
                     width: 100%;
                     cursor: pointer;
-
-                    .category-name {
+        
+                    .title {
                         max-width: 80%;
-
+        
                         p {
                             @include font(600, 14px, #fff);
                         }
                     }
-
+        
                     #arrow-button {
                         background-color: transparent;
                         border: none;
                         cursor: pointer;
-
+        
                         i {
                             font-size: 28px;
                             color: #b5b5b5;
                         }
                     }
-
-                    &:hover, &:active {
+        
+                    &:hover,
+                    &:active {
                         #arrow-button i {
                             color: #f15a22;
                         }
                     }
                 }
             }
-
-            .contact {
-                @include flex(row, center, space-between);
-                border-top: 1px solid rgba(51, 51, 52, 0.7);
-                padding-top: 32px;
-                width: 100%;
-                cursor: pointer;
-
-                .title {
-                    max-width: 80%;
-                    
-                    p {
-                        @include font(600, 14px, #fff);
+        
+            @keyframes appearance {
+                0% {
+                    opacity: 0;
+                }
+        
+                60% {
+                    opacity: 0;
+                }
+        
+                100% {
+                    opacity: 1;
+                }
+            }
+        
+            .sub-listing {
+                @include flex(column, flex-start, flex-start);
+                animation: 0.9s ease-in 0s 1 normal none running appearance;
+                border-left: 1px solid rgba(51, 51, 52, 0.7);
+                margin: 32px 16px 32px 0;
+                padding-left: 24px;
+                width: 734px;
+                height: 454px;
+        
+                .grid-list {
+                    width: 100%;
+                    height: 100%;
+                    display: grid;
+                    flex: 1 1 0%;
+                    grid-template-columns: 1fr 1fr 1fr;
+                    grid-template-rows: repeat(10, 1fr);
+                    grid-auto-flow: column;
+                    grid-auto-columns: 0px;
+                    overflow: hidden;
+        
+                    .link {
+                        @include font(400, 14px, #fff);
+                        transition: all 0.25s ease-in-out;
+                        margin-bottom: 24px;
+                        cursor: pointer;
+        
+                        &:hover {
+                            color: #f15a22;
+                        }
+                    }
+        
+                    .link.lead {
+                        @include font(600, 16px, #fff);
+                        transition: all 0.25s ease-in-out;
+        
+                        &:hover {
+                            color: #f15a22;
+                        }
                     }
                 }
 
-                #arrow-button {
-                    background-color: transparent;
-                    border: none;
-                    cursor: pointer;
+                .contacts-container {
+                    @include flex(row, flex-start, flex-start);
+                    width: 100%;
+                    height: 100%;
 
-                    i {
-                        font-size: 28px;
-                        color: #b5b5b5;
+                    .list-container {
+                        @include flex(column, flex-start, flex-start);
+                        width: 296px;
+                        height: 251px;
+
+                        .title {
+                            margin-bottom: 32px;
+
+                            h3 {
+                                @include font(700, 15px, #fff);
+                            }
+                        }
+
+                        .contacts-list {
+                            @include flex(column, flex-start, center);
+                            list-style: none;
+                            padding: 0;
+                            gap: 20px;
+
+                            .contact-item .contact {
+                                @include flex(row, center, center);
+                                @include font(500, 15px, #fff);
+                                text-decoration: none;
+                                gap: 10px;
+                            }
+                        }
                     }
-                }
 
-                &:hover,
-                &:active {
-                    #arrow-button i {
-                        color: #f15a22;
-                    }
-                }
-            }
-        }
+                    .write-message {
+                        @include flex(column, flex-start, flex-start);
+                        width: 344px;
+                        height: 366px;
 
-        @keyframes appearance {
-            0% {
-                opacity: 0;
-            }
+                        .header h4 {
+                            @include font(700, 15px, #fff);
+                            margin-bottom: 32px;
+                        }
 
-            60% {
-                opacity: 0;
-            }
+                        .form-container {
+                            @include flex(column, flex-start, center);
+                            width: 100%;
 
-            100% {
-                opacity: 1;
-            }
-        }
+                            .user-email-input {
+                                @include flex(column, flex-start, center);
+                                margin-bottom: 40px;
+                        
+                                .email-input-container {
+                                    @include flex(column, flex-start, center);
+                                    border-bottom: 1px solid rgba(172, 172, 172, 0.5);
+                                    position: relative;
+                                    width: 344px;
+                                    height: 58px;
+                        
+                                    .email-label {
+                                        position: absolute;
+                                        top: 50%;
+                                        left: 0;
+                                        transform: translateY(-50%);
+                                        color: #999;
+                                        font-size: 16px;
+                                        pointer-events: none;
+                                        transition: all 0.2s ease;
+                                        margin-bottom: 8px;
+                                    }
+                        
+                                    #email-input {
+                                        @include font(500, 16px, #fff);
+                                        background-color: transparent;
+                                        box-sizing: border-box;
+                                        font-family: inherit;
+                                        border: none;
+                                        outline: none;
+                                        width: 100%;
+                                        height: 32px;
+                                        padding: 8px 0;
+                        
+                                        &:focus+.email-label,
+                                        &:not(:placeholder-shown)+.email-label {
+                                            top: -6px;
+                                            left: 0;
+                                            font-size: 13px;
+                                        }
+                                    }
+                                }
+                        
+                                .error-container {
+                                    @include flex(column, flex-start, center);
+                                    margin-top: 6px;
+                                    width: 100%;
+                                    height: 17px;
+                        
+                                    .error {
+                                        @include font(300, 13px, #FF3B3B);
+                                        line-height: 17px;
+                                        margin-top: 6px;
+                                    }
+                                }
+                            }
 
-        .sub-listing {
-            @include flex(column, center, flex-start);
-            animation: 0.9s ease-in 0s 1 normal none running appearance;
-            border-left: 1px solid rgba(51, 51, 52, 0.7);
-            margin: 32px 16px 32px 0;
-            padding-left: 24px;
-            width: 734px;
+                            .user-message-input {
+                                @include flex(column, flex-start, center);
+                                margin-bottom: 40px;
 
-            .grid-list {
-                width: 100%;
-                display: grid;
-                flex: 1 1 0%;
-                grid-template-columns: 1fr 1fr 1fr;
-                grid-template-rows: repeat(10, 1fr);
-                grid-auto-flow: column;
-                grid-auto-columns: 0px;
-                overflow: hidden;
-            
-                .link {
-                    @include font(400, 14px, #fff);
-                    transition: all 0.25s ease-in-out;
-                    margin-bottom: 24px;
-                    cursor: pointer;
+                                .message-input-container {
+                                    @include flex(column, flex-start, center);
+                                    border-bottom: 1px solid rgba(172, 172, 172, 0.5);
+                                    padding-bottom: 16px;
+                                    width: 344px;
 
-                    &:hover {
-                        color: #f15a22;
-                    }
-                }
-            
-                .link.lead {
-                    @include font(600, 16px, #fff);
-                    transition: all 0.25s ease-in-out;
-                    
-                    &:hover {
-                        color: #f15a22;
+                                    label {
+                                        @include font(400, 16px, #999);
+                                        margin-bottom: 8px;
+                                    }
+
+                                    #message-textarea {
+                                        @include font(500, 16px, #fff);
+                                        font-family: inherit;
+                                        background-color: transparent;
+                                        border: none;
+                                        min-width: 100%;
+                                        max-width: 100%;
+                                        height: 62px;
+                                        max-height: 164px;
+                                        outline: none;
+                                    }
+                                }
+
+                                .error {
+                                    @include font(300, 13px, rgba(255, 255, 255, 0.7));
+                                    margin-top: 6px;
+                                }
+                            }
+
+                            #send-message-btn {
+                                @include font(500, 14px, #fff);
+                                background-color: #f15a22;
+                                font-family: inherit;
+                                border-radius: 12px;
+                                border: none;
+                                width: 100%;
+                                height: 48px;
+                                cursor: pointer;
+                            }
+                        }
                     }
                 }
             }
@@ -361,13 +520,160 @@ header {
 
         .aside {
             @include flex(column, flex-start, center);
+            animation: 1.2s ease-in 0s 1 normal none running appearance;
             background-color: #232324;
-            padding: 32px 16px 32px 32px;
-            width: 420px;
+            width: 440px;
+
+            .category-posts-container {
+                @include flex(column, flex-start, flex-start);
+                padding: 32px 16px 32px 32px;
+                width: 100%;
+                height: 100%;
+
+                .category-title {
+                    margin-bottom: 30px;
+
+                    h3 {
+                        @include font(700, 15px, #fff);
+                    }
+                }
+
+                .category-posts {
+                    @include flex(column, center, center);
+                    width: 100%;
+
+                    .category-post {
+                        @include flex(row, center, space-between);
+                        border-bottom: 1px solid rgba(73, 73, 75, 0.3);
+                        padding-bottom: 14px;
+                        margin-bottom: 16px;
+                        width: 100%;
+                        height: 76px;
+
+                        .info-container {
+                            @include flex(column, flex-start, center);
+                            width: 200px;
+                            height: 100%;
+
+                            .subtitle {
+                                @include font(500, 13px, #f15a22);
+                                margin-bottom: 8px;
+                            }
+
+                            .title {
+                                @include font(500, 13px, #fff);
+                                display: -webkit-box;
+                                overflow: hidden;
+                                text-overflow: ellipsis;
+                                -webkit-line-clamp: 2;
+                                -webkit-box-orient: vertical; 
+                                cursor: pointer;  
+                            }
+                        }
+
+                        .image-container {
+                            border-radius: 16px;
+                            width: 96px;
+                            height: 100%;
+                            cursor: pointer;
+
+                            img {
+                                width: 100%;
+                                height: 100%;
+                                border-radius: inherit;
+                                object-fit: cover;
+                                display: block;
+                            }
+                        }
+                    }
+                }
+            }
+
+            .subscription-form {
+                @include flex(column, center, center);
+                background-image: url("./../../../assets/images/drop-down-subs-form-bg.png");
+                background-position-x: center;
+                background-position-y: center;
+                background-size: cover;
+                width: 100%;
+                height: 100%;
+
+                .form-container {
+                    @include flex(column, center, center);
+                    width: 380px;
+                    height: 248px;
+
+                    .header {
+                        @include flex(column, center, center);
+                        text-align: center;
+                        width: 100%;
+                
+                        h3 {
+                            @include font(900, 24px, #fff);
+                            margin-bottom: 4px;
+                        }
+                
+                        p {
+                            @include font(400, 14px, #fff);
+                            line-height: 18px;
+                            margin-bottom: 24px;
+                        }
+                    }
+                
+                    .subscribe-input-container {
+                        @include flex(column, center, center);
+                        width: 100%;
+                
+                        .input-container {
+                            @include flex(row, center, center);
+                            background-color: #fff;
+                            width: 100%;
+                            height: 48px;
+                            padding: 4px;
+                            border-radius: 12px;
+                
+                            #email-input {
+                                @include font(500, 13px, #000);
+                                background-color: transparent;
+                                font-family: inherit;
+                                padding: 8px 12px;
+                                outline: none;
+                                border: none;
+                                width: 65%;
+                                height: 100%;
+                            }
+                
+                            #subscribe-btn {
+                                @include font(600, 15px, #ACACAC);
+                                font-family: inherit;
+                                background-color: #2B2C2E;
+                                border-radius: 12px;
+                                padding: 4px;
+                                width: 35%;
+                                height: 100%;
+                                border: none;
+                                cursor: pointer;
+                            }
+                        }
+                
+                        .message {
+                            @include flex(column, center, center);
+                            margin-top: 12px;
+                            margin-bottom: 24px;
+                            width: 100%;
+                
+                            p {
+                                @include font(300, 11px, #fff);
+                                text-align: center;
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 
-    .dim-container {
+    .dim-container-for-dropdown {
         background-color: rgba(0, 0, 0, 0.44);
         position: fixed;
         top: 75px;

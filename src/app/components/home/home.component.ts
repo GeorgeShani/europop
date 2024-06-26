@@ -17,6 +17,8 @@ export class HomeComponent {
   firstFourFeaturedPosts: any[] = [];
   europebetPosts!: any;
   featuredEuropebetPost!: any;
+  analyticalPosts!: any;
+  authorsData!: any;
   latePosts!: any;
   latestPosts!: any;
   moreLatestPosts!: any;
@@ -59,6 +61,14 @@ export class HomeComponent {
       this.latestPosts = data;
     });
 
+    this._fetch.getData("analyticalPosts").subscribe((data) => {
+      this.analyticalPosts = data;
+    });
+
+    this._fetch.getAuthors(1, 15).subscribe((data) => {
+      this.authorsData = data;
+    });
+
     this._fetch.getLatestPostsById(509).subscribe((data) => {
       this.moreLatestPosts = data;
     });
@@ -74,5 +84,13 @@ export class HomeComponent {
 
   redirectToPostDetails(id: number) {
     window.location.href = `/post/${id}`;
+  }
+
+  redirectToAnalyticalPosts() {
+    window.location.href = "/posts/analytics";
+  }
+
+  redirectToAuthors() {
+    window.location.href = "/authors";
   }
 }

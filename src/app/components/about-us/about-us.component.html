@@ -1,1 +1,104 @@
-<p>about-us works!</p>
+<div class="about-us-container">
+    <div class="cover">
+        <div class="container">
+            <h3 class="header uppercase">ჩვენ შესახებ</h3>
+        </div>
+        <div class="shadow"></div>
+    </div>
+    <div class="info-container">
+        <h4 class="small-headline">მილიონზე მეტი მკითხველი და მნახველი ყოველთვიურად</h4>
+        <h2 class="headline uppercase">ვინ ვართ, რა გაგვიკეთებია და რას ვაპირებთ</h2>
+        <h4 class="subtitle">5 წელი ვიღაცისთვის ცოტაა, ვიღაცისთვის - ბევრი.</h4>
+        <p>ჩვენთვის 5 წელი 50 000 სტატიაა. პოპსპორტზე სწორედ ამდენი დაიწერა.</p>
+        <p>ამ 5 წელიწადში ქართულ სპორტულ მედიაში ახალი სტანდარტები დავამკვიდრეთ - ოპერატიულობით, სიზუსტით, სანდოობით,
+        ანალიტიკით. ბევრის რეგრესი თუ პროგრესი ვიწინასწარმეტყველეთ, 200-მდე ქვიზის გასაკეთებლად გამოგიწვიეთ, დელ პიეროს
+        ზონაც გავარჩიეთ და ფორმანის ჰაერში გაჩერებული ჰუკიც, დინამო ბათუმთან ერთად საქართველოს ჩემპიონობა ვიზეიმეთ,
+        ‘ქართველი ხარიც’ გაგაცანით, მერაბ დვალიშვილის ამერიკულ ოცნებაზეც პირველად ჩვენგან შეიტყვეთ…</p>
+        <p>ენდურო ბაიკით ყვარლის ტბაზე გავლა დღემდე ჩვენი ერთ-ერთი საყვარელი პროექტია. 5 წლის განმავლობაში ძალიან ბევრი ვწერეთ,
+        ყველაზე მეტი ადამიანი კი მაინც პიკეს, შაკირას და გოგიტას ამბავმა დააინტერესა.</p>
+        <p>იყო ძალიან მძიმე დღეებიც, ყველაფრის სურვილი რომ დაგვეკარგა - როცა კობის და დიეგოს ვემშვიდობებოდით, მაგრამ მაინც ვწერდით…</p>
+        <p>სწორედ ამ ყველაფერს აერთიანებს პოპსპორტი, რომელიც 5 წლის წინ შევქმენით და რომელსაც ათიათასობით ერთგული მომხმარებელი ჰყავს.</p>
+        <div class="statistics-cards">
+            <div class="card">
+                <div class="score">173</div>
+                <span>ავტორი</span>
+            </div>
+            <div class="card">
+                <div class="score">50 000</div>
+                <span>სტატია</span>
+            </div>
+        </div>
+        <p>…და ვფიქრობთ, რომ 5 წლის და 50 000 სტატიის შემდეგ ახალ არენაზე გადასვლის დრო დადგა - თამაშის წესები უცვლელი რჩება, მასშტაბები იცვლება.</p>
+        <p>რა იქნება ევროპოპი? განვითარების ახალი საფეხური, ახალი მიზნები, ახალი გამოწვევები, ახალი გოლები - კიდევ უფრო მაღალ დონეზე.</p>
+        <p>გარდა იმისა, რასაც აქამდე ვაკეთებდით: მოვისმენთ საკამათო არგუმენტებს; ვნახავთ, ვის რა შეუძლია ბურთით; აბსურდულ
+        კითხვებსაც დავსვამთ, სპორტულ ჩანთებშიც ჩავიხედავთ და ბევრს ვისეირნებთ. რაც მთავარია, ამ ყველაფერსაც ისეთი სიზუსტით,
+        ემოციით და ჟინით გავაკეთებთ, როგორც ვაკეთებდით აქამდე.</p>
+        <div class="main-editor-info-card">
+            <div class="image-container">
+                <img width="313" height="331" [src]="shakoProfileImage" alt="">
+            </div>
+            <div class="info-container">
+                <h6 class="name uppercase">
+                    <span>შაკო</span> ბუაჩიძე
+                </h6>
+                <div class="job">მთავარი რედაქტორი</div>
+                <div class="social-media-links">
+                    <a target="_blank" href="https://www.facebook.com/shako.buachidze">
+                        <i class="fa-brands fa-facebook-f"></i>
+                    </a>
+                    <a target="_blank" href="https://www.instagram.com/shakobuachidze/">
+                        <i class="bi bi-instagram"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="europop-authors-container">
+            <h3 class="header uppercase">ჩვენი ავტორები</h3>
+            <div class="author-cards-slider">
+                <div class="slider-inner">
+                    <div class="author-card" *ngFor="let author of authorsData.data">
+                        <div class="image-container">
+                            <img [src]="author.avatar.fileUrl" alt="">
+                        </div>
+                        <div class="info-container">
+                            <span>{{ author.firstName }}</span> {{ author.lastName }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="all-authors-button-container">
+                <button type="button" id="show-all" (click)="redirectToAuthors()">
+                    ყველა ავტორი <i class="bi bi-arrow-right-circle-fill"></i>
+                </button>
+            </div>
+        </div>
+        <div class="epop-plus-container">
+            <div class="logo-container">
+                <img [src]="europopLogo" alt="">
+                <img [src]="plusSign" alt="">
+            </div>
+            <p>დარეგისტრირდი და გაეცანი შენზე მორგებულ სპორტულ სიახლეებსა და ანალიტიკურ სტატიებს.</p>
+            <button type="button" id="authorize-btn" (click)="redirectToLogin()">ავტორიზაცია</button>
+            <p class="register">არ გაქვს ანგარიში? <a href="/auth/register">რეგისტრაცია</a></p>
+        </div>
+        <div class="europop-youtube-channel">
+            <div class="content">
+                <span class="big-e-icon">
+                    <img [src]="bigE" alt="">
+                </span>
+                <div class="texts">
+                    <h3 class="headline">europop</h3>
+                    <div class="info">
+                        <span>&commat;europop_</span>
+                        <span>76.5k subscribers</span>
+                        <span>549 videos</span>
+                    </div>
+                    <p class="description">სპორტული ანალიტიკა, ექსკლუზივები და სიახლეები. ყველა ახალი ამბავი ერთ პორტალზე.</p>
+                    <a target="_blank" class="youtube-channel-link" href="https://www.youtube.com/@europop_">
+                        <img src="./../../../assets/images/youtube-main-logo.png" alt="">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
