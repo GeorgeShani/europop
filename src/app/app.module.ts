@@ -24,7 +24,6 @@ import { AuthorsComponent } from './components/authors/authors.component';
 import { CategoryDetailsComponent } from './components/category-details/category-details.component';
 import { KFormaterPipe } from './pipes/k-formater.pipe';
 import { AboutUsComponent } from './components/about-us/about-us.component';
-import { ɵBrowserAnimationBuilder } from '@angular/animations';
 
 @NgModule({
   declarations: [
