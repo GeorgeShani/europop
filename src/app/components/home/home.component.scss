@@ -803,6 +803,7 @@
                                 p {
                                     @include font(700, 15px, #fff);
                                     margin-bottom: 12px;
+                                    cursor: pointer;
                                 }
                             
                                 .additional-info {

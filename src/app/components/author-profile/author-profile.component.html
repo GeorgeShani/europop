@@ -1,1 +1,62 @@
-<p>author-profile works!</p>
+<div class="author-profile-container" *ngIf="authorProfileData">
+    <div class="author-info-container">
+        <div class="author-cover">
+            <img [src]="authorProfileData.data.coverImage.fileUrl" alt="">
+        </div>
+        <div class="author-info-card">
+            <div class="author-main-info">
+                <div class="image-container">
+                    <img class="profile-image" [src]="authorProfileData.data.avatar.fileUrl" alt="">
+                    <span class="e-logo"><img width="23" height="23" src="./../../../assets/images/big-e.svg" alt=""></span>
+                </div>
+                <div class="info-container">
+                    <h2 class="author-name uppercase">
+                        {{ authorProfileData.data.firstName }} {{ authorProfileData.data.lastName }}
+                    </h2>
+                    <div class="scores">
+                        <div class="subscribers">
+                            {{ authorProfileData.data.subscribersCount }}
+                            <span>გამომწერი</span>
+                        </div>
+                        <div class="likes">
+                            {{ authorProfileData.data.likesCount }}
+                            <span>მოწონება</span>
+                        </div>
+                        <div class="posts">
+                            {{ authorProfileData.data.postsCount }}
+                            <span>სტატია</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="socials">
+                <ul class="social-media-links-list">
+                    <li class="social-item" *ngIf="authorProfileData.data.socials.facebookUrl !== '' && authorProfileData.data.socials.facebookUrl !== null">
+                        <a target="_blank" [href]="authorProfileData.data.socials.facebookUrl" class="social"><i class="fa-brands fa-facebook-f"></i></a>
+                    </li>
+                    <li class="social-item" *ngIf="authorProfileData.data.socials.youtubeUrl !== '' && authorProfileData.data.socials.youtubeUrl !== null">
+                        <a target="_blank" [href]="authorProfileData.socials.youtubeUrl" class="social"><i class="bi bi-youtube"></i></a>
+                    </li>
+                    <li class="social-item" *ngIf="authorProfileData.data.socials.instagramUrl !== '' && authorProfileData.data.socials.instagramUrl !== null">
+                        <a target="_blank" [href]="authorProfileData.data.socials.instagramUrl" class="social"><i class="bi bi-instagram"></i></a>
+                    </li>
+                    <li class="social-item" *ngIf="authorProfileData.data.socials.messengerUrl !== '' && authorProfileData.data.socials.messengerUrl !== null">
+                        <a target="_blank" [href]="authorProfileData.data.socials.messengerUrl" class="social"><i class="bi bi-messenger"></i></a>
+                    </li>
+                    <li class="social-item" *ngIf="authorProfileData.data.socials.tiktokUrl !== '' && authorProfileData.data.socials.tiktokUrl !== null">
+                        <a target="_blank" [href]="authorProfileData.data.socials.tiktokUrl" class="social"><i class="fa-brands fa-tiktok"></i></a>
+                    </li>
+                </ul>
+                <button type="button" id="subscribe-btn">
+                    გამოწერა <i class="fa-solid fa-user-plus"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+    <ng-container *ngIf="postsByAuthor">
+        <div class="authors-posts-container">
+            <div class="posts-by-author"></div>
+            <aside class="aside"></aside>
+        </div>
+    </ng-container>
+</div>

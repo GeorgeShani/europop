@@ -117,6 +117,10 @@ export class HomeComponent {
     window.location.href = "/authors";
   }
 
+  redirectToAuthor(id: number) {
+    window.location.href = `/author/${id}`;
+  }
+
   redirectToYoutubePlaylist(playlistId: number) {
     window.open(`https://www.youtube.com/playlist?list=${playlistId}`, '_blank');
   }

@@ -235,7 +235,7 @@
                                         <img [src]="author.avatar.fileUrl" alt="" class="author-avatar">
                                     </div>
                                     <div class="author-info">
-                                        <p class="author-full-name">
+                                        <p class="author-full-name" (click)="redirectToAuthor(author.id)">
                                             {{ author.firstName }} {{ author.lastName }}
                                         </p>
                                         <div class="additional-info">
