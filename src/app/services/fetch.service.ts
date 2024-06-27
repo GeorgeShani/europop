@@ -17,6 +17,7 @@ export class FetchService {
     analyticalPosts: "http://localhost:3000/proxy?targetUrl=https://europop.ge/api/posts/analytic",
     authors: "http://localhost:3000/proxy?targetUrl=https://europop.ge/api/authors",
     searchAPI: "http://localhost:3000/proxy?targetUrl=https://europop.ge/api/search",
+    videoGallery: "http://localhost:3000/proxy?targetUrl=https://europop.ge/api/video-galleries",
     categoryData: "http://localhost:3000/proxy?targetUrl=https://europop.ge/api/categories",
     postsByCategoryId: "http://localhost:3000/proxy?targetUrl=https://europop.ge/api/posts/by-category-id",
     postsPoweredByEuropebet: "http://localhost:3000/proxy?targetUrl=https://europop.ge/api/posts/powered-by-europebet",
@@ -52,8 +53,23 @@ export class FetchService {
     return this._http.get(url);
   }
 
+  getVideoGalleryById(id: number) {
+    let url = this._europopAPIs["videoGallery"] + `/${id}`;
+    return this._http.get(url);
+  }
+
   getAuthors(page: number, size: number) {
     let url = this._europopAPIs["authors"] + `?page=${page}&size=${size}`;
+    return this._http.get(url);
+  }
+
+  getAuthorById(id: number) {
+    let url = this._europopAPIs["authors"] + `/${id}`;
+    return this._http.get(url);
+  }
+
+  getPostsByAuthor(id: number, pageIndex: number) {
+    let url = this._europopAPIs["authors"] + `/${id}/resources?page=${pageIndex}`;
     return this._http.get(url);
   }
 

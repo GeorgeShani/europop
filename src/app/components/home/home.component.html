@@ -184,6 +184,32 @@
                             </div>
                         </div>
                     </ng-container>
+                    <ng-container *ngIf="awayMeetingsVideoGallery">
+                        <div class="away-meetings-video-gallery">
+                            <div class="header">
+                                <div class="main-info">
+                                    <h5 class="uppercase">{{ awayMeetingsVideoGallery.data.title }}</h5>
+                                    <div class="description" [innerHTML]="awayMeetingsVideoGallery.data.description"></div>
+                                </div>
+                                <button type="button" id="show-all" (click)="redirectToYoutubePlaylist(awayMeetingsVideoGallery.data.youtubePlaylistId)">
+                                    მეტი <i class="bi bi-arrow-right-circle-fill"></i>
+                                </button>
+                            </div>
+                            <div class="video-slider">
+                                <div class="video-card" *ngFor="let video of awayMeetingsVideoGallery.data.items">
+                                    <div class="image-container">
+                                        <img class="videoThumbnail" [src]="video.thumbnailUrl" alt="">
+                                        <button type="button" id="playBtn">
+                                            <img [src]="playButton" alt="">
+                                        </button>
+                                    </div>
+                                    <div class="info-container">
+                                        <p><img width="31" height="18" [src]="epopPlusLogoGray" alt=""> {{ video.title }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </ng-container>
                     <div class="mobile-app-advertisment">
                         <div class="links-wrapper">
                             <a target="_blank" *ngFor="let mobileLink of mobileStoreLinks" [href]="mobileLink.linkUrl">
@@ -229,57 +255,32 @@
                                         </div>
                                     </div>
                                 </div>
-                                <!-- <div class="author-card" *ngFor="let author of authorsData.data">
-                                        <div class="cover">
-                                            <img *ngIf="author.coverImage !== null" class="author-cover" [src]="author.coverImage.fileUrl" alt="">
-                                            <img *ngIf="author.avatar !== null" class="author-avatar" [src]="author.avatar.fileUrl" alt="">
-                                            <span *ngIf="author.coverImage === null" class="no-author-cover"></span>
-                                            <span *ngIf="author.avatar === null" class="no-avatar"><img [src]="userIcon" alt=""></span>
-                                        </div>
-                                        <div class="main-info">
-                                            <p class="author-full-name uppercase">
-                                                {{ author.firstName }} {{ author.lastName }}
-                                            </p>
-                                            <div class="additional-info">
-                                                <div class="scores">
-                                                    <div class="subscribers">
-                                                        <i class="bi bi-person-check"></i>
-                                                        {{ author.subscribersCount }}
-                                                    </div>
-                                                    <div class="likes">
-                                                        <i class="bi bi-hand-thumbs-up"></i>
-                                                        {{ author.likesCount }}
-                                                    </div>
-                                                    <div class="posts">
-                                                        <i class="bi bi-file-earmark-text"></i>
-                                                        {{ author.postsCount }}
-                                                    </div>
-                                                </div>
-                                                <div class="social-media-links">
-                                                    <ul class="socials-links-list">
-                                                        <li class="social-item" *ngIf="author.socials.facebookUrl !== '' && author.socials.facebookUrl !== null">
-                                                            <a target="_blank" [href]="author.socials.facebookUrl" class="social"><i class="fa-brands fa-facebook-f"></i></a>
-                                                        </li>
-                                                        <li class="social-item" *ngIf="author.socials.youtubeUrl !== '' && author.socials.youtubeUrl !== null">
-                                                            <a target="_blank" [href]="author.socials.youtubeUrl" class="social"><i class="bi bi-youtube"></i></a>
-                                                        </li>
-                                                        <li class="social-item" *ngIf="author.socials.instagramUrl !== '' && author.socials.instagramUrl !== null">
-                                                            <a target="_blank" [href]="author.socials.instagramUrl" class="social"><i class="bi bi-instagram"></i></a>
-                                                        </li>
-                                                        <li class="social-item" *ngIf="author.socials.messengerUrl !== '' && author.socials.messengerUrl !== null">
-                                                            <a target="_blank" [href]="author.socials.messengerUrl" class="social"><i class="bi bi-messenger"></i></a>
-                                                        </li>
-                                                        <li class="social-item" *ngIf="author.socials.tiktokUrl !== '' && author.socials.tiktokUrl !== null">
-                                                            <a target="_blank" [href]="author.socials.tiktokUrl" class="social"><i class="fa-brands fa-tiktok"></i></a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                                <button type="button" id="subscribe-btn">
-                                                    გამოწერა <i class="fa-solid fa-user-plus"></i>
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div> -->
+                            </div>
+                        </div>
+                    </ng-container>
+                    <ng-container *ngIf="europopForumVideoGallery">
+                        <div class="europop-forum-video-gallery">
+                            <div class="header">
+                                <div class="main-info">
+                                    <h5 class="uppercase">{{ europopForumVideoGallery.data.title }}</h5>
+                                    <div class="description" [innerHTML]="europopForumVideoGallery.data.description"></div>
+                                </div>
+                                <button type="button" id="show-all" (click)="redirectToYoutubePlaylist(europopForumVideoGallery.data.youtubePlaylistId)">
+                                    მეტი <i class="bi bi-arrow-right-circle-fill"></i>
+                                </button>
+                            </div>
+                            <div class="video-slider">
+                                <div class="big-video-card" *ngFor="let video of europopForumVideoGallery.data.items">
+                                    <div class="image-container">
+                                        <img class="videoThumbnail" [src]="video.thumbnailUrl" alt="">
+                                        <button type="button" id="playBtn">
+                                            <img [src]="playButton" alt="">
+                                        </button>
+                                    </div>
+                                    <div class="info-container">
+                                        <p><img width="31" height="18" [src]="epopPlusLogoGray" alt=""> {{ video.title }}</p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </ng-container>
@@ -297,6 +298,63 @@
                                         <p>{{ moreLatestPost.publishedAt | relativeTime }}
                                             <span>&centerdot;</span> <i class="bi bi-file-earmark-text"></i>
                                             {{ moreLatestPost.estimatedReadTime }} წუთი
+                                        </p>
+                                        <div class="interaction-buttons">
+                                            <button type="button" id="post-interaction-btn">
+                                                <i class="bi bi-hand-thumbs-up"></i>
+                                            </button>
+                                            <button type="button" id="post-interaction-btn">
+                                                <i class="bi bi-chat-dots"></i>
+                                            </button>
+                                            <button type="button" id="post-interaction-btn">
+                                                <i class="bi bi-bookmark-plus"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </ng-container>
+                    <ng-container *ngIf="tableDerbyVideoGallery">
+                        <div class="table-derby-video-gallery">
+                            <div class="header">
+                                <div class="main-info">
+                                    <h5 class="uppercase">{{ tableDerbyVideoGallery.data.title }}</h5>
+                                    <div class="description" [innerHTML]="tableDerbyVideoGallery.data.description"></div>
+                                </div>
+                                <button type="button" id="show-all" (click)="redirectToYoutubePlaylist(tableDerbyVideoGallery.data.youtubePlaylistId)">
+                                    მეტი <i class="bi bi-arrow-right-circle-fill"></i>
+                                </button>
+                            </div>
+                            <div class="video-slider">
+                                <div class="video-card" *ngFor="let video of tableDerbyVideoGallery.data.items">
+                                    <div class="image-container">
+                                        <img class="videoThumbnail" [src]="video.thumbnailUrl" alt="">
+                                        <button type="button" id="playBtn">
+                                            <img [src]="playButton" alt="">
+                                        </button>
+                                    </div>
+                                    <div class="info-container">
+                                        <p><img width="31" height="18" [src]="epopPlusLogoGray" alt=""> {{ video.title }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </ng-container>
+                    <ng-container *ngIf="regularPosts">
+                        <div class="regular-posts">
+                            <div class="post-card" *ngFor="let regularPost of regularPosts.data">
+                                <div class="image-container">
+                                    <img (click)="redirectToPostDetails(regularPost.id)" [src]="regularPost.image.fileUrl" alt="">
+                                </div>
+                                <div class="info-container">
+                                    <p class="subtitle">{{ regularPost.subtitle }}</p>
+                                    <h3 (click)="redirectToPostDetails(regularPost.id)" class="title">{{ regularPost.title }}</h3>
+                                    <div class="text" [innerHTML]="regularPost.text"></div>
+                                    <div class="additional-info">
+                                        <p>{{ regularPost.publishedAt | relativeTime }}
+                                            <span>&centerdot;</span> <i class="bi bi-file-earmark-text"></i>
+                                            {{ regularPost.estimatedReadTime }} წუთი
                                         </p>
                                         <div class="interaction-buttons">
                                             <button type="button" id="post-interaction-btn">

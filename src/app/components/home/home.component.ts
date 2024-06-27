@@ -9,9 +9,11 @@ import { externals } from '../../interfaces/external-links.model';
 })
 export class HomeComponent {
   epopPlusLogo: string = "./../../../assets/images/eplus.png";
+  epopPlusLogoGray: string = "./../../../assets/images/eplus-gray.png";
   poweredBy: string = "./../../../assets/images/powered-by.svg";
   europeBetLogo: string = "./../../../assets/images/europebet-logo.svg";
   europeBetLittleLogo: string = "./../../../assets/images/europebet-little-logo.png";
+  playButton: string = "./../../../assets/images/play.svg";
 
   featuredPostsData!: any;
   firstFourFeaturedPosts: any[] = [];
@@ -19,10 +21,15 @@ export class HomeComponent {
   featuredEuropebetPost!: any;
   analyticalPosts!: any;
   authorsData!: any;
+  regularPosts!: any;
   latePosts!: any;
   latestPosts!: any;
   moreLatestPosts!: any;
   evenMoreLatestPosts!: any;
+
+  awayMeetingsVideoGallery!: any;
+  europopForumVideoGallery!: any;
+  tableDerbyVideoGallery!: any;
 
   socialMediaLinks: externals[] = [
     { name: "Instagram", imageUrl: "./../../../assets/images/instagram-logo.svg", linkUrl: "https://www.instagram.com/europop.ge" },
@@ -57,6 +64,10 @@ export class HomeComponent {
       this.latePosts = data;
     });
 
+    this._fetch.getData("regularPosts").subscribe((data) => {
+      this.regularPosts = data;
+    });
+
     this._fetch.getData("popularPosts").subscribe((data) => {
       this.latestPosts = data;
     });
@@ -76,6 +87,18 @@ export class HomeComponent {
     this._fetch.getLatestPostsById(527).subscribe((data) => {
       this.evenMoreLatestPosts = data;
     });
+
+    this._fetch.getVideoGalleryById(141).subscribe((data) => {
+      this.tableDerbyVideoGallery = data;
+    })
+
+    this._fetch.getVideoGalleryById(142).subscribe((data) => {
+      this.awayMeetingsVideoGallery = data;
+    });
+
+    this._fetch.getVideoGalleryById(143).subscribe((data) => {
+      this.europopForumVideoGallery = data;
+    });
   }
 
   redirectToRegister() {
@@ -92,5 +115,9 @@ export class HomeComponent {
 
   redirectToAuthors() {
     window.location.href = "/authors";
+  }
+
+  redirectToYoutubePlaylist(playlistId: number) {
+    window.open(`https://www.youtube.com/playlist?list=${playlistId}`, '_blank');
   }
 }

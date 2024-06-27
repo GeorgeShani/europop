@@ -15,6 +15,7 @@ import { AnalyticalPostsComponent } from './components/analytical-posts/analytic
 import { CategoryDetailsComponent } from './components/category-details/category-details.component';
 import { AboutUsComponent } from './components/about-us/about-us.component';
 import { AuthorsComponent } from './components/authors/authors.component';
+import { AuthorProfileComponent } from './components/author-profile/author-profile.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full'},
@@ -28,6 +29,7 @@ const routes: Routes = [
   { path: 'auth/register', title: "Register - Europop", component: RegisterComponent },
   { path: 'auth/password-recovery', title: "Recover password - Europop", component: PasswordRecoveryComponent },
   { path: 'authors', title: 'ავტორები - Europop', component: AuthorsComponent }, 
+  { path: 'author/:id', component: AuthorProfileComponent },
   { path: 'about-us', title: "ჩვენ შესახებ - Europop", component: AboutUsComponent },
   { path: 'privacy-policy', title: "Privacy Policy - Europop", component: PrivacyPolicyComponent },
   { path: 'terms-and-conditions', title: "Terms and Conditions - Europop", component: TermsAndConditionsComponent},
