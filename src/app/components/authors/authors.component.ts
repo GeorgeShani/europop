@@ -25,6 +25,10 @@ export class AuthorsComponent {
     window.location.href = `/post/${id}`;
   }
 
+  redirectToAuthor(id: number) {
+    window.location.href = `/author/${id}`;
+  }
+
   constructor(private _fetch: FetchService) {
     this._fetch.getAuthors(1, 15).subscribe((data) => {
       this.authorsData = data;

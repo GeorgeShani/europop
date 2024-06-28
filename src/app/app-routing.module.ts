@@ -32,7 +32,7 @@ const routes: Routes = [
   { path: 'auth/password-recovery', title: "Recover password - Europop", component: PasswordRecoveryComponent },
   { path: 'about-us', title: "ჩვენ შესახებ - Europop", component: AboutUsComponent },
   { path: 'privacy-policy', title: "Privacy Policy - Europop", component: PrivacyPolicyComponent },
-  { path: 'terms-and-conditions', title: "Terms and Conditions - Europop", component: TermsAndConditionsComponent},
+  { path: 'terms-and-conditions', title: "Terms and Conditions - Europop", component: TermsAndConditionsComponent },
   { path: "**", title: "404 - Not Found", component: ErrorComponent }
 ];
 

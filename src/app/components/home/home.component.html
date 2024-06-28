@@ -154,10 +154,10 @@
                                             <img width="34" height="20" [src]="epopPlusLogo" alt=""> {{ post.title }}
                                         </h3>
                                         <div class="author-info-container">
-                                            <div class="author-image">
+                                            <div class="author-image" (click)="redirectToAuthor(post.author.id)">
                                                 <img [src]="post.author.avatar.fileUrl" alt="">
                                             </div>
-                                            <div class="author-info">
+                                            <div class="author-info" (click)="redirectToAuthor(post.author.id)">
                                                 <p class="name">{{ post.author.firstName }} {{ post.author.lastName }}</p>
                                             </div>
                                         </div>

@@ -67,6 +67,7 @@
                             border-radius: 50%;
                             transform: translateX(-50%);
                             border: 5px solid rgb(37, 38, 38);
+                            cursor: pointer;
                         }
 
                         .no-author-cover {
@@ -87,6 +88,7 @@
                             border-radius: 50%;
                             transform: translateX(-50%);
                             border: 5px solid rgb(37, 38, 38);
+                            cursor: pointer;
 
                             img {
                                 width: 56px;
@@ -110,6 +112,7 @@
                         p {
                             @include font(600, 14px, #fff);
                             margin-bottom: 12px;
+                            cursor: pointer;
                         }
 
                         .additional-info {

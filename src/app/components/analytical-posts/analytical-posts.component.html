@@ -21,8 +21,8 @@
                         </div>
                         <div class="additional-info">
                             <div class="add-info">
-                                <img [src]="post.author.avatar.fileUrl" alt="">
-                                <p class="author-name">{{ post.author.firstName }} {{ post.author.lastName }}</p>
+                                <img (click)="redirectToAuthor(post.author.id)" [src]="post.author.avatar.fileUrl" alt="">
+                                <p (click)="redirectToAuthor(post.author.id)" class="author-name">{{ post.author.firstName }} {{ post.author.lastName }}</p>
                                 <span>&centerdot;</span>
                                 <p>{{ post.publishedAt | relativeTime }}</p>
                                 <span>&centerdot;</span> <i class="bi bi-file-earmark-text"></i>

@@ -32,6 +32,10 @@ export class AnalyticalPostsComponent implements OnInit {
     window.location.href = `/post/${id}`;
   }
 
+  redirectToAuthor(id: number) {
+    window.location.href = `/author/${id}`;
+  }
+
   ngOnInit(): void {
     this._fetch.getData("analyticalPosts").subscribe((data) => {
       this.analyticalPosts = data;

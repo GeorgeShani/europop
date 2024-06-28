@@ -34,13 +34,13 @@
                             <div class="post-text" [innerHTML]="postDetails.data.text"></div>
                             <div class="author-and-publication-data">
                                 <div class="author-info" *ngIf="postDetails.data.author">
-                                    <div class="author-avatar" *ngIf="postDetails.data.author.avatar !== null">
+                                    <div class="author-avatar" *ngIf="postDetails.data.author.avatar !== null" (click)="redirectToAuthor(postDetails.data.author.id)">
                                         <img width="40" height="40" [src]="postDetails.data.author.avatar.fileUrl" alt="">
                                     </div>
                                     <div class="author-avatar" *ngIf="postDetails.data.author.avatar === null">
                                         <span class="no-avatar"><img [src]="userIcon" alt=""></span>
                                     </div>
-                                    <div class="author-name-container">
+                                    <div class="author-name-container" (click)="redirectToAuthor(postDetails.data.author.id)">
                                         <p class="full-name">{{ postDetails.data.author.firstName }} {{ postDetails.data.author.lastName }}</p>
                                     </div>
                                 </div>
@@ -180,11 +180,11 @@
                                         <span class="no-avatar"><img [src]="userIcon" alt=""></span>
                                     </div>
                                     <div class="author-avatar" *ngIf="postDetails.data.author.avatar">
-                                        <img width="40" height="40" [src]="postDetails.data.author.avatar.fileUrl" alt="">
+                                        <img width="40" height="40" (click)="redirectToAuthor(postDetails.data.author.id)" [src]="postDetails.data.author.avatar.fileUrl" alt="">
                                     </div>
                                     <div class="author-name-container">
                                         <p class="author">ავტორი</p>
-                                        <p class="full-name">
+                                        <p class="full-name" (click)="redirectToAuthor(postDetails.data.author.id)">
                                             {{ postDetails.data.author.firstName }} {{ postDetails.data.author.lastName }}
                                         </p>
                                     </div>
@@ -273,8 +273,8 @@
                                                     </div>
                                                     <div class="additional-info">
                                                         <div class="add-info">
-                                                            <img [src]="similarPost.author.avatar.fileUrl" alt="">
-                                                            <p class="author-name">{{ similarPost.author.firstName }} {{ similarPost.author.lastName }}</p>
+                                                            <img [src]="similarPost.author.avatar.fileUrl" alt="" (click)="redirectToAuthor(similarPost.author.id)">
+                                                            <p class="author-name" (click)="redirectToAuthor(similarPost.author.id)">{{ similarPost.author.firstName }} {{ similarPost.author.lastName }}</p>
                                                             <span>&centerdot;</span>
                                                             <p>{{ similarPost.publishedAt | relativeTime }}</p>
                                                             <span>&centerdot;</span> <i class="bi bi-file-earmark-text"></i>
@@ -306,7 +306,7 @@
                         <div class="regular-post" *ngFor="let regularPost of regularPosts.data" (click)="redirectToPostDetails(regularPost.id)">
                             <h3 class="post-title">{{ regularPost.title }}</h3>
                             <div class="additional-info">
-                                <p class="author-name" *ngIf="regularPost.author">
+                                <p class="author-name" *ngIf="regularPost.author" (click)="redirectToAuthor(regularPost.author.id)">
                                     {{ regularPost.author.firstName }} {{ regularPost.author.lastName }}
                                 </p>
                                 <span *ngIf="regularPost.author">&centerdot;</span>
@@ -422,11 +422,11 @@
                     <div class="author-container">
                         <div class="author-info">
                             <div class="author-avatar">
-                                <img width="40" height="40" [src]="postDetails.data.author.avatar.fileUrl" alt="">
+                                <img (click)="redirectToAuthor(postDetails.data.author.id)" width="40" height="40" [src]="postDetails.data.author.avatar.fileUrl" alt="">
                             </div>
                             <div class="author-name-container">
                                 <p class="author">ავტორი</p>
-                                <p class="full-name">
+                                <p class="full-name" (click)="redirectToAuthor(postDetails.data.author.id)">
                                     {{ postDetails.data.author.firstName }} {{ postDetails.data.author.lastName }}
                                 </p>
                             </div>
@@ -514,8 +514,8 @@
                                             </div>
                                             <div class="additional-info">
                                                 <div class="add-info">
-                                                    <img [src]="similarPost.author.avatar.fileUrl" alt="">
-                                                    <p class="author-name">{{ similarPost.author.firstName }} {{ similarPost.author.lastName }}</p>
+                                                    <img (click)="redirectToAuthor(similarPost.author.id)" [src]="similarPost.author.avatar.fileUrl" alt="">
+                                                    <p class="author-name" (click)="redirectToAuthor(similarPost.author.id)">{{ similarPost.author.firstName }} {{ similarPost.author.lastName }}</p>
                                                     <span>&centerdot;</span>
                                                     <p>{{ similarPost.publishedAt | relativeTime }}</p>
                                                     <span>&centerdot;</span> <i class="bi bi-file-earmark-text"></i>

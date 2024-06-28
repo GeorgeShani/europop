@@ -110,6 +110,7 @@
             
                                 .author-name {
                                     @include font(500, 14px, #fff);
+                                    cursor: pointer;
                                 }
             
                                 img {
@@ -118,6 +119,7 @@
                                     object-fit: cover;
                                     border-radius: 50%;
                                     margin-right: 8px;
+                                    cursor: pointer;
                                 }
             
                                 p {

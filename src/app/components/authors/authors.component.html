@@ -10,12 +10,12 @@
                     <div class="author-card" *ngFor="let author of authorsData.data">
                         <div class="cover">
                             <img *ngIf="author.coverImage !== null" class="author-cover" [src]="author.coverImage.fileUrl" alt="">
-                            <img *ngIf="author.avatar !== null" class="author-avatar" [src]="author.avatar.fileUrl" alt="">
+                            <img *ngIf="author.avatar !== null" (click)="redirectToAuthor(author.id)" class="author-avatar" [src]="author.avatar.fileUrl" alt="">
                             <span *ngIf="author.coverImage === null" class="no-author-cover"></span>
-                            <span *ngIf="author.avatar === null" class="no-avatar"><img [src]="userIcon" alt=""></span>
+                            <span *ngIf="author.avatar === null" (click)="redirectToAuthor(author.id)" class="no-avatar"><img [src]="userIcon" alt=""></span>
                         </div>
                         <div class="main-info">
-                            <p class="author-full-name uppercase">
+                            <p class="author-full-name uppercase" (click)="redirectToAuthor(author.id)">
                                 {{ author.firstName }} {{ author.lastName }}
                             </p>
                             <div class="additional-info">

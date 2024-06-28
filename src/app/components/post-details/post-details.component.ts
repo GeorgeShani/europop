@@ -50,6 +50,10 @@ export class PostDetailsComponent implements OnInit {
     window.location.href = `/category/${id}`;
   }
 
+  redirectToAuthor(iid: number) {
+    window.location.href = `/author/${iid}`;
+  }
+
   ngOnInit(): void {
     this._route.params.subscribe((params) => {
       const id = params['id'];

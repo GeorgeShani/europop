@@ -107,16 +107,26 @@
                             }
                         }
 
+                        &::ng-deep hr {
+                            width: 100%;
+                        }
+
+                        &::ng-deep img {
+                            margin-bottom: 24px;
+                        }
+
                         &::ng-deep ul {
                             width: 100%;
                             list-style: none;
                             margin-left: 16px;
+                            margin-bottom: 20px;
                             padding: 0;
 
                             li {
                                 @include font(600, 16px, #fff);
                                 position: relative;
                                 margin-bottom: 20px;
+                                width: 100%;
 
                                 a {
                                     color: #f15a22;
@@ -165,6 +175,7 @@
                     
                             .author-avatar {
                                 @include flex(column, center, center);
+                                cursor: pointer;
                     
                                 img {
                                     border-radius: 50%;
@@ -190,6 +201,7 @@
                     
                             .author-name-container {
                                 @include flex(column, flex-start, center);
+                                cursor: pointer;
                     
                                 .full-name {
                                     @include font(600, 14px, #fff);
@@ -236,29 +248,48 @@
                         }
 
                         &::ng-deep ul {
+                            width: 100%;
+                            list-style: none;
+                            margin-left: 16px;
+                            margin-bottom: 20px;
+                            padding: 0;
 
                             li {
-                                border-bottom: 1px solid rgba(73, 73, 75, 0.3);
-                                padding: 16px 0;
+                                @include font(600, 16px, #fff);
+                                position: relative;
+                                margin-bottom: 20px;
+                                width: 100%;
 
-                                &:last-child {
-                                    border-bottom: none;
+                                &:last-child::before {
+                                    background-color: transparent;
                                 }
 
                                 a {
-                                    @include font(600, 15px, #f15a22);
+                                    color: #f15a22;
                                 }
 
                                 &::before {
+                                    position: absolute;
                                     content: "";
-                                    display: inline-block;
-                                    position: relative;
-                                    top: -3px;
-                                    width: 7px;
-                                    height: 7px;
+                                    display: block;
+                                    width: 100%;
+                                    height: 1px;
+                                    background-color: rgba(73, 73, 75, 0.3);
+                                    left: -20px;
+                                    bottom: -10px;
+                                }
+
+                                &::after {
+                                    content: "";
+                                    width: 8px;
+                                    height: 8px;
+                                    display: block;
                                     border-radius: 50%;
-                                    background-color: #f15a22;
-                                    margin-right: 9px;
+                                    position: absolute;
+                                    left: -16px;
+                                    top: 50%;
+                                    transform: translateY(-50%);
+                                    background: #f15a22;
                                 }
                             }
                         }
@@ -655,6 +686,7 @@
 
                             .author-avatar {
                                 @include flex(column, center, center);
+                                cursor: pointer;
 
                                 img {
                                     border-radius: 50%;
@@ -689,6 +721,7 @@
 
                                 .full-name {
                                     @include font(600, 14px, #fff);
+                                    cursor: pointer;
                                 }
                             }
                         }
@@ -962,6 +995,7 @@
 
                                         .author-name {
                                             @include font(500, 14px, #fff);
+                                            cursor: pointer;
                                         }
 
                                         img {
@@ -970,6 +1004,7 @@
                                             object-fit: cover;
                                             border-radius: 50%;
                                             margin-right: 8px;
+                                            cursor: pointer;
                                         }
 
                                         p {
@@ -1398,7 +1433,7 @@
             position: relative;
             z-index: 4;
             width: 100%;
-            height: 600px;
+            min-height: 550px;
 
             .post-main-text {
                 position: relative;
@@ -1407,6 +1442,62 @@
                 &::ng-deep p {
                     @include font(600, 16px, rgba(255, 255, 255, 0.85));
                     line-height: 26px;
+                    margin-bottom: 20px;
+            
+                    &::ng-deep a {
+                        color: #f15a22;
+                    }
+                }
+            
+                &::ng-deep hr {
+                    width: 100%;
+                }
+            
+                &::ng-deep img {
+                    width: 100%;
+                    height: auto;
+                    margin-bottom: 24px;
+                }
+            
+                &::ng-deep ul {
+                    width: 100%;
+                    list-style: none;
+                    margin-left: 16px;
+                    padding: 0;
+            
+                    li {
+                        @include font(600, 16px, #fff);
+                        position: relative;
+                        margin-bottom: 20px;
+            
+                        a {
+                            color: #f15a22;
+                        }
+            
+                        &::before {
+                            position: absolute;
+                            content: "";
+                            display: block;
+                            width: 100%;
+                            height: 1px;
+                            background-color: rgba(73, 73, 75, 0.3);
+                            left: -20px;
+                            bottom: -10px;
+                        }
+            
+                        &::after {
+                            content: "";
+                            width: 8px;
+                            height: 8px;
+                            display: block;
+                            border-radius: 50%;
+                            position: absolute;
+                            left: -16px;
+                            top: 50%;
+                            transform: translateY(-50%);
+                            background: #f15a22;
+                        }
+                    }
                 }
             }
         
@@ -1418,11 +1509,11 @@
                 background-size: cover;
                 border-radius: 12px;
                 position: absolute;
-                top: 0;
+                bottom: 0;
                 left: 0;
                 z-index: 2;
                 width: 100%;
-                height: 100%;
+                height: 513px;
 
                 .message-text {
                     @include flex(column, center, center);
@@ -1643,6 +1734,7 @@
         
                     .author-avatar {
                         @include flex(column, center, center);
+                        cursor: pointer;
         
                         img {
                             border-radius: 50%;
@@ -1660,6 +1752,7 @@
         
                         .full-name {
                             @include font(600, 14px, #fff);
+                            cursor: pointer;
                         }
                     }
                 }

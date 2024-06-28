@@ -602,6 +602,7 @@
                                         position: relative;
                                         border: 2px solid rgb(28, 28, 29);
                                         box-sizing: content-box;
+                                        cursor: pointer;
 
                                         img {
                                             width: 100%;
@@ -614,6 +615,7 @@
 
                                     .author-info p {
                                         @include font(500, 12px, #fff);
+                                        cursor: pointer;
                                     }
                                 }
 

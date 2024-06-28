@@ -53,4 +53,8 @@ export class SearchResultsComponent {
   redirectToAuthors() {
     window.location.href = "/authors";
   }
+
+  redirectToAuthor(id: number) {
+    window.location.href = `/author/${id}`;
+  }
 }

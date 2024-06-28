@@ -94,10 +94,10 @@
                     <div class="authors-list">
                         <div class="author" *ngFor="let author of results.data.authors">
                             <div class="info-container">
-                                <div class="image">
+                                <div class="image" (click)="redirectToAuthor(author.id)">
                                     <img [src]="author.avatar.fileUrl" alt="">
                                 </div>
-                                <div class="main-info">
+                                <div class="main-info" (click)="redirectToAuthor(author.id)">
                                     <h3>{{ author.firstName }} {{ author.lastName }}</h3>
                                 </div>
                             </div>
