@@ -195,11 +195,20 @@
                                     მეტი <i class="bi bi-arrow-right-circle-fill"></i>
                                 </button>
                             </div>
+                            <div class="video-player">
+                                <div class="preview-image-container" *ngIf="!isVideoPlayerPlaying[0]">
+                                    <img [src]="getThumbnail(currentVideoId[0])" alt=""><div class="shadow"></div>
+                                    <button (click)="playVideo(0)" type="button" id="playBtn"><img [src]="playButton" alt=""></button>
+                                    <p class="title uppercase"><img [src]="epopPlusLogoGray" alt=""> {{ videoName[0] }}</p>
+                                </div>
+                                <iframe *ngIf="isVideoPlayerPlaying[0]" [attr.src]="getVideoUrl(currentVideoId[0])" 
+                                allow="autoplay; encrypted-media" allowfullscreen frameborder="0"></iframe>
+                            </div>
                             <div class="video-slider">
                                 <div class="video-card" *ngFor="let video of awayMeetingsVideoGallery.data.items">
                                     <div class="image-container">
                                         <img class="videoThumbnail" [src]="video.thumbnailUrl" alt="">
-                                        <button type="button" id="playBtn">
+                                        <button type="button" id="playBtn" (click)="setVideoId(0, video.youtubeVideoId, video.title)">
                                             <img [src]="playButton" alt="">
                                         </button>
                                     </div>
@@ -273,7 +282,7 @@
                                 <div class="big-video-card" *ngFor="let video of europopForumVideoGallery.data.items">
                                     <div class="image-container">
                                         <img class="videoThumbnail" [src]="video.thumbnailUrl" alt="">
-                                        <button type="button" id="playBtn">
+                                        <button type="button" id="playBtn" (click)="playOuterVideo(1, video.youtubeVideoId)">
                                             <img [src]="playButton" alt="">
                                         </button>
                                     </div>
@@ -326,11 +335,21 @@
                                     მეტი <i class="bi bi-arrow-right-circle-fill"></i>
                                 </button>
                             </div>
+                            <div class="video-player">
+                                <div class="preview-image-container" *ngIf="!isVideoPlayerPlaying[2]">
+                                    <img [src]="getThumbnail(currentVideoId[2])" alt="">
+                                    <div class="shadow"></div>
+                                    <button (click)="playVideo(2)" type="button" id="playBtn"><img [src]="playButton" alt=""></button>
+                                    <p class="title uppercase"><img [src]="epopPlusLogoGray" alt=""> {{ videoName[2] }}</p>
+                                </div>
+                                <iframe *ngIf="isVideoPlayerPlaying[2]" [attr.src]="getVideoUrl(currentVideoId[2])"
+                                allow="autoplay; encrypted-media" allowfullscreen frameborder="0"></iframe>
+                            </div>
                             <div class="video-slider">
                                 <div class="video-card" *ngFor="let video of tableDerbyVideoGallery.data.items">
                                     <div class="image-container">
                                         <img class="videoThumbnail" [src]="video.thumbnailUrl" alt="">
-                                        <button type="button" id="playBtn">
+                                        <button type="button" id="playBtn" (click)="setVideoId(2, video.youtubeVideoId, video.title)">
                                             <img [src]="playButton" alt="">
                                         </button>
                                     </div>
@@ -506,5 +525,16 @@
                 </aside>
             </div>
         </ng-container>
+    </div>
+</div>
+<div class="video-outer-player" *ngIf="isVideoPlayerPlaying[1]">
+    <div class="player-wrapper">
+        <div class="video-player">
+            <iframe *ngIf="isVideoPlayerPlaying[1]" [attr.src]="getVideoUrl(currentVideoId[1])"
+            allow="autoplay; encrypted-media" allowfullscreen frameborder="0"></iframe>
+        </div>
+        <button type="button" id="close-player" (click)="closeOuterVideo(1)">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
     </div>
 </div>

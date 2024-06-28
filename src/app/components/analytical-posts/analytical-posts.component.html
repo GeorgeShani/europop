@@ -14,8 +14,7 @@
                         <div class="main-info">
                             <p class="subtitle">{{ post.subtitle }}</p>
                             <h3 (click)="redirectToPostDetails(post.id)" class="title uppercase">
-                                <img *ngIf="post.type.name === 'ანალიტიოკური სტატია'" width="34" height="20" [src]="epopPlusLogo"
-                                    alt="">
+                                <img *ngIf="post.type.name === 'ანალიტიოკური სტატია'" width="34" height="20" [src]="epopPlusLogo" alt="">
                                 {{ post.title }}
                             </h3>
                         </div>

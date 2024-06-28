@@ -902,6 +902,82 @@
                         }
                     }
 
+                    .video-player {
+                        @include flex(column, center, center);
+                        position: relative;
+                        margin-bottom: 24px;
+                        border-radius: 12px;
+                        width: 100%;
+                        height: 426px;
+
+                        .preview-image-container {
+                            position: relative;
+                            border-radius: inherit;
+                            width: 100%;
+                            height: 100%;
+
+                            .shadow {
+                                box-shadow: rgba(0, 0, 0, 0.8) 0px -112px 56px -52px inset;
+                                border-radius: inherit;
+                                pointer-events: none;
+                                position: absolute;
+                                left: 0px;
+                                top: 0px;
+                                width: 100%;
+                                height: 100%;
+                            }
+
+                            img {
+                                width: 100%;
+                                height: 100%;
+                                border-radius: inherit;
+                                object-fit: cover;
+                            }
+
+                            #playBtn {
+                                @include flex(column, center, center);
+                                position: absolute;
+                                top: 50%;
+                                left: 50%;
+                                transform: translate(-50%, -50%);
+                                border: 3px solid rgb(255, 255, 255);
+                                background-color: transparent;
+                                border-radius: 50%;
+                                width: 100px;
+                                height: 100px;
+                                cursor: pointer;
+                            
+                                img {
+                                    width: 29px;
+                                    height: 33px;
+                                    object-fit: cover;
+                                    display: block;
+                                }
+                            }
+
+                            .title {
+                                @include flex(row, center, flex-start);
+                                @include font(600, 16px, #fff);
+                                max-width: 82%;
+                                position: absolute;
+                                bottom: 28px;
+                                left: 32px;
+
+                                img {
+                                    width: 31px;
+                                    height: 18px;
+                                    margin-right: 6px;
+                                }
+                            }
+                        }
+
+                        iframe {
+                            border-radius: inherit;
+                            width: 100%;
+                            height: 100%;
+                        }
+                    }
+
                     .video-slider {
                         @include flex(row, center, flex-start);
                         overflow-x: scroll;
@@ -1502,6 +1578,55 @@
                         }
                     }
                 }
+            }
+        }
+    }
+}
+
+.video-outer-player {
+    @include flex(column, center, center);
+    background-color: rgba(0, 0, 0, 0.7);
+    position: fixed;
+    top: 0;
+    left: 0;
+    min-width: 100vw;
+    min-height: 100%;
+    width: 100%;
+    height: 100vh;
+    z-index: 8;
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.4s ease 0s;
+
+    .player-wrapper {
+        @include flex(row, flex-start, center);
+        position: relative;
+        width: 805px;
+        height: 426px;
+        cursor: default;
+
+        .video-player {
+            @include flex(column, center, center);
+            border-radius: 18px;
+            width: 760px;
+            height: 426px;
+    
+            iframe {
+                border-radius: inherit;
+                width: 100%;
+                height: 100%;
+            }
+        }
+    
+        #close-player {
+            background-color: transparent;
+            margin-left: 20px;
+            border: none;
+            cursor: pointer;
+    
+            i {
+                font-size: 24px;
+                color: #fff;
             }
         }
     }

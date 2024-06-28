@@ -1,13 +1,14 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FetchService } from '../../services/fetch.service';
 import { externals } from '../../interfaces/external-links.model';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit {
   epopPlusLogo: string = "./../../../assets/images/eplus.png";
   epopPlusLogoGray: string = "./../../../assets/images/eplus-gray.png";
   poweredBy: string = "./../../../assets/images/powered-by.svg";
@@ -31,6 +32,14 @@ export class HomeComponent {
   europopForumVideoGallery!: any;
   tableDerbyVideoGallery!: any;
 
+  currentVideoId: string[] = ["_vGmWkXkRz4", "zRgFViXgPZ4", "1TgM0z2dnQ0"];
+  isVideoPlayerPlaying: boolean[] = [false, false, false];
+  videoName: string[] = [
+    "გასვლითი დაზვერვა გერმანიაში",
+    "Dudey - გოგო, რომელსაც MMA შეუყვარდა | europop: tales of play",
+    "ტატო VS მინა | სუპერფინალი [მაგიდის დერბი]"
+  ];
+
   socialMediaLinks: externals[] = [
     { name: "Instagram", imageUrl: "./../../../assets/images/instagram-logo.svg", linkUrl: "https://www.instagram.com/europop.ge" },
     { name: "Facebook", imageUrl: "./../../../assets/images/facebook-logo.svg", linkUrl: "https://www.facebook.com/europop.ge" },
@@ -43,7 +52,9 @@ export class HomeComponent {
     { name: "", imageUrl: "./../../../assets/images/googleplay.png", linkUrl: "https://play.google.com/store/apps/details?id=ge.europop.sport.news&hl=en_US" },
   ];
 
-  constructor(private _fetch: FetchService) {
+  constructor(private _fetch: FetchService, private _sanitizer: DomSanitizer) {}
+
+  ngOnInit(): void {
     this._fetch.getData("featuredPosts").subscribe((data) => {
       this.featuredPostsData = data;
 
@@ -99,6 +110,33 @@ export class HomeComponent {
     this._fetch.getVideoGalleryById(143).subscribe((data) => {
       this.europopForumVideoGallery = data;
     });
+  }
+
+  setVideoId(index: number, videoId: string, videoName: string) {
+    this.isVideoPlayerPlaying[index] = false;
+    this.currentVideoId[index] = videoId;
+    this.videoName[index] = videoName;
+  }
+
+  playVideo(index: number) {
+    this.isVideoPlayerPlaying[index] = true;
+  }
+
+  playOuterVideo(index: number, videoId: string) {
+    this.isVideoPlayerPlaying[index] = true;
+    this.currentVideoId[index] = videoId;
+  }
+
+  closeOuterVideo(index: number) {
+    this.isVideoPlayerPlaying[index] = false;
+  }
+
+  getThumbnail(videoId: string): SafeResourceUrl {
+    return this._sanitizer.bypassSecurityTrustResourceUrl(`https://i.ytimg.com/vi/${videoId}/maxresdefault.jpg`);
+  }
+
+  getVideoUrl(videoId: string): SafeResourceUrl {
+    return this._sanitizer.bypassSecurityTrustResourceUrl(`https://www.youtube.com/embed/${videoId}?autoplay=1&start=0`);
   }
 
   redirectToRegister() {
