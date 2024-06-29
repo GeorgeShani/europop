@@ -236,6 +236,8 @@ export class NavbarComponent implements OnInit {
 
   getSearchResults() {
     if (this.searchQuery) {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      
       this._router.navigate(['/search'], {
         queryParams: {
           query: this.searchQuery
@@ -281,10 +283,6 @@ export class NavbarComponent implements OnInit {
 
   toggleDropDown() {
     this.isToggled = !this.isToggled;
-  }
-
-  toggleEpopPlusMenu() {
-    this.isEpopPlusMenuToggled = !this.isEpopPlusMenuToggled;
   }
 
   setSelectOption(option: string) {

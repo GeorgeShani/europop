@@ -24,6 +24,10 @@ export class AboutUsComponent {
     window.location.href = "/authors";
   }
 
+  redirectToAuthor(id: number) {
+    window.location.href = `/author/${id}`;
+  }
+
   redirectToLogin() {
     window.location.href = "/auth/login";
   }

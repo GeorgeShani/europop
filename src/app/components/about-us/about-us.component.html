@@ -57,10 +57,10 @@
             <div class="author-cards-slider">
                 <div class="slider-inner">
                     <div class="author-card" *ngFor="let author of authorsData.data">
-                        <div class="image-container">
+                        <div class="image-container" (click)="redirectToAuthor(author.id)">
                             <img [src]="author.avatar.fileUrl" alt="">
                         </div>
-                        <div class="info-container">
+                        <div class="info-container" (click)="redirectToAuthor(author.id)">
                             <span>{{ author.firstName }}</span> {{ author.lastName }}
                         </div>
                     </div>
@@ -90,7 +90,7 @@
                     <h3 class="headline">europop</h3>
                     <div class="info">
                         <span>&commat;europop_</span>
-                        <span>77.3k subscribers</span>
+                        <span>77.4k subscribers</span>
                         <span>552 videos</span>
                     </div>
                     <p class="description">სპორტული ანალიტიკა, ექსკლუზივები და სიახლეები. ყველა ახალი ამბავი ერთ პორტალზე.</p>
