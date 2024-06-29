@@ -236,7 +236,10 @@
                                                 </div>
                                                 <div class="info-container">
                                                     <p class="subtitle">{{ similarPost.subtitle }}</p>
-                                                    <h3 (click)="redirectToPostDetails(similarPost.id)" class="title">{{ similarPost.title }}</h3>
+                                                    <h3 (click)="redirectToPostDetails(similarPost.id)" class="title">
+                                                        <img *ngIf="similarPost.tag.name === 'Powered by Europebet'" width="18" height="18" [src]="europeBetMiniLogo" alt="">
+                                                        {{ similarPost.title }}
+                                                    </h3>
                                                     <div class="text" [innerHTML]="similarPost.text"></div>
                                                     <div class="additional-info">
                                                         <p>{{ similarPost.publishedAt | relativeTime }}
@@ -477,7 +480,10 @@
                                         </div>
                                         <div class="info-container">
                                             <p class="subtitle">{{ similarPost.subtitle }}</p>
-                                            <h3 (click)="redirectToPostDetails(similarPost.id)" class="title">{{ similarPost.title }}</h3>
+                                            <h3 (click)="redirectToPostDetails(similarPost.id)" class="title">
+                                                <img *ngIf="similarPost.tag.name === 'Powered by Europebet'" width="18" height="18" [src]="europeBetMiniLogo" alt="">
+                                                {{ similarPost.title }}
+                                            </h3>
                                             <div class="text" [innerHTML]="similarPost.text"></div>
                                             <div class="additional-info">
                                                 <p>{{ similarPost.publishedAt | relativeTime }}
@@ -543,71 +549,4 @@
             </div>
         </div>
     </ng-container>
-    <!-- <ng-container *ngIf="postDetails.data.type.name == 'სტანდარტული სტატია'">
-            <div class="standard-post-main">
-                <img [src]="postDetails.data.image.fileUrl" [alt]="postDetails.data.image.fileName">
-                <h3>{{ postDetails.data.subtitle }}</h3>
-                <img width="18" height="18" *ngIf="postDetails.data.tag.name === 'Powered by Europebet'" [src]="europeBetMiniLogo" alt="">
-                <h1>{{ postDetails.data.title }}</h1>
-                <div [innerHTML]="this._domSanitizer.bypassSecurityTrustHtml(postDetails.data.text)"></div>
-            </div>
-            <ng-container *ngIf="postDetails.data.modules">
-                <div class="div" *ngFor="let module of postDetails.data.modules; let i = index; let moduleIndex = index">
-                    <ng-container *ngIf="module.type === 'TEXT'">
-                        <div class="text" [innerHTML]="_domSanitizer.bypassSecurityTrustHtml(module.text)"></div>
-                        <ng-container *ngIf="oembedContents[i]">
-                            <div class="oembed-content" [innerHTML]="oembedContents[i]"></div>
-                        </ng-container>
-                        <ng-container *ngIf="_contentExtractor.extractVideoLink(module.text)">
-                            <div class="video-player" [innerHTML]="videoPlayerHtml"></div>
-                        </ng-container>
-                    </ng-container>
-                    <ng-container *ngIf="module.type === 'MORE_ABOUT_THIS_SUBJECT'">
-                        <div class="more-about-this-subject">
-                            <h3 class="title uppercase">მეტი ამ თემაზე</h3>
-                            <div class="list">
-                                <div class="post-card" *ngFor="let post of module.items" (click)="redirectToPostDetails(post.postId)">
-                                    <h3 class="post-title">{{ post.title }}</h3>
-                                    <button type="button">
-                                        <i class="bi bi-arrow-right-circle"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </ng-container>
-                    <ng-container *ngIf="module.type === 'QUOTE'">
-                        <div class="quote-block">
-                            <div class="top-left-quote">
-                                <img [src]="leftQuote" alt="">
-                            </div>
-                            <blockquote class="uppercase">{{ module.text }}</blockquote>
-                            <div class="bottom-right-quote">
-                                <img [src]="rightQuote" alt="">
-                            </div>
-                        </div>
-                    </ng-container>
-                    <ng-container *ngIf="module.type === 'PHOTO_GALLERY'">
-                        <ng-container *ngIf="module.items.length === 1">
-                            <img [src]="module.items[0].image.fileUrl" [alt]="module.items[0].image.description">
-                        </ng-container>
-                        <ng-container *ngIf="module.items.length > 1">
-                            <div class="image-slider">
-                                <div class="slides" [style.transform]="'translateX(' + (-currentIndexes[moduleIndex] * 100) + '%)'">
-                                    <img *ngFor="let item of module.items; let j = index" 
-                                        [class.active]="j === currentIndexes[moduleIndex]" 
-                                        class="slide" [src]="item.image.fileUrl"
-                                    >
-                                </div>
-                                <div class="dots">
-                                    <span *ngFor="let item of module.items; let j = index" 
-                                        [class.active]="j === currentIndexes[moduleIndex]"
-                                        (click)="showSlide(moduleIndex, j)" class="dot">
-                                    </span>
-                                </div>
-                            </div>
-                        </ng-container>
-                    </ng-container>
-                </div>
-            </ng-container>
-        </ng-container> -->
 </ng-container>

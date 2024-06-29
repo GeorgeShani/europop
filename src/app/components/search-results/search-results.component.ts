@@ -36,6 +36,8 @@ export class SearchResultsComponent {
             for (let i = 0; i < 8; i++) {
               this.first8Posts.push(this.results.data.posts[i]);
             }
+          } else {
+            this.first8Posts = this.results.data.posts;
           }
         });
       }

@@ -95,7 +95,7 @@
                         }
             
                         .title {
-                            @include font(600, 16px, #fff);
+                            @include font(600, 15px, #fff);
                             line-height: 21px;
                             min-height: 33px;
                             cursor: pointer;

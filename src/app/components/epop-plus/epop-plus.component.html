@@ -1,0 +1,387 @@
+<div class="epop-plus-container">
+    <div class="cover"></div>
+    <div class="main-content">
+        <div class="registration-message">
+            <h2 class="uppercase">გაეცანი შენზე მორგებულ სპორტულ სიახლეებსა და ანალიტიკურ სტატიებს.</h2>
+            <button type="button" id="register-btn" (click)="redirectToRegister()">რეგისტრაცია</button>
+        </div>
+        <div class="more-content">
+            <div class="posts-container">
+                <ng-container *ngIf="analyticalPosts">
+                    <div class="big-analytical-post-card">
+                        <div class="image-container">
+                            <img (click)="redirectToPostDetails(analyticalPosts.data[analyticalPosts.data.length - 1].id)" 
+                            [src]="analyticalPosts.data[analyticalPosts.data.length - 1].image.fileUrl" alt="">
+                        </div>
+                        <div class="info-container">
+                            <div class="main-info">
+                                <p class="subtitle">{{ analyticalPosts.data[analyticalPosts.data.length - 1].subtitle }}</p>
+                                <h3 (click)="redirectToPostDetails(analyticalPosts.data[analyticalPosts.data.length - 1].id)" class="title uppercase">
+                                    <img width="34" height="20" [src]="epopPlusLogo" alt="">
+                                    {{ analyticalPosts.data[analyticalPosts.data.length - 1].title }}
+                                </h3>
+                            </div>
+                            <div class="additional-info">
+                                <div class="add-info">
+                                    <img [src]="analyticalPosts.data[analyticalPosts.data.length - 1].author.avatar.fileUrl" 
+                                    (click)="redirectToAuthor(analyticalPosts.data[analyticalPosts.data.length - 1].author.id)" alt="">
+                                    <p class="author-name" (click)="redirectToAuthor(analyticalPosts.data[analyticalPosts.data.length - 1].author.id)">
+                                        {{ analyticalPosts.data[analyticalPosts.data.length - 1].author.firstName }} 
+                                        {{ analyticalPosts.data[analyticalPosts.data.length - 1].author.lastName }}
+                                    </p>
+                                    <span>&centerdot;</span>
+                                    <p>{{ analyticalPosts.data[analyticalPosts.data.length - 1].publishedAt | relativeTime }}</p>
+                                    <span>&centerdot;</span> <i class="bi bi-file-earmark-text"></i>
+                                    <p>{{ analyticalPosts.data[analyticalPosts.data.length - 1].estimatedReadTime }} წუთი</p>
+                                </div>
+                                <div class="interaction-buttons">
+                                    <button type="button" id="post-interaction-btn">
+                                        <i class="bi bi-hand-thumbs-up"></i>
+                                    </button>
+                                    <button type="button" id="post-interaction-btn">
+                                        <i class="bi bi-chat-dots"></i>
+                                    </button>
+                                    <button type="button" id="post-interaction-btn">
+                                        <i class="bi bi-bookmark-plus"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="analytical-posts-container">
+                        <div class="header">
+                            <div class="main-info">
+                                <h5 class="uppercase">ანალიტიკური სტატიები</h5>
+                                <p>ევროპოპის ანალიტიკა, ბლოგები, ინტერვიუები</p>
+                            </div>
+                            <button type="button" id="show-all" (click)="redirectToAnalyticalPosts()">
+                                მეტი <i class="bi bi-arrow-right-circle-fill"></i>
+                            </button>
+                        </div>
+                        <div class="analytical-posts-slider">
+                            <div class="post-card" *ngFor="let post of analyticalPosts.data">
+                                <div class="image-container" (click)="redirectToPostDetails(post.id)">
+                                    <img [src]="post.image.fileUrl" alt="">
+                                </div>
+                                <div class="info-container">
+                                    <p class="subtitle">{{ post.subtitle }}</p>
+                                    <h3 class="title uppercase" (click)="redirectToPostDetails(post.id)">
+                                        <img width="34" height="20" [src]="epopPlusLogo" alt=""> {{ post.title }}
+                                    </h3>
+                                    <div class="author-info-container">
+                                        <div class="author-image" (click)="redirectToAuthor(post.author.id)">
+                                            <img [src]="post.author.avatar.fileUrl" alt="">
+                                        </div>
+                                        <div class="author-info" (click)="redirectToAuthor(post.author.id)">
+                                            <p class="name">{{ post.author.firstName }} {{ post.author.lastName }}</p>
+                                        </div>
+                                    </div>
+                                    <div class="additional-info">
+                                        <div class="date-and-read-time">
+                                            <p>{{ post.publishedAt | relativeTime }}</p>
+                                            <span>&centerdot;</span> <i class="bi bi-file-earmark-text"></i>
+                                            <p>{{ post.estimatedReadTime }} წუთი</p>
+                                        </div>
+                                        <div class="interaction-buttons">
+                                            <button type="button" id="post-interaction-btn">
+                                                <i class="bi bi-hand-thumbs-up"></i>
+                                            </button>
+                                            <button type="button" id="post-interaction-btn">
+                                                <i class="bi bi-chat-dots"></i>
+                                            </button>
+                                            <button type="button" id="post-interaction-btn">
+                                                <i class="bi bi-bookmark-plus"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </ng-container>
+                <ng-container *ngIf="awayMeetingsVideoGallery">
+                    <div class="away-meetings-video-gallery">
+                        <div class="header">
+                            <div class="main-info">
+                                <h5 class="uppercase">{{ awayMeetingsVideoGallery.data.title }}</h5>
+                                <div class="description" [innerHTML]="awayMeetingsVideoGallery.data.description"></div>
+                            </div>
+                            <button type="button" id="show-all"
+                                (click)="redirectToYoutubePlaylist(awayMeetingsVideoGallery.data.youtubePlaylistId)">
+                                მეტი <i class="bi bi-arrow-right-circle-fill"></i>
+                            </button>
+                        </div>
+                        <div class="video-player">
+                            <div class="preview-image-container" *ngIf="!isVideoPlayerPlaying[0]">
+                                <img [src]="getThumbnail(currentVideoId[0])" alt="">
+                                <div class="shadow"></div>
+                                <button (click)="playVideo(0)" type="button" id="playBtn"><img [src]="playButton"
+                                        alt=""></button>
+                                <p class="title uppercase"><img [src]="epopPlusLogoGray" alt=""> {{ videoName[0] }}</p>
+                            </div>
+                            <iframe *ngIf="isVideoPlayerPlaying[0]" [attr.src]="getVideoUrl(currentVideoId[0])"
+                                allow="autoplay; encrypted-media" allowfullscreen frameborder="0"></iframe>
+                        </div>
+                        <div class="video-slider">
+                            <div class="video-card" *ngFor="let video of awayMeetingsVideoGallery.data.items">
+                                <div class="image-container">
+                                    <img class="videoThumbnail" [src]="video.thumbnailUrl" alt="">
+                                    <button type="button" id="playBtn"
+                                        (click)="setVideoId(0, video.youtubeVideoId, video.title)">
+                                        <img [src]="playButton" alt="">
+                                    </button>
+                                </div>
+                                <div class="info-container">
+                                    <p><img width="31" height="18" [src]="epopPlusLogoGray" alt=""> {{ video.title }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </ng-container>
+                <ng-container *ngIf="europopForumVideoGallery">
+                    <div class="europop-forum-video-gallery">
+                        <div class="header">
+                            <div class="main-info">
+                                <h5 class="uppercase">{{ europopForumVideoGallery.data.title }}</h5>
+                                <div class="description" [innerHTML]="europopForumVideoGallery.data.description"></div>
+                            </div>
+                            <button type="button" id="show-all"
+                                (click)="redirectToYoutubePlaylist(europopForumVideoGallery.data.youtubePlaylistId)">
+                                მეტი <i class="bi bi-arrow-right-circle-fill"></i>
+                            </button>
+                        </div>
+                        <div class="video-slider">
+                            <div class="big-video-card" *ngFor="let video of europopForumVideoGallery.data.items">
+                                <div class="image-container">
+                                    <img class="videoThumbnail" [src]="video.thumbnailUrl" alt="">
+                                    <button type="button" id="playBtn" (click)="playOuterVideo(1, video.youtubeVideoId)">
+                                        <img [src]="playButton" alt="">
+                                    </button>
+                                </div>
+                                <div class="info-container">
+                                    <p><img width="31" height="18" [src]="epopPlusLogoGray" alt=""> {{ video.title }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </ng-container>
+                <ng-container *ngIf="moreLatestPosts">
+                    <div class="more-latest-posts">
+                        <div class="post-card" *ngFor="let moreLatestPost of moreLatestPosts.data">
+                            <div class="image-container">
+                                <img (click)="redirectToPostDetails(moreLatestPost.id)" [src]="moreLatestPost.image.fileUrl" alt="">
+                            </div>
+                            <div class="info-container">
+                                <p class="subtitle">{{ moreLatestPost.subtitle }}</p>
+                                <h3 (click)="redirectToPostDetails(moreLatestPost.id)" class="title">{{ moreLatestPost.title }}</h3>
+                                <div class="text" [innerHTML]="moreLatestPost.text"></div>
+                                <div class="additional-info">
+                                    <p>{{ moreLatestPost.publishedAt | relativeTime }}
+                                        <span>&centerdot;</span> <i class="bi bi-file-earmark-text"></i>
+                                        {{ moreLatestPost.estimatedReadTime }} წუთი
+                                    </p>
+                                    <div class="interaction-buttons">
+                                        <button type="button" id="post-interaction-btn">
+                                            <i class="bi bi-hand-thumbs-up"></i>
+                                        </button>
+                                        <button type="button" id="post-interaction-btn">
+                                            <i class="bi bi-chat-dots"></i>
+                                        </button>
+                                        <button type="button" id="post-interaction-btn">
+                                            <i class="bi bi-bookmark-plus"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </ng-container>
+                <ng-container *ngIf="tableDerbyVideoGallery">
+                    <div class="table-derby-video-gallery">
+                        <div class="header">
+                            <div class="main-info">
+                                <h5 class="uppercase">{{ tableDerbyVideoGallery.data.title }}</h5>
+                                <div class="description" [innerHTML]="tableDerbyVideoGallery.data.description"></div>
+                            </div>
+                            <button type="button" id="show-all"
+                                (click)="redirectToYoutubePlaylist(tableDerbyVideoGallery.data.youtubePlaylistId)">
+                                მეტი <i class="bi bi-arrow-right-circle-fill"></i>
+                            </button>
+                        </div>
+                        <div class="video-player">
+                            <div class="preview-image-container" *ngIf="!isVideoPlayerPlaying[2]">
+                                <img [src]="getThumbnail(currentVideoId[2])" alt="">
+                                <div class="shadow"></div>
+                                <button (click)="playVideo(2)" type="button" id="playBtn"><img [src]="playButton"
+                                        alt=""></button>
+                                <p class="title uppercase"><img [src]="epopPlusLogoGray" alt=""> {{ videoName[2] }}</p>
+                            </div>
+                            <iframe *ngIf="isVideoPlayerPlaying[2]" [attr.src]="getVideoUrl(currentVideoId[2])"
+                                allow="autoplay; encrypted-media" allowfullscreen frameborder="0"></iframe>
+                        </div>
+                        <div class="video-slider">
+                            <div class="video-card" *ngFor="let video of tableDerbyVideoGallery.data.items">
+                                <div class="image-container">
+                                    <img class="videoThumbnail" [src]="video.thumbnailUrl" alt="">
+                                    <button type="button" id="playBtn"
+                                        (click)="setVideoId(2, video.youtubeVideoId, video.title)">
+                                        <img [src]="playButton" alt="">
+                                    </button>
+                                </div>
+                                <div class="info-container">
+                                    <p><img width="31" height="18" [src]="epopPlusLogoGray" alt=""> {{ video.title }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </ng-container>
+            </div>
+            <aside class="aside">
+                <div class="subscribe-prompt">
+                    <div class="header">
+                        <h3 class="uppercase">გამოიწერე სიახლეები!</h3>
+                        <p>შემოგვიერთდი და პირველი გაეცანი მსოფლიო სპორტის უახლეს ამბებს</p>
+                    </div>
+                    <div class="subscribe-input-container">
+                        <div class="input-container">
+                            <input type="email" name="" id="email-input" placeholder="ელ-ფოსტა">
+                            <button type="button" id="subscribe-btn">გამოიწერე</button>
+                        </div>
+                        <div class="message">
+                            <p>* სიახლეების გამოწერით ადასტურებ, რომ გაეცანი კონფიდენციალურობის პოლიტიკას და ეთანხმები, რომ შენი
+                            მონაცემები დაამუშავოს კომპანიამ შეტყობინებების გამოსაგზავნად</p>
+                        </div>
+                    </div>
+                </div>
+                <ng-container *ngIf="europebetPosts && featuredEuropebetPost">
+                    <div class="europebet-posts">
+                        <span class="powered-by"><img [src]="poweredBy" alt=""></span>
+                        <span class="europebet"><img [src]="europeBetLogo" alt=""></span>
+                        <div class="featured-post-card">
+                            <div class="image-container" (click)="redirectToPostDetails(featuredEuropebetPost.data.id)">
+                                <img [src]="featuredEuropebetPost.data.image.fileUrl" alt="">
+                            </div>
+                            <div class="info-container">
+                                <p class="subtitle">{{ featuredEuropebetPost.data.subtitle }}</p>
+                                <h3 class="title uppercase" (click)="redirectToPostDetails(featuredEuropebetPost.data.id)">
+                                    <img width="18" height="18" [src]="europeBetLittleLogo" alt="">
+                                    {{ featuredEuropebetPost.data.title }}
+                                </h3>
+                                <div class="author-data">
+                                    <img width="28" height="28" [src]="featuredEuropebetPost.data.author.avatar.fileUrl" alt="">
+                                    <p>{{ featuredEuropebetPost.data.author.firstName }} {{
+                                        featuredEuropebetPost.data.author.lastName }}</p>
+                                </div>
+                                <div class="additional-info">
+                                    <p>{{ featuredEuropebetPost.data.publishedAt | relativeTime }}
+                                        <span>&centerdot;</span> <i class="bi bi-file-earmark-text"></i>
+                                        {{ featuredEuropebetPost.data.estimatedReadTime }} წუთი
+                                    </p>
+                                    <div class="buttons-container">
+                                        <button type="button" id="post-interaction-btn">
+                                            <i class="bi bi-hand-thumbs-up"></i>
+                                        </button>
+                                        <button type="button" id="post-interaction-btn">
+                                            <i class="bi bi-chat-dots"></i>
+                                        </button>
+                                        <button type="button" id="post-interaction-btn">
+                                            <i class="bi bi-bookmark-plus"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="smaller-post-card" *ngFor="let post of europebetPosts.data">
+                            <div class="main-info">
+                                <div class="image-container" (click)="redirectToPostDetails(post.id)">
+                                    <img [src]="post.image.fileUrl" alt="">
+                                </div>
+                                <div class="info-container">
+                                    <p class="subtitle">{{ post.subtitle }}</p>
+                                    <h3 class="title" (click)="redirectToPostDetails(post.id)">
+                                        <img width="16" height="16" [src]="europeBetLittleLogo" alt="">
+                                        {{ post.title }}
+                                    </h3>
+                                    <div class="text" [innerHTML]="post.text"></div>
+                                </div>
+                            </div>
+                            <div class="additional-info">
+                                <p>{{ post.publishedAt | relativeTime }}
+                                    <span>&centerdot;</span> <i class="bi bi-file-earmark-text"></i>
+                                    {{ post.estimatedReadTime }} წუთი
+                                </p>
+                                <div class="buttons-container">
+                                    <button type="button" id="post-interaction-btn">
+                                        <i class="bi bi-hand-thumbs-up"></i>
+                                    </button>
+                                    <button type="button" id="post-interaction-btn">
+                                        <i class="bi bi-chat-dots"></i>
+                                    </button>
+                                    <button type="button" id="post-interaction-btn">
+                                        <i class="bi bi-bookmark-plus"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="more-posts-link">
+                            <div class="link">
+                                <a href="/posts/powered-by-europebet">მეტი <i class="bi bi-arrow-right-circle-fill"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </ng-container>
+                <ng-container *ngIf="socialMediaLinks && europebetPosts">
+                    <div class="social-media-links">
+                        <div class="header">
+                            <h3 class="uppercase">სოციალური ქსელები</h3>
+                        </div>
+                        <ul class="list">
+                            <li class="item" *ngFor="let link of socialMediaLinks">
+                                <a class="link" [href]="link.linkUrl">
+                                    <div class="media-link-name">
+                                        <img [src]="link.imageUrl" alt=""> {{ link.name }}
+                                    </div>
+                                    <button type="button">
+                                        <i class="bi bi-arrow-right-short"></i>
+                                    </button>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </ng-container>
+                <ng-container *ngIf="evenMoreLatestPosts">
+                    <div class="even-more-latest-posts">
+                        <div class="header">
+                            <h3 class="uppercase">ბოლო სიახლეები</h3>
+                            <p>გაეცანი მსოფლიო სპორტის სიახლეებს</p>
+                        </div>
+                        <div class="list">
+                            <div class="post-link" *ngFor="let evenMoreLatestPost of evenMoreLatestPosts.data"
+                                (click)="redirectToPostDetails(evenMoreLatestPost.id)">
+                                <div class="title">
+                                    <h6>{{ evenMoreLatestPost.title }}</h6>
+                                </div>
+                                <div class="button-container">
+                                    <button type="button">
+                                        <i class="bi bi-arrow-right-circle"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </ng-container>
+            </aside>
+        </div>
+    </div>
+</div>
+<div class="video-outer-player" *ngIf="isVideoPlayerPlaying[1]">
+    <div class="player-wrapper">
+        <div class="video-player">
+            <iframe *ngIf="isVideoPlayerPlaying[1]" [attr.src]="getVideoUrl(currentVideoId[1])"
+            allow="autoplay; encrypted-media" allowfullscreen frameborder="0"></iframe>
+        </div>
+        <button type="button" id="close-player" (click)="closeOuterVideo(1)">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+    </div>
+</div>

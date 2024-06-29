@@ -16,13 +16,15 @@ import { CategoryDetailsComponent } from './components/category-details/category
 import { AboutUsComponent } from './components/about-us/about-us.component';
 import { AuthorsComponent } from './components/authors/authors.component';
 import { AuthorProfileComponent } from './components/author-profile/author-profile.component';
+import { EpopPlusComponent } from './components/epop-plus/epop-plus.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full'},
   { path: 'home', component: HomeComponent },
   { path: 'search', component: SearchResultsComponent },
   { path: 'category/:id', component: CategoryDetailsComponent },
-  { path: 'posts/analytics', title: "epop plus - სპორტული ანალიტიკა", component: AnalyticalPostsComponent },
+  { path: 'epop-plus', title: "epop plus - სპორტული ანალიტიკა", component: EpopPlusComponent },
+  { path: 'posts/analytics', title: "Analytics - Europop", component: AnalyticalPostsComponent },
   { path: 'posts/powered-by-europebet', title: "Powered by Europebet - Europop", component: EuropebetPostsComponent },
   { path: 'post/:id', component: PostDetailsComponent },
   { path: 'authors', title: 'ავტორები - Europop', component: AuthorsComponent },

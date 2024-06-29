@@ -117,6 +117,8 @@ header {
                     gap: 24px;
 
                     .list-item {
+                        @include flex(column, center, center);
+
                         .suggestion {
                             @include flex(row, center, center);
                             text-decoration: none;
@@ -226,7 +228,7 @@ header {
         visibility: visible;
 
         .lists-container {
-            @include flex(row, center, center);
+            @include flex(row, flex-start, center);
 
             .listing {
                 @include flex(column, flex-start, flex-start);

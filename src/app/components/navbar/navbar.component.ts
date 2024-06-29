@@ -39,7 +39,9 @@ export class NavbarComponent implements OnInit {
   nakrebiLogo: string = "https://cdn.europop.ge/49472241-5caf-4fc8-90b5-cbf3e96f5232";
 
   searchQuery!: string;
+  
   isToggled: boolean = false;
+  isEpopPlusMenuToggled: boolean = false;
 
   email: string = "";
   message: string = "";
@@ -279,6 +281,10 @@ export class NavbarComponent implements OnInit {
 
   toggleDropDown() {
     this.isToggled = !this.isToggled;
+  }
+
+  toggleEpopPlusMenu() {
+    this.isEpopPlusMenuToggled = !this.isEpopPlusMenuToggled;
   }
 
   setSelectOption(option: string) {

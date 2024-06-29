@@ -21,7 +21,7 @@ export class FetchService {
     categoryData: "http://localhost:3000/proxy?targetUrl=https://europop.ge/api/categories",
     postsByCategoryId: "http://localhost:3000/proxy?targetUrl=https://europop.ge/api/posts/by-category-id",
     postsPoweredByEuropebet: "http://localhost:3000/proxy?targetUrl=https://europop.ge/api/posts/powered-by-europebet",
-    featuredPostPoweredByEuropebet: "http://localhost:3000/proxy?targetUrl=https://europop.ge/api/posts/powered-by-europebet/featured"
+    featuredPostPoweredByEuropebet: "http://localhost:3000/proxy?targetUrl=https://europop.ge/api/posts/powered-by-europebet/featured",
   };
 
   getData(endpoint: string) {

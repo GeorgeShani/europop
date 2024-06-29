@@ -1,14 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FetchService } from '../../services/fetch.service';
-import { externals } from '../../interfaces/external-links.model';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { externals } from '../../interfaces/external-links.model';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrl: './home.component.scss'
+  selector: 'app-epop-plus',
+  templateUrl: './epop-plus.component.html',
+  styleUrl: './epop-plus.component.scss'
 })
-export class HomeComponent implements OnInit {
+export class EpopPlusComponent {
   epopPlusLogo: string = "./../../../assets/images/eplus.png";
   epopPlusLogoGray: string = "./../../../assets/images/eplus-gray.png";
   poweredBy: string = "./../../../assets/images/powered-by.svg";
@@ -16,15 +16,9 @@ export class HomeComponent implements OnInit {
   europeBetLittleLogo: string = "./../../../assets/images/europebet-little-logo.png";
   playButton: string = "./../../../assets/images/play.svg";
 
-  featuredPostsData!: any;
-  firstFourFeaturedPosts: any[] = [];
   europebetPosts!: any;
   featuredEuropebetPost!: any;
   analyticalPosts!: any;
-  authorsData!: any;
-  regularPosts!: any;
-  latePosts!: any;
-  latestPosts!: any;
   moreLatestPosts!: any;
   evenMoreLatestPosts!: any;
 
@@ -43,23 +37,12 @@ export class HomeComponent implements OnInit {
     { name: "Tiktok", imageUrl: "./../../../assets/images/tiktok-logo.svg", linkUrl: "https://www.tiktok.com/@europop.ge" }
   ];
 
-  mobileStoreLinks: externals[] = [
-    { name: "", imageUrl: "./../../../assets/images/appstore.png", linkUrl: "https://apps.apple.com/ge/app/europop-sports-news/id6480219097" },
-    { name: "", imageUrl: "./../../../assets/images/googleplay.png", linkUrl: "https://play.google.com/store/apps/details?id=ge.europop.sport.news&hl=en_US" },
-  ];
-
   constructor(
     private _fetch: FetchService,
     private _sanitizer: DomSanitizer,
-  ) { }
-
-  ngOnInit(): void {
-    this._fetch.getData("featuredPosts").subscribe((data) => {
-      this.featuredPostsData = data;
-
-      for (let i = 0; i < 4; i++) {
-        this.firstFourFeaturedPosts.push(this.featuredPostsData.data[i]);
-      }
+  ) { 
+    this._fetch.getData("analyticalPosts").subscribe((data) => {
+      this.analyticalPosts = data;
     });
 
     this._fetch.getPostsByEuropebet(3).subscribe((data) => {
@@ -68,26 +51,6 @@ export class HomeComponent implements OnInit {
 
     this._fetch.getData("featuredPostPoweredByEuropebet").subscribe((data) => {
       this.featuredEuropebetPost = data;
-    });
-
-    this._fetch.getData("latestPosts").subscribe((data) => {
-      this.latePosts = data;
-    });
-
-    this._fetch.getData("regularPosts").subscribe((data) => {
-      this.regularPosts = data;
-    });
-
-    this._fetch.getData("popularPosts").subscribe((data) => {
-      this.latestPosts = data;
-    });
-
-    this._fetch.getData("analyticalPosts").subscribe((data) => {
-      this.analyticalPosts = data;
-    });
-
-    this._fetch.getAuthors(1, 15).subscribe((data) => {
-      this.authorsData = data;
     });
 
     this._fetch.getLatestPostsById(509).subscribe((data) => {
@@ -148,10 +111,6 @@ export class HomeComponent implements OnInit {
 
   redirectToAnalyticalPosts() {
     window.location.href = "/posts/analytics";
-  }
-
-  redirectToAuthors() {
-    window.location.href = "/authors";
   }
 
   redirectToAuthor(id: number) {

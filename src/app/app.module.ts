@@ -25,6 +25,7 @@ import { CategoryDetailsComponent } from './components/category-details/category
 import { KFormaterPipe } from './pipes/k-formater.pipe';
 import { AboutUsComponent } from './components/about-us/about-us.component';
 import { AuthorProfileComponent } from './components/author-profile/author-profile.component';
+import { EpopPlusComponent } from './components/epop-plus/epop-plus.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import { AuthorProfileComponent } from './components/author-profile/author-profi
     CategoryDetailsComponent,
     KFormaterPipe,
     AboutUsComponent,
-    AuthorProfileComponent
+    AuthorProfileComponent,
+    EpopPlusComponent
   ],
   imports: [
     BrowserModule,
