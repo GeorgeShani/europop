@@ -42,7 +42,7 @@
                     </ul>
                 </div>
                 <div class="analytics-links-container">
-                    <img [src]="epopPlusLogo" width="34" height="20" alt="">
+                    <img (click)="redirectToEpopPlus()" [src]="epopPlusLogo" width="34" height="20" alt="">
                     <ul class="links-list">
                         <li class="link-item" *ngFor="let item of analytics">
                             <a class="link uppercase" href="/category/{{ item.id }}">{{ item.name }}</a>

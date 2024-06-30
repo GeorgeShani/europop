@@ -61,6 +61,10 @@ export class FooterComponent {
     window.open('https://m.me/1159313984168136', '_blank');
   }
 
+  redirectToEpopPlus() {
+    window.location.href = '/epop-plus';
+  }
+
   enableButton() {
     if (this._regex.validateEmail(this.userEmail)) {
       return { 'background-color': '#000', 'color': '#fff' };
