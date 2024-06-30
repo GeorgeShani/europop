@@ -17,6 +17,7 @@ import { AboutUsComponent } from './components/about-us/about-us.component';
 import { AuthorsComponent } from './components/authors/authors.component';
 import { AuthorProfileComponent } from './components/author-profile/author-profile.component';
 import { EpopPlusComponent } from './components/epop-plus/epop-plus.component';
+import { AccessForbiddenComponent } from './components/access-forbidden/access-forbidden.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full'},
@@ -35,6 +36,7 @@ const routes: Routes = [
   { path: 'about-us', title: "ჩვენ შესახებ - Europop", component: AboutUsComponent },
   { path: 'privacy-policy', title: "Privacy Policy - Europop", component: PrivacyPolicyComponent },
   { path: 'terms-and-conditions', title: "Terms and Conditions - Europop", component: TermsAndConditionsComponent },
+  { path: '403', title: '403 - Forbidden', component: AccessForbiddenComponent },
   { path: "**", title: "404 - Not Found", component: ErrorComponent }
 ];
 

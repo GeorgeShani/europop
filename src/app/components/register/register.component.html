@@ -76,7 +76,7 @@
                     <p class="error">{{ register.getUserData().errors.userConfirmedPasswordError }}</p>
                 </div>
             </div>
-            <button (click)="register.register()" type="button" id="register-btn">რეგისტრაცია</button>
+            <button (click)="register.register()" type="button" id="register-btn" [ngStyle]="enableButton()">რეგისტრაცია</button>
             <div class="division-line">
                 <span>ან</span>
             </div>

@@ -29,7 +29,7 @@
                     <p class="error">{{ login.getUserData().errors.userPasswordError }}</p>
                 </div>
             </div>
-            <button (click)="login.login()" type="button" id="login-btn">ავტორიზაცია</button>
+            <button (click)="login.login()" type="button" id="login-btn" [ngStyle]="enableButton()">ავტორიზაცია</button>
             <div class="forgot-password-message">
                 <p>დაგავიწყდა პაროლი? <a href="/auth/password-recovery">პაროლის აღდგენა</a></p>
             </div>

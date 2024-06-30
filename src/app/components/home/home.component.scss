@@ -1181,14 +1181,15 @@
                             }
                     
                             #subscribe-btn {
-                                @include font(600, 15px, #ACACAC);
                                 font-family: inherit;
-                                background-color: #2B2C2E;
+                                font-weight: 600;
+                                font-size: 15px;
                                 border-radius: 12px;
                                 padding: 4px;
                                 width: 35%;
                                 height: 100%;
                                 border: none;
+                                transition: all 0.2s ease-in-out;
                                 cursor: pointer;
                             }
                         }

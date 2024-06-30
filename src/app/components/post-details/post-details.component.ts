@@ -16,6 +16,7 @@ export class PostDetailsComponent implements OnInit {
   userIcon: string = "./../../../assets/images/user-icon.svg";
   leftQuote: string = "./../../../assets/images/left-quote.svg";
   rightQuote: string = "./../../../assets/images/right-quote.svg";
+  paperPlane: string = "./../../../assets/images/paper-plane.svg";
 
   regularPosts!: any;
   postDetails!: any;

@@ -71,8 +71,8 @@
                 </div>
                 <div class="subscribe-input-container">
                     <div class="input-container">
-                        <input type="email" name="" id="email-input" placeholder="ელ-ფოსტა">
-                        <button type="button" id="subscribe-btn">გამოიწერე</button>
+                        <input [(ngModel)]="userEmail" type="email" name="userEmail" id="email-input" placeholder="ელ-ფოსტა">
+                        <button type="button" id="subscribe-btn" [ngStyle]="enableButton()" (click)="subscribe()">გამოიწერე</button>
                     </div>
                     <div class="message">
                         <p>* სიახლეების გამოწერით ადასტურებ, რომ გაეცანი კონფიდენციალურობის პოლიტიკას და ეთანხმები, რომ შენი

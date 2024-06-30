@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { externals } from '../../interfaces/external-links.model';
 import { categories } from '../../interfaces/footer-categories.model';
+import { RegexService } from '../../services/regex.service';
 
 @Component({
   selector: 'app-footer',
@@ -12,6 +13,7 @@ export class FooterComponent {
   epopPlusLogo: string = "./../../../assets/images/eplus.png";
   messengerLogo: string = "./../../../assets/images/messenger-logo.svg";
   decorationImage: string = "./../../../assets/images/footer-decoration.svg";
+  
   userEmail!: string;
 
   categories: categories[] = [
@@ -24,11 +26,11 @@ export class FooterComponent {
   ];
 
   analytics: categories[] = [
-    { id: 0, link: "/posts/analytics", name: "ანალიტიკა" },
-    { id: 0, link: "/", name: "ისტორია" },
-    { id: 0, link: "/", name: "ინტერვიუ" },
-    { id: 0, link: "/", name: "ქვიზი" },
-    { id: 0, link: "/", name: "ბლოგი" }
+    { id: 181848, link: "", name: "ანალიტიკა" },
+    { id: 181849, link: "", name: "ისტორია" },
+    { id: 181850, link: "", name: "ინტერვიუ" },
+    { id: 182228, link: "", name: "ქვიზი" },
+    { id: 182229, link: "", name: "ბლოგი" }
   ];
 
   help: categories[] = [
@@ -53,8 +55,25 @@ export class FooterComponent {
     { name: "", imageUrl: "./../../../assets/images/googleplay.png", linkUrl: "https://play.google.com/store/apps/details?id=ge.europop.sport.news&hl=en_US" },
   ];
 
+  constructor(private _regex: RegexService) {}
+
   redirectToMessenger(): void {
     window.open('https://m.me/1159313984168136', '_blank');
+  }
+
+  enableButton() {
+    if (this._regex.validateEmail(this.userEmail)) {
+      return { 'background-color': '#000', 'color': '#fff' };
+    }
+
+    return { 'background-color': '#2B2C2E', 'color': '#ACACAC' };
+  }
+
+  subscribe() {
+    if (this.userEmail && this._regex.validateEmail(this.userEmail)) {
+      alert('გამოწერა წარმატებულია');
+      this.userEmail = "";
+    }
   }
 
   getCurrentYear() {

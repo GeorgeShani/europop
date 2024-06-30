@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FetchService } from '../../services/fetch.service';
 import { externals } from '../../interfaces/external-links.model';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { RegexService } from '../../services/regex.service';
 
 @Component({
   selector: 'app-home',
@@ -15,6 +16,8 @@ export class HomeComponent implements OnInit {
   europeBetLogo: string = "./../../../assets/images/europebet-logo.svg";
   europeBetLittleLogo: string = "./../../../assets/images/europebet-little-logo.png";
   playButton: string = "./../../../assets/images/play.svg";
+
+  userEmail!: string;
 
   featuredPostsData!: any;
   firstFourFeaturedPosts: any[] = [];
@@ -51,6 +54,7 @@ export class HomeComponent implements OnInit {
   constructor(
     private _fetch: FetchService,
     private _sanitizer: DomSanitizer,
+    private _regex: RegexService
   ) { }
 
   ngOnInit(): void {
@@ -109,6 +113,21 @@ export class HomeComponent implements OnInit {
     this._fetch.getVideoGalleryById(143).subscribe((data) => {
       this.europopForumVideoGallery = data;
     });
+  }
+
+  enableButton() {
+    if (this._regex.validateEmail(this.userEmail)) {
+      return { 'background-color': '#000', 'color': '#fff' };
+    }
+
+    return { 'background-color': '#2B2C2E', 'color': '#ACACAC' };
+  }
+
+  subscribe() {
+    if (this.userEmail && this._regex.validateEmail(this.userEmail)) {
+      alert('გამოწერა წარმატებულია');
+      this.userEmail = "";
+    }
   }
 
   setVideoId(index: number, videoId: string, videoName: string) {

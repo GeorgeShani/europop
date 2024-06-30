@@ -34,4 +34,12 @@ export class PasswordRecoveryComponent {
 
   userEmailOrPhoneNumber!: string;
   userEmailOrPhoneNumberError!: string;
+
+  enableButton() {
+    if (this.checkEmail() || this.checkNumber()) {
+      return { 'background-color': '#F15A22', 'color': '#fff' };
+    }
+
+    return { 'background-color': 'rgb(43, 44, 46)', 'color': 'rgb(172, 172, 172)' }
+  }
 }

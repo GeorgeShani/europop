@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FetchService } from '../../services/fetch.service';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { externals } from '../../interfaces/external-links.model';
+import { RegexService } from '../../services/regex.service';
 
 @Component({
   selector: 'app-epop-plus',
@@ -30,6 +31,8 @@ export class EpopPlusComponent {
   isVideoPlayerPlaying: boolean[] = [false, false, false];
   videoName: string[] = ["გასვლითი დაზვერვა გერმანიაში", "", "ტატო VS მინა | სუპერფინალი [მაგიდის დერბი]"];
 
+  userEmail!: string;
+
   socialMediaLinks: externals[] = [
     { name: "Instagram", imageUrl: "./../../../assets/images/instagram-logo.svg", linkUrl: "https://www.instagram.com/europop.ge" },
     { name: "Facebook", imageUrl: "./../../../assets/images/facebook-logo.svg", linkUrl: "https://www.facebook.com/europop.ge" },
@@ -40,6 +43,7 @@ export class EpopPlusComponent {
   constructor(
     private _fetch: FetchService,
     private _sanitizer: DomSanitizer,
+    private _regex: RegexService
   ) { 
     this._fetch.getData("analyticalPosts").subscribe((data) => {
       this.analyticalPosts = data;
@@ -72,6 +76,21 @@ export class EpopPlusComponent {
     this._fetch.getVideoGalleryById(143).subscribe((data) => {
       this.europopForumVideoGallery = data;
     });
+  }
+
+  enableButton() {
+    if (this._regex.validateEmail(this.userEmail)) {
+      return { 'background-color': '#000', 'color': '#fff' };
+    }
+
+    return { 'background-color': '#2B2C2E', 'color': '#ACACAC' };
+  }
+
+  subscribe() {
+    if (this.userEmail && this._regex.validateEmail(this.userEmail)) {
+      alert('გამოწერა წარმატებულია');
+      this.userEmail = "";
+    }
   }
 
   setVideoId(index: number, videoId: string, videoName: string) {

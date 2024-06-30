@@ -10,7 +10,7 @@
                     <div class="subscribe-input-container">
                         <div class="input-container">
                             <input [(ngModel)]="userEmail" type="email" name="userEmail" id="email-input" placeholder="ელ-ფოსტა">
-                            <button type="button" id="subscribe-btn">გამოიწერე</button>
+                            <button type="button" id="subscribe-btn" [ngStyle]="enableButton()" (click)="subscribe()">გამოიწერე</button>
                         </div>
                     </div>
                     <p>* სიახლეების გამოწერით ადასტურებ, რომ გაეცანი კონფიდენციალურობის პოლიტიკას და ეთანხმები, რომ შენი მონაცემები
@@ -45,7 +45,7 @@
                     <img [src]="epopPlusLogo" width="34" height="20" alt="">
                     <ul class="links-list">
                         <li class="link-item" *ngFor="let item of analytics">
-                            <a class="link uppercase" [href]="item.link">{{ item.name }}</a>
+                            <a class="link uppercase" href="/category/{{ item.id }}">{{ item.name }}</a>
                         </li>
                     </ul>
                 </div>
@@ -61,7 +61,7 @@
                     <p class="title uppercase">პროფილი</p>
                     <ul class="links-list">
                         <li class="link-item" *ngFor="let item of profile">
-                            <a class="link uppercase" href="/">{{ item }}</a>
+                            <a class="link uppercase" href="/403">{{ item }}</a>
                         </li>
                     </ul>
                 </div>

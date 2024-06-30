@@ -47,6 +47,8 @@ export class NavbarComponent implements OnInit {
   message: string = "";
   emailError: string = "";
 
+  userEmail!: string;
+
   selectedOption: string = "default";
 
   defaultCategoryPosts!: any;
@@ -287,6 +289,21 @@ export class NavbarComponent implements OnInit {
 
   setSelectOption(option: string) {
     this.selectedOption = option;
+  }
+
+  enableButton() {
+    if (this._regex.validateEmail(this.userEmail)) {
+      return { 'background-color': '#000', 'color': '#fff' };
+    }
+
+    return { 'background-color': '#2B2C2E', 'color': '#ACACAC' };
+  }
+
+  subscribe() {
+    if (this.userEmail && this._regex.validateEmail(this.userEmail)) {
+      alert('გამოწერა წარმატებულია');
+      this.userEmail = "";
+    }
   }
 
   redirectToCategory(id: number) {

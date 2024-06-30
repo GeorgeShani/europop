@@ -55,4 +55,12 @@ export class RegisterComponent {
   revealCheckIcon(checkEmail: boolean) {
     return { 'display': checkEmail ? 'block' : 'none' };
   }
+
+  enableButton() {
+    if (this.register.checkAllCredentials()) {
+      return { 'background-color': '#F15A22', 'color': '#fff' };
+    }
+
+    return { 'background-color': 'rgb(43, 44, 46)', 'color': 'rgb(172, 172, 172)' }
+  }
 }

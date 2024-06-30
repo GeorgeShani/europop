@@ -126,50 +126,95 @@
                             <ng-container *ngIf="postComments.data">
                                 <div class="comments-list" *ngIf="postComments.data.length > 0">
                                     <div class="comment" *ngFor="let comment of postComments.data">
-                                        <div class="user-container">
-                                            <ng-container *ngIf="comment.author.avatar === null">
-                                                <div class="image">
-                                                    <span class="no-avatar"><img [src]="userIcon" alt=""></span>
+                                        <div class="comment-wrapper">
+                                            <div class="user-container">
+                                                <ng-container *ngIf="comment.author.avatar === null">
+                                                    <div class="image">
+                                                        <span class="no-avatar"><img [src]="userIcon" alt=""></span>
+                                                    </div>
+                                                </ng-container>
+                                                <ng-container *ngIf="comment.author.avatar">
+                                                    <div class="image">
+                                                        <img [src]="comment.author.avatar.fileUrl" alt="">
+                                                    </div>
+                                                </ng-container>
+                                                <div class="author-username">
+                                                    <p>{{ comment.author.username }}</p>
                                                 </div>
-                                            </ng-container>
-                                            <ng-container *ngIf="comment.author.avatar">
-                                                <div class="image">
-                                                    <img [src]="comment.author.avatar.fileUrl" alt="">
+                                                <div class="publication-date">
+                                                    <p>{{ comment.createdAt | relativeTime }}</p>
                                                 </div>
-                                            </ng-container>
-                                            <div class="author-username">
-                                                <p>{{ comment.author.username }}</p>
                                             </div>
-                                            <div class="publication-date">
-                                                <p>{{ comment.createdAt | relativeTime }}</p>
+                                            <div class="comment-text">
+                                                <p>{{ comment.text }}</p>
+                                            </div>
+                                            <div class="comment-interaction-buttons">
+                                                <div class="like-button">
+                                                    <button type="button">
+                                                        <i class="bi bi-hand-thumbs-up"></i>
+                                                    </button>
+                                                    <p class="like-count" *ngIf="comment.likeCount !== 0">
+                                                        {{ comment.likeCount }}
+                                                    </p>
+                                                </div>
+                                                <div class="comment-button">
+                                                    <button type="button">
+                                                        <i class="bi bi-chat-dots"></i>
+                                                    </button>
+                                                    <p class="reply-count" *ngIf="comment.replyCount !== 0">
+                                                        {{ comment.replyCount }} კომენტარი
+                                                    </p>
+                                                </div>
+                                                <div class="reply-button">
+                                                    <button type="button">უპასუხე</button>
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="comment-text">
-                                            <p>{{ comment.text }}</p>
-                                        </div>
-                                        <div class="comment-interaction-buttons">
-                                            <div class="like-button">
-                                                <button type="button">
-                                                    <i class="bi bi-hand-thumbs-up"></i>
-                                                </button>
-                                                <p class="like-count" *ngIf="comment.likeCount !== 0">
-                                                    {{ comment.likeCount }}
-                                                </p>
-                                            </div>
-                                            <div class="comment-button">
-                                                <button type="button">
-                                                    <i class="bi bi-chat-dots"></i>
-                                                </button>
-                                            </div>
-                                            <div class="reply-button">
-                                                <button type="button">უპასუხე</button>
+                                        <div class="replies-wrapper" *ngIf="comment.replies.length > 0">
+                                            <div class="reply" *ngFor="let reply of comment.replies">
+                                                <div class="user-container">
+                                                    <ng-container *ngIf="reply.author.avatar === null">
+                                                        <div class="image">
+                                                            <span class="no-avatar"><img [src]="userIcon" alt=""></span>
+                                                        </div>
+                                                    </ng-container>
+                                                    <ng-container *ngIf="reply.author.avatar">
+                                                        <div class="image">
+                                                            <img [src]="reply.author.avatar.fileUrl" alt="">
+                                                        </div>
+                                                    </ng-container>
+                                                    <div class="author-username">
+                                                        <p>{{ reply.author.username }}</p>
+                                                    </div>
+                                                    <div class="publication-date">
+                                                        <p>{{ reply.createdAt | relativeTime }}</p>
+                                                    </div>
+                                                </div>
+                                                <div class="comment-text">
+                                                    <p>{{ reply.text }}</p>
+                                                </div>
+                                                <div class="comment-interaction-buttons">
+                                                    <div class="like-button">
+                                                        <button type="button">
+                                                            <i class="bi bi-hand-thumbs-up"></i>
+                                                        </button>
+                                                        <p class="like-count" *ngIf="reply.likeCount !== 0">
+                                                            {{ reply.likeCount }}
+                                                        </p>
+                                                    </div>
+                                                    <div class="comment-button">
+                                                        <button type="button">
+                                                            <i class="bi bi-chat-dots"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="write-comment-input">
                                     <input type="text" id="comment-input" placeholder="დაწერე რას ფიქრობ">
-                                    <button type="button" id="send-comment-btn"><i class="bi bi-send"></i></button>
+                                    <button type="button" id="send-comment-btn"><img [src]="paperPlane" alt=""></button>
                                 </div>
                             </ng-container>
                         </div>
@@ -374,50 +419,95 @@
                     <ng-container *ngIf="postComments.data">
                         <div class="comments-list" *ngIf="postComments.data.length > 0">
                             <div class="comment" *ngFor="let comment of postComments.data">
-                                <div class="user-container">
-                                    <ng-container *ngIf="comment.author.avatar === null">
-                                        <div class="image">
-                                            <span class="no-avatar"><img [src]="userIcon" alt=""></span>
+                                <div class="comment-wrapper">
+                                    <div class="user-container">
+                                        <ng-container *ngIf="comment.author.avatar === null">
+                                            <div class="image">
+                                                <span class="no-avatar"><img [src]="userIcon" alt=""></span>
+                                            </div>
+                                        </ng-container>
+                                        <ng-container *ngIf="comment.author.avatar">
+                                            <div class="image">
+                                                <img [src]="comment.author.avatar.fileUrl" alt="">
+                                            </div>
+                                        </ng-container>
+                                        <div class="author-username">
+                                            <p>{{ comment.author.username }}</p>
                                         </div>
-                                    </ng-container>
-                                    <ng-container *ngIf="comment.author.avatar">
-                                        <div class="image">
-                                            <img [src]="comment.author.avatar.fileUrl" alt="">
+                                        <div class="publication-date">
+                                            <p>{{ comment.createdAt | relativeTime }}</p>
                                         </div>
-                                    </ng-container>
-                                    <div class="author-username">
-                                        <p>{{ comment.author.username }}</p>
                                     </div>
-                                    <div class="publication-date">
-                                        <p>{{ comment.createdAt | relativeTime }}</p>
+                                    <div class="comment-text">
+                                        <p>{{ comment.text }}</p>
+                                    </div>
+                                    <div class="comment-interaction-buttons">
+                                        <div class="like-button">
+                                            <button type="button">
+                                                <i class="bi bi-hand-thumbs-up"></i>
+                                            </button>
+                                            <p class="like-count" *ngIf="comment.likeCount !== 0">
+                                                {{ comment.likeCount }}
+                                            </p>
+                                        </div>
+                                        <div class="comment-button">
+                                            <button type="button">
+                                                <i class="bi bi-chat-dots"></i>
+                                            </button>
+                                            <p class="reply-count" *ngIf="comment.replyCount !== 0">
+                                                {{ comment.replyCount }} კომენტარი
+                                            </p>
+                                        </div>
+                                        <div class="reply-button">
+                                            <button type="button">უპასუხე</button>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="comment-text">
-                                    <p>{{ comment.text }}</p>
-                                </div>
-                                <div class="comment-interaction-buttons">
-                                    <div class="like-button">
-                                        <button type="button">
-                                            <i class="bi bi-hand-thumbs-up"></i>
-                                        </button>
-                                        <p class="like-count" *ngIf="comment.likeCount !== 0">
-                                            {{ comment.likeCount }}
-                                        </p>
-                                    </div>
-                                    <div class="comment-button">
-                                        <button type="button">
-                                            <i class="bi bi-chat-dots"></i>
-                                        </button>
-                                    </div>
-                                    <div class="reply-button">
-                                        <button type="button">უპასუხე</button>
+                                <div class="replies-wrapper" *ngIf="comment.replies.length > 0">
+                                    <div class="reply" *ngFor="let reply of comment.replies">
+                                        <div class="user-container">
+                                            <ng-container *ngIf="reply.author.avatar === null">
+                                                <div class="image">
+                                                    <span class="no-avatar"><img [src]="userIcon" alt=""></span>
+                                                </div>
+                                            </ng-container>
+                                            <ng-container *ngIf="reply.author.avatar">
+                                                <div class="image">
+                                                    <img [src]="reply.author.avatar.fileUrl" alt="">
+                                                </div>
+                                            </ng-container>
+                                            <div class="author-username">
+                                                <p>{{ reply.author.username }}</p>
+                                            </div>
+                                            <div class="publication-date">
+                                                <p>{{ reply.createdAt | relativeTime }}</p>
+                                            </div>
+                                        </div>
+                                        <div class="comment-text">
+                                            <p>{{ reply.text }}</p>
+                                        </div>
+                                        <div class="comment-interaction-buttons">
+                                            <div class="like-button">
+                                                <button type="button">
+                                                    <i class="bi bi-hand-thumbs-up"></i>
+                                                </button>
+                                                <p class="like-count" *ngIf="reply.likeCount !== 0">
+                                                    {{ reply.likeCount }}
+                                                </p>
+                                            </div>
+                                            <div class="comment-button">
+                                                <button type="button">
+                                                    <i class="bi bi-chat-dots"></i>
+                                                </button>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="write-comment-input">
                             <input type="text" id="comment-input" placeholder="დაწერე რას ფიქრობ">
-                            <button type="button" id="send-comment-btn"><i class="bi bi-send"></i></button>
+                            <button type="button" id="send-comment-btn"><img [src]="paperPlane" alt=""></button>
                         </div>
                     </ng-container>
                 </div>

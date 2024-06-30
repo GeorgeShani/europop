@@ -26,6 +26,7 @@ import { KFormaterPipe } from './pipes/k-formater.pipe';
 import { AboutUsComponent } from './components/about-us/about-us.component';
 import { AuthorProfileComponent } from './components/author-profile/author-profile.component';
 import { EpopPlusComponent } from './components/epop-plus/epop-plus.component';
+import { AccessForbiddenComponent } from './components/access-forbidden/access-forbidden.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import { EpopPlusComponent } from './components/epop-plus/epop-plus.component';
     KFormaterPipe,
     AboutUsComponent,
     AuthorProfileComponent,
-    EpopPlusComponent
+    EpopPlusComponent,
+    AccessForbiddenComponent
   ],
   imports: [
     BrowserModule,

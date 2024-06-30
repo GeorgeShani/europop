@@ -1,6 +1,6 @@
 @import './../../../styles.scss';
 
-.error-cover {
+.cover {
     position: relative;
     z-index: 1;
     top: 0;
@@ -32,7 +32,7 @@
 
     p {
         @include font(500, 16px, #fff);
-        margin: 12px 0;
+        margin: 12px 0 18px;
     }
 
     #redirectToHome {
@@ -43,7 +43,7 @@
         height: 44px;
         border-radius: 8px;
         border: none;
-        margin: 12px 0;
+        margin: 8px 0;
         cursor: pointer;
     }
 }

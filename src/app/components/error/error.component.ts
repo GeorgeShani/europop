@@ -6,6 +6,8 @@ import { Component } from '@angular/core';
   styleUrl: './error.component.scss'
 })
 export class ErrorComponent {
+  errorCover: string = "./../../../assets/images/error-cover-404.png";
+
   redirectToHome() {
     window.location.href = "/";
   }
