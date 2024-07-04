@@ -16,7 +16,8 @@
                             <p>{{ featuredPostsData.data[featuredPostsData.data.length - 1].subtitle }}</p>
                             <div class="title">
                                 <h3 (click)="redirectToPostDetails(featuredPostsData.data[featuredPostsData.data.length - 1].id)" class="uppercase">
-                                    <img *ngIf="featuredPostsData.data[featuredPostsData.data.length - 1].type.name == 'ანალიტიოკური სტატია'" [src]="epopPlusLogo" alt="">
+                                    <img *ngIf="featuredPostsData.data[featuredPostsData.data.length - 1].type.name == 'ანალიტიოკური სტატია'" width="34" height="20" [src]="epopPlusLogo" alt="">
+                                    <img *ngIf="featuredPostsData.data[featuredPostsData.data.length - 1].tag.name == 'Powered by Europebet'" width="18" height="18" [src]="europeBetLittleLogo" alt="">
                                     {{ featuredPostsData.data[featuredPostsData.data.length - 1].title }}
                                 </h3>
                             </div>
@@ -47,7 +48,8 @@
                     <div class="info-container">
                         <div class="main-info">
                             <h3 (click)="redirectToPostDetails(featuredPost.id) " class="uppercase">
-                                <img *ngIf="featuredPost.type.name == 'ანალიტიოკური სტატია'" [src]="epopPlusLogo" alt=""> 
+                                <img *ngIf="featuredPost.type.name == 'ანალიტიოკური სტატია'" width="34" height="20" [src]="epopPlusLogo" alt="">
+                                <img *ngIf="featuredPost.tag.name == 'Powered by Europebet'" width="18" height="18" [src]="europeBetLittleLogo" alt="">
                                 {{ featuredPost.title }}
                             </h3>
                         </div>
