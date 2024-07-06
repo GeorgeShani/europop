@@ -10,29 +10,29 @@
                 <ng-container *ngIf="analyticalPosts">
                     <div class="big-analytical-post-card">
                         <div class="image-container">
-                            <img (click)="redirectToPostDetails(analyticalPosts.data[analyticalPosts.data.length - 1].id)" 
-                            [src]="analyticalPosts.data[analyticalPosts.data.length - 1].image.fileUrl" alt="">
+                            <img (click)="redirectToPostDetails(analyticalPosts.data[1].id)" 
+                            [src]="analyticalPosts.data[1].image.fileUrl" alt="">
                         </div>
                         <div class="info-container">
                             <div class="main-info">
-                                <p class="subtitle">{{ analyticalPosts.data[analyticalPosts.data.length - 1].subtitle }}</p>
-                                <h3 (click)="redirectToPostDetails(analyticalPosts.data[analyticalPosts.data.length - 1].id)" class="title uppercase">
+                                <p class="subtitle">{{ analyticalPosts.data[1].subtitle }}</p>
+                                <h3 (click)="redirectToPostDetails(analyticalPosts.data[1].id)" class="title uppercase">
                                     <img width="34" height="20" [src]="epopPlusLogo" alt="">
-                                    {{ analyticalPosts.data[analyticalPosts.data.length - 1].title }}
+                                    {{ analyticalPosts.data[1].title }}
                                 </h3>
                             </div>
                             <div class="additional-info">
                                 <div class="add-info">
-                                    <img [src]="analyticalPosts.data[analyticalPosts.data.length - 1].author.avatar.fileUrl" 
-                                    (click)="redirectToAuthor(analyticalPosts.data[analyticalPosts.data.length - 1].author.id)" alt="">
-                                    <p class="author-name" (click)="redirectToAuthor(analyticalPosts.data[analyticalPosts.data.length - 1].author.id)">
-                                        {{ analyticalPosts.data[analyticalPosts.data.length - 1].author.firstName }} 
-                                        {{ analyticalPosts.data[analyticalPosts.data.length - 1].author.lastName }}
+                                    <img [src]="analyticalPosts.data[1].author.avatar.fileUrl" 
+                                    (click)="redirectToAuthor(analyticalPosts.data[1].author.id)" alt="">
+                                    <p class="author-name" (click)="redirectToAuthor(analyticalPosts.data[1].author.id)">
+                                        {{ analyticalPosts.data[1].author.firstName }} 
+                                        {{ analyticalPosts.data[1].author.lastName }}
                                     </p>
                                     <span>&centerdot;</span>
-                                    <p>{{ analyticalPosts.data[analyticalPosts.data.length - 1].publishedAt | relativeTime }}</p>
+                                    <p>{{ analyticalPosts.data[1].publishedAt | relativeTime }}</p>
                                     <span>&centerdot;</span> <i class="bi bi-file-earmark-text"></i>
-                                    <p>{{ analyticalPosts.data[analyticalPosts.data.length - 1].estimatedReadTime }} წუთი</p>
+                                    <p>{{ analyticalPosts.data[1].estimatedReadTime }} წუთი</p>
                                 </div>
                                 <div class="interaction-buttons">
                                     <button type="button" id="post-interaction-btn">

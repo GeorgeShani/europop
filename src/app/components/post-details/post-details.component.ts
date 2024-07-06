@@ -39,6 +39,16 @@ export class PostDetailsComponent implements OnInit {
     this.currentIndexes[moduleIndex] = index;
   }
 
+  prevSlide(moduleIndex: number): void {
+    const totalSlides = this.postDetails.data.modules[moduleIndex].items.length;
+    this.currentIndexes[moduleIndex] = (this.currentIndexes[moduleIndex] - 1 + totalSlides) % totalSlides;
+  }
+
+  nextSlide(moduleIndex: number): void {
+    const totalSlides = this.postDetails.data.modules[moduleIndex].items.length;
+    this.currentIndexes[moduleIndex] = (this.currentIndexes[moduleIndex] + 1) % totalSlides;
+  }
+
   redirectToAuthorization(): void {
     window.location.href = "/auth/login";
   }

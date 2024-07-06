@@ -544,10 +544,10 @@
                             }
 
                             .info-container {
-                                @include flex(column, flex-start, center);
+                                @include flex(column, flex-start, space-between);
                                 padding: 16px;
                                 width: 100%;
-                                height: auto;
+                                height: 205px;
 
                                 .subtitle {
                                     @include font(500, 14px, #f15a22);
