@@ -47,7 +47,8 @@ export class ExternalContentExtractorService {
         </blockquote>
       `;
 
-      this.loadTwitterScript();
+      this.loadScript("twitter-widgets-script", "https://platform.twitter.com/widgets.js");
+      
       const loadTwitterWidgets = () => {
         if (typeof twttr !== 'undefined' && twttr.widgets) {
           twttr.widgets.load();
@@ -68,7 +69,8 @@ export class ExternalContentExtractorService {
         </blockquote>
       `;
 
-      this.loadInstagramScript();
+      this.loadScript("instagram-embed-script", "https://www.instagram.com/embed.js");
+      
       const loadInstagramEmbeds = () => {
         if (typeof instgrm !== 'undefined' && instgrm.Embeds) {
           instgrm.Embeds.process();
@@ -95,7 +97,8 @@ export class ExternalContentExtractorService {
         `;
       }
 
-      this.loadFacebookScript();
+      this.loadScript("facebook-jssdk", "https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v10.0");
+      
       const loadFacebookEmbeds = () => {
         if (typeof FB !== 'undefined' && FB.XFBML) {
           FB.XFBML.parse();
@@ -112,31 +115,11 @@ export class ExternalContentExtractorService {
     return this._http.get(oembedEndpoint);
   }
 
-  private loadInstagramScript(): void {
-    if (!document.getElementById('instagram-embed-script')) {
-      const script = document.createElement('script');
-      script.id = 'instagram-embed-script';
-      script.src = 'https://www.instagram.com/embed.js';
-      script.async = true;
-      document.body.appendChild(script);
-    }
-  }
-
-  private loadFacebookScript(): void {
-    if (!document.getElementById('facebook-jssdk')) {
-      const script = document.createElement('script');
-      script.id = 'facebook-jssdk';
-      script.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v10.0';
-      script.async = true;
-      document.body.appendChild(script);
-    }
-  }
-
-  private loadTwitterScript(): void {
-    if (!document.getElementById('twitter-widgets-script')) { 
-      const script = document.createElement('script');
-      script.id = 'twitter-widgets-script';
-      script.src = 'https://platform.twitter.com/widgets.js';
+  private loadScript(scriptId: string, scriptSrc: string): void {
+    if (!document.getElementById(scriptId)) {
+      const script = document.createElement("script");
+      script.id = scriptId;
+      script.src = scriptSrc;
       script.async = true;
       document.body.appendChild(script);
     }
