@@ -104,7 +104,7 @@
                     <div class="link lead uppercase" (click)="redirectToCategory(basketballSubListing.mainId)">{{ basketballSubListing.mainTitle }}</div>
                     <div class="link" *ngFor="let subcategory of basketballSubListing.subCategoryList" (click)="redirectToCategory(subcategory.id)">{{ subcategory.name }}</div>
                 </div>
-                <div class="grid-list" *ngIf="selectedOption === 'goergian_rugby'">
+                <div class="grid-list" *ngIf="selectedOption === 'georgian_rugby'">
                     <div class="link lead uppercase" (click)="redirectToCategory(georgianRugbySubListing.mainId)">{{ georgianRugbySubListing.mainTitle }}</div>
                     <div class="link" *ngFor="let subcategory of georgianRugbySubListing.subCategoryList" (click)="redirectToCategory(subcategory.id)">{{ subcategory.name }}</div>
                 </div>

@@ -71,7 +71,7 @@ export class NavbarComponent implements OnInit {
     { id: 180243, name: "ქართული ფეხბურთი", value: "default" },
     { id: 180249, name: "მსოფლიო ფეხბურთი", value: "world_football" },
     { id: 180261, name: "კალათბურთი", value: "basketball" },
-    { id: 180274, name: "ქართული რაგბი", value: "goergian_rugby" },
+    { id: 180274, name: "ქართული რაგბი", value: "georgian_rugby" },
     { id: 181216, name: "MMA", value: "MMA" },
     { id: 180294, name: "ძიუდო", value: "judo" },
     { id: 180300, name: "სხვა სახეობები", value: "others" },
