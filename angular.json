@@ -121,7 +121,11 @@
           }
         },
         "deploy": {
-          "builder": "angular-cli-ghpages:deploy"
+          "builder": "angular-cli-ghpages:deploy",
+          "options": {
+            "baseHref": "/angular-project/",
+            "repo": "https://github.com/GeorgeShani/angular-project.git"
+          }
         }
       }
     }
