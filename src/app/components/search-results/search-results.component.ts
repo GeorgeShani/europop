@@ -44,6 +44,7 @@ export class SearchResultsComponent {
     });
   }
 
+  
   redirectToPostDetails(id: number) {
     window.location.href = `/post/${id}`;
   }
