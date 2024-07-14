@@ -29,38 +29,38 @@ import { EpopPlusComponent } from './components/epop-plus/epop-plus.component';
 import { AccessForbiddenComponent } from './components/access-forbidden/access-forbidden.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    PostDetailsComponent,
-    HomeComponent,
-    NavbarComponent,
-    FooterComponent,
-    RelativeTimePipe,
-    ErrorComponent,
-    LoginComponent,
-    RegisterComponent,
-    PasswordRecoveryComponent,
-    PrivacyPolicyComponent,
-    TermsAndConditionsComponent,
-    SearchResultsComponent,
-    EuropebetPostsComponent,
-    AnalyticalPostsComponent,
-    AuthorsComponent,
-    CategoryDetailsComponent,
-    KFormaterPipe,
-    AboutUsComponent,
-    AuthorProfileComponent,
-    EpopPlusComponent,
-    AccessForbiddenComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
-    FormsModule,
-    BrowserAnimationsModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent,
+        PostDetailsComponent,
+        HomeComponent,
+        NavbarComponent,
+        FooterComponent,
+        RelativeTimePipe,
+        ErrorComponent,
+        LoginComponent,
+        RegisterComponent,
+        PasswordRecoveryComponent,
+        PrivacyPolicyComponent,
+        TermsAndConditionsComponent,
+        SearchResultsComponent,
+        EuropebetPostsComponent,
+        AnalyticalPostsComponent,
+        AuthorsComponent,
+        CategoryDetailsComponent,
+        KFormaterPipe,
+        AboutUsComponent,
+        AuthorProfileComponent,
+        EpopPlusComponent,
+        AccessForbiddenComponent
+    ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        HttpClientModule,
+        FormsModule,
+        BrowserAnimationsModule
+    ],
+    providers: [],
+    bootstrap: [AppComponent]
 })
 export class AppModule { }
