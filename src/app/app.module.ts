@@ -58,7 +58,7 @@ import { AccessForbiddenComponent } from './components/access-forbidden/access-f
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    BrowserAnimationsModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
