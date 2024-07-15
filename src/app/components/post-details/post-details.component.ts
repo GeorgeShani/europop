@@ -61,8 +61,8 @@ export class PostDetailsComponent implements OnInit {
     window.location.href = `/category/${id}`;
   }
 
-  redirectToAuthor(iid: number) {
-    window.location.href = `/author/${iid}`;
+  redirectToAuthor(id: number) {
+    window.location.href = `/author/${id}`;
   }
 
   ngOnInit(): void {
