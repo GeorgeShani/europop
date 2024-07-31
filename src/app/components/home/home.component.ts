@@ -24,6 +24,7 @@ export class HomeComponent implements OnInit {
   europebetPosts!: any;
   featuredEuropebetPost!: any;
   analyticalPosts!: any;
+  hotTopics!: any;
   authorsData!: any;
   regularPosts!: any;
   latePosts!: any;
@@ -88,6 +89,10 @@ export class HomeComponent implements OnInit {
 
     this._fetch.getData("analyticalPosts").subscribe((data) => {
       this.analyticalPosts = data;
+    });
+
+    this._fetch.getData("hotTopics").subscribe((data) => {
+      this.hotTopics = data;
     });
 
     this._fetch.getAuthors(1, 15).subscribe((data) => {
@@ -167,6 +172,10 @@ export class HomeComponent implements OnInit {
 
   redirectToAnalyticalPosts() {
     window.location.href = "/posts/analytics";
+  }
+
+  redirectToHotTopics() {
+    window.location.href = "/posts/hot-topics";
   }
 
   redirectToAuthors() {

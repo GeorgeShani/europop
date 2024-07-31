@@ -10,6 +10,9 @@
                 <div class="big-post-card">
                     <div class="image-container" (click)="redirectToPostDetails(featuredPostsData.data[featuredPostsData.data.length - 1].id)">
                         <img [src]="featuredPostsData.data[featuredPostsData.data.length - 1].bigFeaturedImage.fileUrl" alt="">
+                        <span *ngIf="featuredPostsData.data[featuredPostsData.data.length - 1].tag.name == 'ცხელი ამბავი'" class="hot-topic">
+                            <span class="text">🚨 დღის თემა</span>
+                        </span>
                     </div>
                     <div class="info-container">
                         <div class="main-info">
@@ -44,6 +47,9 @@
                 <div class="small-card" *ngFor="let featuredPost of firstFourFeaturedPosts">
                     <div class="image-container" (click)="redirectToPostDetails(featuredPost.id)">
                         <img [src]="featuredPost.image.fileUrl" alt="">
+                        <span *ngIf="featuredPost.tag.name == 'ცხელი ამბავი'" class="hot-topic">
+                            <span class="text">🚨 დღის თემა</span>
+                        </span>
                     </div>
                     <div class="info-container">
                         <div class="main-info">
@@ -116,6 +122,61 @@
                             </div>
                         </div>
                     </ng-container>
+                    <ng-container *ngIf="hotTopics && hotTopics.data.length > 0">
+                        <div class="hot-topics-container">
+                            <div class="header">
+                                <div class="main-info">
+                                    <h5 class="uppercase">🚨 დღის თემა</h5>
+                                    <p>ოლიმპიადა | დღეს პარიზში მოქმედი ოლიმპიური ჩემპიონი ლაშა ბექაური ასპარეზობს</p>
+                                </div>
+                                <button type="button" id="show-all" (click)="redirectToHotTopics()">
+                                    მეტი <i class="bi bi-arrow-right-circle-fill"></i>
+                                </button>
+                            </div>
+                            <div class="slider">
+                                <div class="post-card" *ngFor="let post of hotTopics.data">
+                                    <div class="image-container" (click)="redirectToPostDetails(post.id)">
+                                        <img [src]="post.image.fileUrl" alt="">
+                                        <span class="hot-topic">
+                                            <span class="text">🚨 დღის თემა</span>
+                                        </span>
+                                    </div>
+                                    <div class="info-container">
+                                        <p class="subtitle">{{ post.subtitle }}</p>
+                                        <h3 class="title uppercase" (click)="redirectToPostDetails(post.id)">
+                                            {{ post.title }}
+                                        </h3>
+                                        <div class="author-info-container">
+                                            <div class="author-image" (click)="redirectToAuthor(post.author.id)">
+                                                <img [src]="post.author.avatar.fileUrl" alt="">
+                                            </div>
+                                            <div class="author-info" (click)="redirectToAuthor(post.author.id)">
+                                                <p class="name">{{ post.author.firstName }} {{ post.author.lastName }}</p>
+                                            </div>
+                                        </div>
+                                        <div class="additional-info">
+                                            <div class="date-and-read-time">
+                                                <p>{{ post.publishedAt | relativeTime }}</p>
+                                                <span>&centerdot;</span> <i class="bi bi-file-earmark-text"></i>
+                                                <p>{{ post.estimatedReadTime }} წუთი</p>
+                                            </div>
+                                            <div class="interaction-buttons">
+                                                <button type="button" id="post-interaction-btn">
+                                                    <i class="bi bi-hand-thumbs-up"></i>
+                                                </button>
+                                                <button type="button" id="post-interaction-btn">
+                                                    <i class="bi bi-chat-dots"></i>
+                                                </button>
+                                                <button type="button" id="post-interaction-btn">
+                                                    <i class="bi bi-bookmark-plus"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </ng-container>
                     <ng-container *ngIf="latestPosts">
                         <div class="latest-posts">
                             <div class="header">
@@ -148,7 +209,7 @@
                                     მეტი <i class="bi bi-arrow-right-circle-fill"></i>
                                 </button>
                             </div>
-                            <div class="analytical-posts-slider">
+                            <div class="slider">
                                 <div class="post-card" *ngFor="let post of analyticalPosts.data">
                                     <div class="image-container" (click)="redirectToPostDetails(post.id)">
                                         <img [src]="post.image.fileUrl" alt="">

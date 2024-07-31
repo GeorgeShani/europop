@@ -27,6 +27,7 @@ import { AboutUsComponent } from './components/about-us/about-us.component';
 import { AuthorProfileComponent } from './components/author-profile/author-profile.component';
 import { EpopPlusComponent } from './components/epop-plus/epop-plus.component';
 import { AccessForbiddenComponent } from './components/access-forbidden/access-forbidden.component';
+import { HotTopicsComponent } from './components/hot-topics/hot-topics.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,8 @@ import { AccessForbiddenComponent } from './components/access-forbidden/access-f
     AboutUsComponent,
     AuthorProfileComponent,
     EpopPlusComponent,
-    AccessForbiddenComponent
+    AccessForbiddenComponent,
+    HotTopicsComponent
   ],
   imports: [
     BrowserModule,

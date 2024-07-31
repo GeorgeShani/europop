@@ -18,6 +18,7 @@ import { AuthorsComponent } from './components/authors/authors.component';
 import { AuthorProfileComponent } from './components/author-profile/author-profile.component';
 import { EpopPlusComponent } from './components/epop-plus/epop-plus.component';
 import { AccessForbiddenComponent } from './components/access-forbidden/access-forbidden.component';
+import { HotTopicsComponent } from './components/hot-topics/hot-topics.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full'},
@@ -27,6 +28,7 @@ const routes: Routes = [
   { path: 'epop-plus', title: "epop plus - სპორტული ანალიტიკა", component: EpopPlusComponent },
   { path: 'posts/analytics', title: "Analytics - Europop", component: AnalyticalPostsComponent },
   { path: 'posts/powered-by-europebet', title: "Powered by Europebet - Europop", component: EuropebetPostsComponent },
+  { path: 'posts/hot-topics', title: "Hot topics - Europop", component: HotTopicsComponent },
   { path: 'post/:id', component: PostDetailsComponent },
   { path: 'authors', title: 'ავტორები - Europop', component: AuthorsComponent },
   { path: 'author/:id', component: AuthorProfileComponent },
