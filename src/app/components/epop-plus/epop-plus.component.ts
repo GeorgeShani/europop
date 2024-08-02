@@ -20,6 +20,7 @@ export class EpopPlusComponent {
   europebetPosts!: any;
   featuredEuropebetPost!: any;
   analyticalPosts!: any;
+  hotTopics!: any;
   moreLatestPosts!: any;
   evenMoreLatestPosts!: any;
 
@@ -47,6 +48,10 @@ export class EpopPlusComponent {
   ) { 
     this._fetch.getData("analyticalPosts").subscribe((data) => {
       this.analyticalPosts = data;
+    });
+
+    this._fetch.getData("hotTopics").subscribe((data) => {
+      this.hotTopics = data;
     });
 
     this._fetch.getPostsByEuropebet(3).subscribe((data) => {
@@ -130,6 +135,10 @@ export class EpopPlusComponent {
 
   redirectToAnalyticalPosts() {
     window.location.href = "/posts/analytics";
+  }
+
+  redirectToHotTopics() {
+    window.location.href = "/posts/hot-topics";
   }
 
   redirectToAuthor(id: number) {

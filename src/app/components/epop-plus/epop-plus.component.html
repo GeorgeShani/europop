@@ -8,46 +8,105 @@
         <div class="more-content">
             <div class="posts-container">
                 <ng-container *ngIf="analyticalPosts">
-                    <div class="big-analytical-post-card">
-                        <div class="image-container">
-                            <img (click)="redirectToPostDetails(analyticalPosts.data[2].id)" 
-                            [src]="analyticalPosts.data[2].image.fileUrl" alt="">
-                        </div>
-                        <div class="info-container">
-                            <div class="main-info">
-                                <p class="subtitle">{{ analyticalPosts.data[2].subtitle }}</p>
-                                <h3 (click)="redirectToPostDetails(analyticalPosts.data[2].id)" class="title uppercase">
-                                    <img width="34" height="20" [src]="epopPlusLogo" alt="">
-                                    {{ analyticalPosts.data[2].title }}
-                                </h3>
-                            </div>
-                            <div class="additional-info">
-                                <div class="add-info">
-                                    <img [src]="analyticalPosts.data[2].author.avatar.fileUrl" 
-                                    (click)="redirectToAuthor(analyticalPosts.data[2].author.id)" alt="">
-                                    <p class="author-name" (click)="redirectToAuthor(analyticalPosts.data[2].author.id)">
-                                        {{ analyticalPosts.data[2].author.firstName }} 
-                                        {{ analyticalPosts.data[2].author.lastName }}
-                                    </p>
-                                    <span>&centerdot;</span>
-                                    <p>{{ analyticalPosts.data[2].publishedAt | relativeTime }}</p>
-                                    <span>&centerdot;</span> <i class="bi bi-file-earmark-text"></i>
-                                    <p>{{ analyticalPosts.data[2].estimatedReadTime }} წუთი</p>
+                    <ng-container *ngFor="let analyticalPost of analyticalPosts.data">
+                        <ng-container *ngIf="analyticalPost.likeCount !== 0 && analyticalPost.commentCount !== 0">
+                            <div class="big-analytical-post-card">
+                                <div class="image-container">
+                                    <img (click)="redirectToPostDetails(analyticalPost.id)" [src]="analyticalPost.image.fileUrl"
+                                        alt="">
                                 </div>
-                                <div class="interaction-buttons">
-                                    <button type="button" id="post-interaction-btn">
-                                        <i class="bi bi-hand-thumbs-up"></i>
-                                    </button>
-                                    <button type="button" id="post-interaction-btn">
-                                        <i class="bi bi-chat-dots"></i>
-                                    </button>
-                                    <button type="button" id="post-interaction-btn">
-                                        <i class="bi bi-bookmark-plus"></i>
-                                    </button>
+                                <div class="info-container">
+                                    <div class="main-info">
+                                        <p class="subtitle">{{ analyticalPost.subtitle }}</p>
+                                        <h3 (click)="redirectToPostDetails(analyticalPost.id)" class="title uppercase">
+                                            <img width="34" height="20" [src]="epopPlusLogo" alt="">
+                                            {{ analyticalPost.title }}
+                                        </h3>
+                                    </div>
+                                    <div class="additional-info">
+                                        <div class="add-info">
+                                            <img [src]="analyticalPost.author.avatar.fileUrl"
+                                                (click)="redirectToAuthor(analyticalPost.author.id)" alt="">
+                                            <p class="author-name" (click)="redirectToAuthor(analyticalPost.author.id)">
+                                                {{ analyticalPost.author.firstName }}
+                                                {{ analyticalPost.author.lastName }}
+                                            </p>
+                                            <span>&centerdot;</span>
+                                            <p>{{ analyticalPost.publishedAt | relativeTime }}</p>
+                                            <span>&centerdot;</span> <i class="bi bi-file-earmark-text"></i>
+                                            <p>{{ analyticalPost.estimatedReadTime }} წუთი</p>
+                                        </div>
+                                        <div class="interaction-buttons">
+                                            <button type="button" id="post-interaction-btn">
+                                                <i class="bi bi-hand-thumbs-up"></i>
+                                            </button>
+                                            <button type="button" id="post-interaction-btn">
+                                                <i class="bi bi-chat-dots"></i>
+                                            </button>
+                                            <button type="button" id="post-interaction-btn">
+                                                <i class="bi bi-bookmark-plus"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </ng-container>
+                    </ng-container>
+                    <ng-container *ngIf="hotTopics && hotTopics.data.length > 0">
+                        <div class="hot-topics-container">
+                            <div class="header">
+                                <div class="main-info">
+                                    <h5 class="uppercase">🚨 დღის თემა</h5>
+                                    <p>ოლიმპიადა | დღეს პარიზში მოქმედი ოლიმპიური ჩემპიონი ლაშა ბექაური ასპარეზობს</p>
+                                </div>
+                                <button type="button" id="show-all" (click)="redirectToHotTopics()">
+                                    მეტი <i class="bi bi-arrow-right-circle-fill"></i>
+                                </button>
+                            </div>
+                            <div class="slider">
+                                <div class="post-card" *ngFor="let post of hotTopics.data">
+                                    <div class="image-container" (click)="redirectToPostDetails(post.id)">
+                                        <img [src]="post.image.fileUrl" alt="">
+                                        <span class="hot-topic">
+                                            <span class="text">🚨 დღის თემა</span>
+                                        </span>
+                                    </div>
+                                    <div class="info-container">
+                                        <p class="subtitle">{{ post.subtitle }}</p>
+                                        <h3 class="title uppercase" (click)="redirectToPostDetails(post.id)">
+                                            {{ post.title }}
+                                        </h3>
+                                        <div class="author-info-container">
+                                            <div class="author-image" (click)="redirectToAuthor(post.author.id)">
+                                                <img [src]="post.author.avatar.fileUrl" alt="">
+                                            </div>
+                                            <div class="author-info" (click)="redirectToAuthor(post.author.id)">
+                                                <p class="name">{{ post.author.firstName }} {{ post.author.lastName }}</p>
+                                            </div>
+                                        </div>
+                                        <div class="additional-info">
+                                            <div class="date-and-read-time">
+                                                <p>{{ post.publishedAt | relativeTime }}</p>
+                                                <span>&centerdot;</span> <i class="bi bi-file-earmark-text"></i>
+                                                <p>{{ post.estimatedReadTime }} წუთი</p>
+                                            </div>
+                                            <div class="interaction-buttons">
+                                                <button type="button" id="post-interaction-btn">
+                                                    <i class="bi bi-hand-thumbs-up"></i>
+                                                </button>
+                                                <button type="button" id="post-interaction-btn">
+                                                    <i class="bi bi-chat-dots"></i>
+                                                </button>
+                                                <button type="button" id="post-interaction-btn">
+                                                    <i class="bi bi-bookmark-plus"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </ng-container>
                     <div class="analytical-posts-container">
                         <div class="header">
                             <div class="main-info">
