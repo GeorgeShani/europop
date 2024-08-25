@@ -7,8 +7,6 @@ import { Router, NavigationEnd } from '@angular/router';
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
-  title: string = "angular-project";
-
   modifyNavbar: boolean = false;
   showFooter: boolean = true;
 
