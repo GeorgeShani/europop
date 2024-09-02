@@ -53,10 +53,10 @@
                     placeholder="მოძებნე პოსტი, ავტორი, კატეგორია..."
                 >
             </div>
-            <button id="notifications" type="button">
+            <button id="notifications" type="button" (click)="redirectToLogin()">
                 <i class="bi bi-bell"></i>
             </button>
-            <button id="profile" type="button">
+            <button id="profile" type="button" (click)="redirectTo403()">
                 <i class="bi bi-person"></i>
             </button>
         </div>

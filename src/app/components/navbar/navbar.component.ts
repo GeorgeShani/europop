@@ -313,4 +313,12 @@ export class NavbarComponent implements OnInit {
   redirectToPostDetails(id: number) {
     window.location.href = `/post/${id}`;
   }
+
+  redirectToLogin() {
+    window.location.href = '/auth/login';
+  }
+
+  redirectTo403() {
+    window.location.href = "/403";
+  }
 }
