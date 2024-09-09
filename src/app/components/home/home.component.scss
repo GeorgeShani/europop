@@ -111,6 +111,7 @@
 
                         p {
                             @include font(500, 14px, #f15a22);
+                            line-height: 18px;
                             margin-bottom: 12px;
                         }
 
@@ -119,7 +120,7 @@
                             @include text-ellipsis(3);
                             
                             h3 {
-                                @include font(600, 20px, #fff);
+                                @include font(600, 19.5px, #fff);
                                 line-height: 26px;
                                 cursor: pointer;
                             }

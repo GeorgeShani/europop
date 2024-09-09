@@ -46,7 +46,7 @@ export class ExternalContentExtractorService {
           <a href="${oembedUrl}"></a>
         </blockquote>
       `;
-
+      
       this.loadScript("twitter-widgets-script", "https://platform.twitter.com/widgets.js");
       
       const loadTwitterWidgets = () => {
