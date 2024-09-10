@@ -12,8 +12,7 @@
                         <ng-container *ngIf="analyticalPost.likeCount !== 0 && analyticalPost.commentCount !== 0">
                             <div class="big-analytical-post-card">
                                 <div class="image-container">
-                                    <img (click)="redirectToPostDetails(analyticalPost.id)" [src]="analyticalPost.image.fileUrl"
-                                        alt="">
+                                    <img (click)="redirectToPostDetails(analyticalPost.id)" [src]="analyticalPost.image.fileUrl" alt="">
                                 </div>
                                 <div class="info-container">
                                     <div class="main-info">

@@ -9,6 +9,9 @@ import { RegexService } from '../../services/regex.service';
 export class PasswordRecoveryComponent {
   constructor(private _regex: RegexService) { }
 
+  userEmailOrPhoneNumber!: string;
+  userEmailOrPhoneNumberError!: string;
+
   recoverPassword() {
     if (this.userEmailOrPhoneNumber === "") {
       this.userEmailOrPhoneNumberError = "გთხოვთ, შეავსოთ ველი";
@@ -19,7 +22,7 @@ export class PasswordRecoveryComponent {
     }
 
     if (this.checkNumber() || this.checkEmail()) {
-      alert("დამადასტურებელი წერილი მაოგივათ \nთქვენს ელ-ფოსტაზე ან მობილურის ნომერზე");
+      alert("დამადასტურებელი წერილი მოგივათ \nთქვენს ელ-ფოსტაზე ან მობილურის ნომერზე");
       this.userEmailOrPhoneNumber = "";
     }
   }
@@ -31,9 +34,6 @@ export class PasswordRecoveryComponent {
   checkEmail() {
     return this._regex.validateEmail(this.userEmailOrPhoneNumber);
   }
-
-  userEmailOrPhoneNumber!: string;
-  userEmailOrPhoneNumberError!: string;
 
   enableButton() {
     if (this.checkEmail() || this.checkNumber()) {
