@@ -28,9 +28,9 @@ export class EpopPlusComponent {
   europopForumVideoGallery!: any;
   tableDerbyVideoGallery!: any;
 
-  currentVideoId: string[] = ["_vGmWkXkRz4", "zRgFViXgPZ4", "1TgM0z2dnQ0"];
+  currentVideoId: string[] = ["_vGmWkXkRz4", "zRgFViXgPZ4", "IeKMkfSUNt4"];
   isVideoPlayerPlaying: boolean[] = [false, false, false];
-  videoName: string[] = ["გასვლითი დაზვერვა გერმანიაში", "", "ტატო VS მინა | სუპერფინალი [მაგიდის დერბი]"];
+  videoName: string[] = ["გასვლითი დაზვერვა გერმანიაში", "", "ლაშა VS ჯანელა | 1/8-ფინალი [მაგიდის დერბი]"];
 
   userEmail!: string;
 
